@@ -164,7 +164,13 @@
     <Compile Include="Models\ArbitroPorPartido.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArbitroPorPartido_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cambio.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cambio_H.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs">
@@ -197,10 +203,16 @@
     <Compile Include="Models\EntrenadorEquipoTorneo.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntrenadorEquipoTorneo_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Equipo.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquipoPorTorneo.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EquipoPorTorneo_H.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Especialidad.cs">
@@ -212,6 +224,9 @@
     <Compile Include="Models\FechasCalendario.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FechasCalendario_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Federacion.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
@@ -221,10 +236,28 @@
     <Compile Include="Models\Gol.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GolesPartidos_Result.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gol_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InformacionArbitrosTorneo_Result.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InformacionEntrenador_Result.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\informacionJugador_Result.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Jugador.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JugadorPorEquipoPorTorneo.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JugadorPorEquipoPorTorneo_H.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfertaFuncionario.cs">
@@ -234,6 +267,9 @@
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Partido.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Partido_H.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Posicion.cs">
@@ -263,6 +299,12 @@
     <Compile Include="Models\SuplentesEquipoPartido.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SuplentesEquipoPartido_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tablaPosiciones_Result.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TelefonoFuncionario.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
@@ -272,6 +314,9 @@
     <Compile Include="Models\TitularEquipoPartido.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TitularEquipoPartido_H.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Titulo.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
@@ -279,6 +324,9 @@
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Torneo.cs">
+      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Torneo_H.cs">
       <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
@@ -340,8 +388,8 @@
     <Content Include="Content\build\js\Validator\jquery.validate.min.js" />
     <Content Include="Models\ProyectoBasesSanchezEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ProyectoBasesSanchezEntities.Context.cs</LastGenOutput>
       <DependentUpon>ProyectoBasesSanchezEntities.edmx</DependentUpon>
+      <LastGenOutput>ProyectoBasesSanchezEntities.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ProyectoBasesSanchezEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

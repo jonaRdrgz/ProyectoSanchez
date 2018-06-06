@@ -9,16 +9,20 @@ namespace ProyectoSanchez.ViewModels
     public class TorneoVM
     {
         [Required(ErrorMessage = "El id del torneo es obligatorio")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdTorneo { get; set; }
+        //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
+        public decimal IdTorneo { get; set; }
 
         [Required(ErrorMessage = "El id de la competición es obligatorio")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdCompeticion { get; set; }
+        //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
+        public decimal IdCompeticion { get; set; }
 
         [Required(ErrorMessage = "El id de la federación es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public short IdFederacion { get; set; }
+
+        [Required(ErrorMessage = "El nombre del torneo es obligatorio")]
+        [StringLength(50, ErrorMessage = "El nombre posee un tamaño muy extenso")]
+        public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El año del torneo es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]

@@ -22,6 +22,7 @@ namespace ProyectoSanchez.Models
             this.DireccionFuncionarios = new HashSet<DireccionFuncionario>();
             this.Entrenadors = new HashSet<Entrenador>();
             this.Jugadors = new HashSet<Jugador>();
+            this.OfertaFuncionarios = new HashSet<OfertaFuncionario>();
             this.TelefonoFuncionarios = new HashSet<TelefonoFuncionario>();
         }
     
@@ -39,7 +40,8 @@ namespace ProyectoSanchez.Models
         public virtual ICollection<Entrenador> Entrenadors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jugador> Jugadors { get; set; }
-        public virtual OfertaFuncionario OfertaFuncionario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OfertaFuncionario> OfertaFuncionarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TelefonoFuncionario> TelefonoFuncionarios { get; set; }
     }

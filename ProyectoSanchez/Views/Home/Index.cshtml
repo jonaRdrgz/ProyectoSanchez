@@ -31,12 +31,12 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="idTorneo" name="idTorneo">
+                                    <select class="form-control" id="idTorneo" name="idTorneo" onchange="getFechasCalendarioXTorneo()">
                                         <option value="-1">Seleccione una Opción</option>
-                                        @{List<ProyectoSanchez.ViewModels.TorneoVM> torneo = ViewBag.toreos; }
+                                        @{List<ProyectoSanchez.ViewModels.TorneoVM> torneo = ViewBag.torneos; }
                                         @foreach (var item in torneo)
                                         {
-                                            <option value="@item.IdArea">Area #@item.NumeroArea : @item.Area</option>
+                                            <option value="@item.IdTorneo">@item.Nombre</option>
                                         }
                                     </select>
                                 </div>
@@ -54,7 +54,7 @@
                     <div class="x_content">
                         <div class="ln_solid"></div>
                         <div class="table-responsive">
-                            <table id="previewTableTorneo" class="table  table-responsive table-striped display nowrap jambo_table bulk_action" style="width:100%">
+                            <table id="previewTableFechas" class="table  table-responsive table-striped display nowrap jambo_table bulk_action" style="width:100%">
 
                                 <thead>
                                     <tr class="headings">
@@ -67,7 +67,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody id="previewTableTorneoBody"></tbody>
+                                <tbody id="previewTableFechasBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -80,5 +80,17 @@
 
 <!-- /page content -->
 <script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>
+<script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>
 <script src="~/Content/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<link href="~/Content/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Content/build/js/FechaCalendario.js" type="text/javascript"></script>

@@ -12,6 +12,8 @@ namespace ProyectoSanchez.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ProyectoBasesSanchezEntities : DbContext
     {
@@ -28,6 +30,7 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Arbitro> Arbitroes { get; set; }
         public virtual DbSet<ArbitroPorPartido> ArbitroPorPartidoes { get; set; }
         public virtual DbSet<Cambio> Cambios { get; set; }
+        public virtual DbSet<Cambio_H> Cambio_H { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Competicion> Competicions { get; set; }
         public virtual DbSet<CompeticionPorFederacion> CompeticionPorFederacions { get; set; }
@@ -38,19 +41,24 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Dominio> Dominios { get; set; }
         public virtual DbSet<Entrenador> Entrenadors { get; set; }
         public virtual DbSet<EntrenadorEquipoTorneo> EntrenadorEquipoTorneos { get; set; }
+        public virtual DbSet<EntrenadorEquipoTorneo_H> EntrenadorEquipoTorneo_H { get; set; }
         public virtual DbSet<Equipo> Equipoes { get; set; }
         public virtual DbSet<EquipoPorTorneo> EquipoPorTorneos { get; set; }
+        public virtual DbSet<EquipoPorTorneo_H> EquipoPorTorneo_H { get; set; }
         public virtual DbSet<Especialidad> Especialidads { get; set; }
         public virtual DbSet<EspecialidadPorJugador> EspecialidadPorJugadors { get; set; }
         public virtual DbSet<FechasCalendario> FechasCalendarios { get; set; }
+        public virtual DbSet<FechasCalendario_H> FechasCalendario_H { get; set; }
         public virtual DbSet<Federacion> Federacions { get; set; }
         public virtual DbSet<Funcionario> Funcionarios { get; set; }
         public virtual DbSet<Gol> Gols { get; set; }
+        public virtual DbSet<Gol_H> Gol_H { get; set; }
         public virtual DbSet<Jugador> Jugadors { get; set; }
         public virtual DbSet<JugadorPorEquipoPorTorneo> JugadorPorEquipoPorTorneos { get; set; }
         public virtual DbSet<OfertaFuncionario> OfertaFuncionarios { get; set; }
         public virtual DbSet<Pai> Pais { get; set; }
         public virtual DbSet<Partido> Partidoes { get; set; }
+        public virtual DbSet<Partido_H> Partido_H { get; set; }
         public virtual DbSet<Posicion> Posicions { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Socio> Socios { get; set; }
@@ -61,6 +69,73 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Titulo> Tituloes { get; set; }
         public virtual DbSet<TituloPorEntrenador> TituloPorEntrenadors { get; set; }
         public virtual DbSet<Torneo> Torneos { get; set; }
+        public virtual DbSet<Torneo_H> Torneo_H { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<ArbitroPorPartido_H> ArbitroPorPartido_H { get; set; }
+        public virtual DbSet<JugadorPorEquipoPorTorneo_H> JugadorPorEquipoPorTorneo_H { get; set; }
+        public virtual DbSet<SuplentesEquipoPartido_H> SuplentesEquipoPartido_H { get; set; }
+        public virtual DbSet<TitularEquipoPartido_H> TitularEquipoPartido_H { get; set; }
+    
+        public virtual int generarResultadosTorneo(Nullable<decimal> torneo)
+        {
+            var torneoParameter = torneo.HasValue ?
+                new ObjectParameter("torneo", torneo) :
+                new ObjectParameter("torneo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("generarResultadosTorneo", torneoParameter);
+        }
+    
+        public virtual ObjectResult<GolesPartidos_Result> GolesPartidos(Nullable<decimal> idEquipoUno, Nullable<decimal> idEquipoDos, Nullable<System.DateTime> fecha)
+        {
+            var idEquipoUnoParameter = idEquipoUno.HasValue ?
+                new ObjectParameter("idEquipoUno", idEquipoUno) :
+                new ObjectParameter("idEquipoUno", typeof(decimal));
+    
+            var idEquipoDosParameter = idEquipoDos.HasValue ?
+                new ObjectParameter("idEquipoDos", idEquipoDos) :
+                new ObjectParameter("idEquipoDos", typeof(decimal));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GolesPartidos_Result>("GolesPartidos", idEquipoUnoParameter, idEquipoDosParameter, fechaParameter);
+        }
+    
+        public virtual ObjectResult<InformacionArbitrosTorneo_Result> InformacionArbitrosTorneo(Nullable<decimal> idTorneo)
+        {
+            var idTorneoParameter = idTorneo.HasValue ?
+                new ObjectParameter("idTorneo", idTorneo) :
+                new ObjectParameter("idTorneo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionArbitrosTorneo_Result>("InformacionArbitrosTorneo", idTorneoParameter);
+        }
+    
+        public virtual ObjectResult<InformacionEntrenador_Result> InformacionEntrenador(Nullable<decimal> idEntrenador)
+        {
+            var idEntrenadorParameter = idEntrenador.HasValue ?
+                new ObjectParameter("idEntrenador", idEntrenador) :
+                new ObjectParameter("idEntrenador", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionEntrenador_Result>("InformacionEntrenador", idEntrenadorParameter);
+        }
+    
+        public virtual ObjectResult<informacionJugador_Result> informacionJugador(Nullable<decimal> idJugador)
+        {
+            var idJugadorParameter = idJugador.HasValue ?
+                new ObjectParameter("idJugador", idJugador) :
+                new ObjectParameter("idJugador", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<informacionJugador_Result>("informacionJugador", idJugadorParameter);
+        }
+    
+        public virtual ObjectResult<tablaPosiciones_Result> tablaPosiciones(Nullable<decimal> torneo)
+        {
+            var torneoParameter = torneo.HasValue ?
+                new ObjectParameter("torneo", torneo) :
+                new ObjectParameter("torneo", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<tablaPosiciones_Result>("tablaPosiciones", torneoParameter);
+        }
     }
 }

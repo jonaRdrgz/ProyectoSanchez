@@ -12,18 +12,15 @@ namespace ProyectoSanchez.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pai
+    public partial class Gol_H
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pai()
-        {
-            this.Federacions = new HashSet<Federacion>();
-        }
-    
-        public decimal idPais { get; set; }
-        public string nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Federacion> Federacions { get; set; }
+        public System.DateTime fecha_cambio { get; set; }
+        public string usuario_cambio { get; set; }
+        public string tipo_cambio { get; set; }
+        public decimal idGol { get; set; }
+        public decimal idJugador { get; set; }
+        public decimal minuto { get; set; }
+        public decimal idEquipo { get; set; }
+        public decimal idPartido { get; set; }
     }
 }

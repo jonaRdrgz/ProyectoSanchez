@@ -6,24 +6,28 @@ using System.Web.Mvc;
 
 namespace ProyectoSanchez.Controllers
 {
+    public class HomeControllerDataBaseWrapper 
+    {
+        private Models.ProyectoBasesSanchezEntities db = new Models.ProyectoBasesSanchezEntities();
+
+        public HomeControllerDataBaseWrapper()
+        {
+            db = new Models.ProyectoBasesSanchezEntities();
+        }
+
+    }
+
     public class HomeController : Controller
     {
+        private HomeControllerDataBaseWrapper _db;
+
+        public HomeController()
+        {
+            _db = new HomeControllerDataBaseWrapper();
+
+        }
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

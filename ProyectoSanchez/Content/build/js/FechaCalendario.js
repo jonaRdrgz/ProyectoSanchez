@@ -19,9 +19,12 @@
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
-                htmlBodyTable += '<td align="center">' + fecha["FechaProgramada"] + '</td>\
+                var milli = fecha["FechaProgramada"].replace(/\/Date\((-?\d+)\)\//, '$1');
+
+                var fechaInicial = new Date(parseInt(milli)).toLocaleString();
+                htmlBodyTable += '<td align="center">' + fechaInicial + '</td>\
                             <td class=" last">\
-                                <a onclick="rediredToEdit('+ fecha["IdFecha"] + "," + fecha["IdTorneo"] + ')"  class="verForm">+Info</a>\
+                                <a onclick="rediredToPartido('+ fecha["IdFecha"] + "," + fecha["IdTorneo"] + ')"  class="">+Info</a>\
                             </td>\
                         </tr>';
             });
@@ -54,4 +57,9 @@
             alert("Ha ocurrido un error: " + JSON.stringify(data));
         }
     });
+}
+
+function rediredToPartido(idFecha, idTorneo) {
+    //Redirigir a paritdo
+    window.location.replace("/Partido/Index?" + "IdFecha=" + idFecha + "&IdTorneo=" + idTorneo);
 }

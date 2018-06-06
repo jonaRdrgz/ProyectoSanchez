@@ -53,8 +53,8 @@ namespace ProyectoSanchez.Controllers
     public class PartidoController : Controller
     {
         private PartidoControllerDataBaseWrapper _db;
-        private static decimal idFecha;
-        private static decimal idTorneo;
+        private static int idFecha;
+        private static int idTorneo;
         public PartidoController()
         {
             _db = new PartidoControllerDataBaseWrapper();
@@ -71,12 +71,13 @@ namespace ProyectoSanchez.Controllers
         {
             try
             {
-
+                idFecha = _db.GetIdFecha();
+                idTorneo = _db.GetIdTorneo();
                 // Obtenemos la lista de Fechas programadas desde la base de datos
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = fechas,
+                    Data = _db.GetPartidosXFechaYTorneo(idFecha,idTorneo),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

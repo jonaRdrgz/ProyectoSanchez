@@ -154,6 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4722,6 +4723,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Torneo\Index.cshtml" />
     <Content Include="Views\Partido\Index.cshtml" />
+    <Content Include="Views\Jugador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

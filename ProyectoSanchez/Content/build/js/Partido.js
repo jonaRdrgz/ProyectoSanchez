@@ -58,12 +58,14 @@
 function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLocal, golVisita, IdTorneo) { 
     $("#golcasa").val(golLocal);
     $("#golvisita").val(golVisita);
-    getEquiposXTorneo(IdTorneo, $("#local")); 
-    getEquiposXTorneo(IdTorneo, $("#visita"));
+    $("#idElementos").attr("idPartido", idPartido);
+    $("#idElementos").attr("idTorneo", IdTorneo);
+    getEquiposXTorneo(IdTorneo, $("#local"), idEquipoLocal);
+    getEquiposXTorneo(IdTorneo, $("#visita"), idEquipovisita);
     $("#modalEditarPartido").modal();
 }
 
-function getEquiposXTorneo(IdTorneo, tag) {
+function getEquiposXTorneo(IdTorneo, tag, idEquipo) {
     var data = {
         IdTorneo: IdTorneo
     }
@@ -79,7 +81,7 @@ function getEquiposXTorneo(IdTorneo, tag) {
             var htmlSelect = "";
 
             $.each(data, function (i, equipo) {
-                htmlSelect += '<option value="' + equipo["IdEquipo"] + ' " > ' + equipo["Nombre"] + '</option>'; 
+                htmlSelect += '<option value="' + equipo["IdEquipo"] + '" ' + ((equipo["IdEquipo"] == idEquipo) ? "selected" : "") + ' > ' + equipo["Nombre"] + ' </option>'; 
                 
             });
             tag.append(htmlSelect);
@@ -101,19 +103,19 @@ $().ready(function () {
 
 
         $("#local").rules("add", {
-            valorDiferenteA: "none",
+            valorDiferente: "none",
             valorDiferenteA: $("#visita").val(),
             messages: {
-                valorDiferenteA: "Seleccione un equipo local",
+                valorDiferente: "Seleccione un equipo local",
                 valorDiferenteA: "Seleccione un equipo diferente",
             }
         });
 
         $("#visita").rules("add", {
-            valorDiferenteA: "none",
+            valorDiferente: "none",
             valorDiferenteA: $("#local").val(),
             messages: {
-                valorDiferenteA: "Seleccione un equipo visitante",
+                valorDiferente: "Seleccione un equipo visitante",
                 valorDiferenteA: "Seleccione un equipo diferente",
             }
         });
@@ -146,36 +148,42 @@ $().ready(function () {
         submitHandler: function (form) {
            
             var partido = {
-                equipoLocal: $("#local").val(),
-                equipoVisita: $("#visita").val(),
-                golCasa: $("#golcasa").val(),
-                golVisita: $("#golvisita").val()
+                IdPartido : $("#idElementos").attr('idPartido'),
+                IdEquipoLocal: $("#local").val(),
+                IdEquipoVisita: $("#visita").val(),
+                GolLocal: $("#golcasa").val(),
+                GolVisita: $("#golvisita").val(),
+                IdTorneo: $("#idElementos").attr('idTorneo')
             }
             console.log(JSON.stringify(partido));
 
-            //$.ajax({
-            //    type: "post",
-            //    url: "/Partido/" + funcion,
-            //    data: JSON.stringify(partido),
-            //    dataType: "json",
-            //    contentType: "application/json",
-            //    success: function (data) {
-            //        var code = data["CODE"]
-            //        if (code === "PARTIDO_GUARDADO" ) {
-            //            window.location.replace("../Home/Index");
-            //        } else {
-            //            alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
-            //        }
-            //    },
-            //    error: function (data) {
-            //        alert("Ha ocurrido un error: " + JSON.stringify(data));
-            //    }
-            //});
+            $.ajax({
+                type: "post",
+                url: "/Partido/ActualizarPartido",
+                data: JSON.stringify(partido),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var code = data["CODE"]
+                    if (code === "PARTIDO_GUARDADO" ) {
+                        window.location.replace("../Home/Index");
+                    } else {
+                        alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
+                    }
+                },
+                error: function (data) {
+                    alert("Ha ocurrido un error: " + JSON.stringify(data));
+                }
+            });
             return false;
         }
     });
 
     $.validator.addMethod("valorDiferenteA", function (value, element, arg) {
+        return arg !== value;
+    }, "Value must not equal arg.");
+
+    $.validator.addMethod("valorDiferente", function (value, element, arg) {
         return arg !== value;
     }, "Value must not equal arg.");
 

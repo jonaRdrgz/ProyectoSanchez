@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoSanchez.ViewModels;
+using System.Data.Entity.Validation;
+
 namespace ProyectoSanchez.Controllers
 {
     public class PartidoControllerDataBaseWrapper
@@ -52,6 +54,28 @@ namespace ProyectoSanchez.Controllers
                      }
                 ).ToList();
         }
+        public void UpdatePartido(Models.Partido nuevoPartido)
+        {
+            Models.Partido oldPartido = db.Partidoes.SingleOrDefault(b => b.idPartido == nuevoPartido.idPartido);
+
+            if (oldPartido != null)
+            {
+                oldPartido.idEquipoLocal = nuevoPartido.idEquipoLocal;
+                oldPartido.idEquipoVisita = nuevoPartido.idEquipoVisita;
+                oldPartido.golLocal = nuevoPartido.golLocal;
+                oldPartido.golVisita = nuevoPartido.golVisita;
+            }
+        }
+        public Models.Partido  CreatePartido()
+        {
+            return db.Partidoes.Create();
+        }
+
+        public void GuardarCambios()
+        {
+            db.SaveChanges();
+        }
+
 
     }
     public class PartidoController : Controller
@@ -148,39 +172,19 @@ namespace ProyectoSanchez.Controllers
 
             try
             {
-
-
-           
-
                 // Se crea un nuevo partido y se llena con los datos.
-                //var nuevoPartido = CreateFormulario();
-                //nuevoFormulario.ID = FormID;
-                //nuevoFormulario.ID_Usuario_Final = GetUsuarioID(usuarioActual);
-                //nuevoFormulario.Fecha_Inicial = formulario.FechaInicial;
-                //nuevoFormulario.Fecha_Final = formulario.FechaFinal;
-                //nuevoFormulario.ID_Turno_Inicial = formulario.ID_Turno_Inicial;
-                //nuevoFormulario.ID_Turno_Final = formulario.ID_Turno_Final;
-                //nuevoFormulario.ID_Producto_De = formulario.ID_Producto_De;
-                //nuevoFormulario.ID_Producto_A = formulario.ID_Producto_A;
-                //nuevoFormulario.ID_Tipo_Limpieza = formulario.ID_Tipo_Limpieza;
-                //nuevoFormulario.ID_Empleado_Responsable_Lavado = formulario.ResponsableLavado;
-                //nuevoFormulario.ID_Maquina = formulario.IdMaquina;
-                //nuevoFormulario.ID_Verificacion_Agua = formulario.TipoVerificacionAgua;
-                //nuevoFormulario.Maquina_Liberada = formulario.MaquinaLiberada;
-                //nuevoFormulario.Hora_Liberacion_Maquina = formulario.HoraDeLiberacion;
-                //nuevoFormulario.ID_Empleado_Verificacion_Desarme = formulario.ResponsableVerificacion;
-                //nuevoFormulario.Verificacion_Zona_Trabajo = formulario.VerificacionZonaTrabajo;
-                //nuevoFormulario.Observacion = formulario.Observacion;
-                //nuevoFormulario.ID_Estado = GetEstadoEnProceso();
+                var nuevoPartido = _db.CreatePartido();
+                nuevoPartido.idPartido = partido.IdPartido;
+                nuevoPartido.idEquipoLocal = partido.IdEquipoLocal;
+                nuevoPartido.idEquipoVisita = partido.IdEquipoVisita;
+                nuevoPartido.golLocal = partido.GolLocal;
+                nuevoPartido.golVisita = partido.GolVisita;
+              
 
-                //// Se actualiza el formulario utilizando el nuevo formulario
-                //UpdateForm(nuevoFormulario, formulario.Piezas, formulario.PreguntasLimpieza,
-                //    formulario.PiezasExtra, formulario.PiezasExtraBorradas, formulario.PiezasExtraCargadas,
-                //    formulario.Desinfecciones, formulario.DesinfeccionesCargadas, formulario.DesinfeccionesBorradas,
-                //    formulario.Quimicos, formulario.QuimicosCargados, formulario.QuimicosBorrados);
+                _db.UpdatePartido(nuevoPartido);
 
                 //// Se guardan los cambios, indicando que se hace desde el proceso de edición
-                //GuardarCambios();
+                _db.GuardarCambios();
 
                 // Y se retorna un código de completación del proceso exitoso
                 return new JsonResult()
@@ -191,13 +195,18 @@ namespace ProyectoSanchez.Controllers
             }
 
             // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
-            catch (Exception e)
+            catch (DbEntityValidationException e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-
+                foreach (var entityValidationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
                 return new JsonResult()
                 {
-                    Data = new { CODE = "ERROR" },
+                    Data = new { CODE = "ERROR" + e.Message },
                     JsonRequestBehavior = JsonRequestBehavior.DenyGet
                 };
             }

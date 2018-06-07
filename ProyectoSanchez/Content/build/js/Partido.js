@@ -19,7 +19,8 @@
                             <td class=" ">'+ partido["GolLocal"] + '</td>\
                             <td class=" ">'+ partido["GolVisita"] + '</td>\
                             <td class=" last">\
-                                <a onclick="rediredToEdit('+ partido["IdEquipoLocal"] + "," + partido["IdEquipoLocal"] + ')"  class="verpartido">+Info</a>\
+                                <a onclick="getInformacionPartido('+ partido["IdPartido"] + "," + partido["IdEquipoLocal"] + "," + partido["IdEquipoVisita"] +
+                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + ')"  class="verpartido">+Info</a>\
                             </td>\
                         </tr>';
             });
@@ -52,6 +53,12 @@
             alert("Ha ocurrido un error: " + JSON.stringify(data));
         }
     });
+}
+
+function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLocal, golVisita) { 
+    $("#golcasa").val(golLocal);
+    $("#golvisita").val(golVisita);
+    $("#modalEditarPartido").modal();
 }
 
 $().ready(function () {

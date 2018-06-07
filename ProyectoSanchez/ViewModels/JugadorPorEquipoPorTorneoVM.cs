@@ -10,20 +10,28 @@ namespace ProyectoSanchez.ViewModels
     {
         [Required(ErrorMessage = "El id del equipo es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdEquipo { get; set; }
+        public decimal IdEquipo { get; set; }
 
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public ushort Posicion { get; set; }
+        public decimal? Posicion { get; set; }
 
         [Required(ErrorMessage = "El id del jugador es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdJugador { get; set; }
+        public decimal IdJugador { get; set; }
 
         [Required(ErrorMessage = "El id del torneo es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdTorneo { get; set; }
+        public decimal IdTorneo { get; set; }
 
         [StringLength(100,ErrorMessage ="La evaluación es muy extensa")]
         public string Evaluacion { get; set; }
+
+        public string TipoTorneo { get; set; }
+
+        public decimal Anno { get; set; }
+
+        public string Periodo { get; set; }
+
+        public string NombreEquipo { get; set; }
     }
 }

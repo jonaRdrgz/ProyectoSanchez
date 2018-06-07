@@ -95,4 +95,98 @@ function getEquiposXTorneo(IdTorneo, tag) {
 $().ready(function () {
 
     GetPartidos();
+
+    //----------------------------- Validación para Guardar Formulario --------------
+    $("#botonGuardar").click(function () {
+
+
+        $("#local").rules("add", {
+            valorDiferenteA: "none",
+            valorDiferenteA: $("#visita").val(),
+            messages: {
+                valorDiferenteA: "Seleccione un equipo local",
+                valorDiferenteA: "Seleccione un equipo diferente",
+            }
+        });
+
+        $("#visita").rules("add", {
+            valorDiferenteA: "none",
+            valorDiferenteA: $("#local").val(),
+            messages: {
+                valorDiferenteA: "Seleccione un equipo visitante",
+                valorDiferenteA: "Seleccione un equipo diferente",
+            }
+        });
+
+        $('#golcasa').rules("add", {
+            required: true,
+            number: true,
+            messages: {
+                required: "La cantidad es obligatoria",
+                number: "Ingrese solamente números"
+            }
+        });
+
+        $('#golvisita').rules("add", {
+            required: true,
+            number: true,
+            messages: {
+                required: "La cantidad es obligatoria",
+                number: "Ingrese solamente números"
+            }
+        });
+
+
+        tipoGuardado = 2;
+
+        $("#formPartido").valid();
+    });
+
+    $("#formPartido").validate({
+        submitHandler: function (form) {
+           
+            var partido = {
+                equipoLocal: $("#local").val(),
+                equipoVisita: $("#visita").val(),
+                golCasa: $("#golcasa").val(),
+                golVisita: $("#golvisita").val()
+            }
+            console.log(JSON.stringify(partido));
+
+            //$.ajax({
+            //    type: "post",
+            //    url: "/Partido/" + funcion,
+            //    data: JSON.stringify(partido),
+            //    dataType: "json",
+            //    contentType: "application/json",
+            //    success: function (data) {
+            //        var code = data["CODE"]
+            //        if (code === "PARTIDO_GUARDADO" ) {
+            //            window.location.replace("../Home/Index");
+            //        } else {
+            //            alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
+            //        }
+            //    },
+            //    error: function (data) {
+            //        alert("Ha ocurrido un error: " + JSON.stringify(data));
+            //    }
+            //});
+            return false;
+        }
+    });
+
+    $.validator.addMethod("valorDiferenteA", function (value, element, arg) {
+        return arg !== value;
+    }, "Value must not equal arg.");
+
+    $.validator.addMethod("justificacionObligatoriaConRespuesta", function (value, element, arg) {
+        var idPregunta = element.id.replace('justPreg', '');
+        var respuesta = $("input[name='pregunta" + idPregunta + "']:checked").data('name');
+        if (respuesta === arg && value === "") {
+            return false;
+        } else {
+            return true;
+        }
+        return false;
+    }, 'La justificación es obligatoria.');
 });

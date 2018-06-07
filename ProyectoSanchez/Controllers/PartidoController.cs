@@ -127,6 +127,82 @@ namespace ProyectoSanchez.Controllers
             }
         }
 
+        public JsonResult ActualizarPartido(PartidoVM partido)
+        {
+            // Se verifica si los datos ingresados son válidos a nivel de backend, o se reporta el error
+            if (!ModelState.IsValid)
+            {
+                foreach (ModelState modelstate in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelstate.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "CAMPOS_INVALIDOS" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+
+            try
+            {
+
+
+           
+
+                // Se crea un nuevo partido y se llena con los datos.
+                var nuevoPartido = CreateFormulario();
+                nuevoFormulario.ID = FormID;
+                nuevoFormulario.ID_Usuario_Final = GetUsuarioID(usuarioActual);
+                nuevoFormulario.Fecha_Inicial = formulario.FechaInicial;
+                nuevoFormulario.Fecha_Final = formulario.FechaFinal;
+                nuevoFormulario.ID_Turno_Inicial = formulario.ID_Turno_Inicial;
+                nuevoFormulario.ID_Turno_Final = formulario.ID_Turno_Final;
+                nuevoFormulario.ID_Producto_De = formulario.ID_Producto_De;
+                nuevoFormulario.ID_Producto_A = formulario.ID_Producto_A;
+                nuevoFormulario.ID_Tipo_Limpieza = formulario.ID_Tipo_Limpieza;
+                nuevoFormulario.ID_Empleado_Responsable_Lavado = formulario.ResponsableLavado;
+                nuevoFormulario.ID_Maquina = formulario.IdMaquina;
+                nuevoFormulario.ID_Verificacion_Agua = formulario.TipoVerificacionAgua;
+                nuevoFormulario.Maquina_Liberada = formulario.MaquinaLiberada;
+                nuevoFormulario.Hora_Liberacion_Maquina = formulario.HoraDeLiberacion;
+                nuevoFormulario.ID_Empleado_Verificacion_Desarme = formulario.ResponsableVerificacion;
+                nuevoFormulario.Verificacion_Zona_Trabajo = formulario.VerificacionZonaTrabajo;
+                nuevoFormulario.Observacion = formulario.Observacion;
+                nuevoFormulario.ID_Estado = GetEstadoEnProceso();
+
+                // Se actualiza el formulario utilizando el nuevo formulario
+                UpdateForm(nuevoFormulario, formulario.Piezas, formulario.PreguntasLimpieza,
+                    formulario.PiezasExtra, formulario.PiezasExtraBorradas, formulario.PiezasExtraCargadas,
+                    formulario.Desinfecciones, formulario.DesinfeccionesCargadas, formulario.DesinfeccionesBorradas,
+                    formulario.Quimicos, formulario.QuimicosCargados, formulario.QuimicosBorrados);
+
+                // Se guardan los cambios, indicando que se hace desde el proceso de edición
+                GuardarCambios();
+
+                // Y se retorna un código de completación del proceso exitoso
+                return new JsonResult()
+                {
+                    Data = new { CODE = "PARTIDO_GUARDADO" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
         public int GetIdFecha()
         {
             string idFecha = Request.QueryString["IdFecha"];

@@ -22,32 +22,23 @@ namespace ProyectoSanchez.Controllers
             return (from Partido in db.Partidoes
                     join Torneo in db.Torneos on Partido.idTorneo equals Torneo.idTorneo
                     join Fecha in db.FechasCalendarios on Partido.idFecha equals Fecha.idFecha
+                    join EquipoA in db.Equipoes on Partido.idEquipoLocal equals EquipoA.idEquipo
+                    join EquipoB in db.Equipoes on Partido.idEquipoVisita equals EquipoB.idEquipo
                     where Partido.idFecha == idFecha && Partido.idTorneo == idTorneo
                     select new PartidoVM
                     {
+                        IdPartido = Partido.idPartido,
                         IdEquipoLocal = Partido.idEquipoLocal,
+                        IdEquipoVisita = Partido.idEquipoVisita,
+                        NombreLocal = EquipoA.nombre,
+                        NombreVisita = EquipoB.nombre,
+                        GolLocal =  Partido.golLocal,
+                        GolVisita = Partido.golVisita
+
                     }
                     ).ToList();
         }
-        public int GetIdFecha()
-        {
-            string idFecha = HttpContext.Current.Request.QueryString["IdFecha"];
-            if (idFecha == null)
-            {
-                return 0;
-            }
-            return Convert.ToInt32(idFecha);
-        }
-
-        public int GetIdTorneo()
-        {
-            string idTorneo = HttpContext.Current.Request.QueryString["IdTorneo"];
-            if (idTorneo == null)
-            {
-                return 0;
-            }
-            return Convert.ToInt32(idTorneo);
-        }
+        
 
     }
     public class PartidoController : Controller
@@ -64,6 +55,8 @@ namespace ProyectoSanchez.Controllers
         // GET: Partido
         public ActionResult Index()
         {
+            idFecha = GetIdFecha();
+            idTorneo = GetIdTorneo();
             return View();
         }
 
@@ -71,13 +64,12 @@ namespace ProyectoSanchez.Controllers
         {
             try
             {
-                idFecha = _db.GetIdFecha();
-                idTorneo = _db.GetIdTorneo();
+
                 // Obtenemos la lista de Fechas programadas desde la base de datos
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = _db.GetPartidosXFechaYTorneo(idFecha,idTorneo),
+                    Data = _db.GetPartidosXFechaYTorneo(idFecha, idTorneo),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -93,6 +85,25 @@ namespace ProyectoSanchez.Controllers
                     JsonRequestBehavior = JsonRequestBehavior.DenyGet
                 };
             }
+        }
+        public int GetIdFecha()
+        {
+            string idFecha = Request.QueryString["IdFecha"];
+            if (idFecha == null)
+            {
+                return 0;
+            }
+            return Convert.ToInt32(idFecha);
+        }
+
+        public int GetIdTorneo()
+        {
+            string idTorneo = Request.QueryString["IdTorneo"];
+            if (idTorneo == null)
+            {
+                return 1;
+            }
+            return Convert.ToInt32(idTorneo);
         }
 
     }

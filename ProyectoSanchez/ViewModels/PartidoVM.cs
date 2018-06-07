@@ -20,13 +20,17 @@ namespace ProyectoSanchez.ViewModels
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public decimal IdEquipoVisita { get; set; }
 
+        public string NombreLocal { get; set; }
+        public string NombreVisita { get; set; }
+
+
         [Required(ErrorMessage = "Se necesita la cantidad de goles del equipo local")]
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public ushort GolLocal { get; set; }
+        public decimal GolLocal { get; set; }
 
         [Required(ErrorMessage = "Se necesita la cantidad de goles del equipo visita")]
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public ushort GolVisita { get; set; }
+        public decimal GolVisita { get; set; }
 
         [Required(ErrorMessage = "El id del torneo es obligatorio")]
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]

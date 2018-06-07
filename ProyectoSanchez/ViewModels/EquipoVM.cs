@@ -9,8 +9,8 @@ namespace ProyectoSanchez.ViewModels
     public class EquipoVM
     {
         [Required(ErrorMessage = "El ID del equipo es obligatorio")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdEquipo { get; set; }
+        //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
+        public decimal IdEquipo { get; set; }
 
         [Required(ErrorMessage = "El nombre del equipo es obligatorio")]
         [StringLength(30,ErrorMessage = "El nombre del equipo es muy extenso")]

@@ -33,12 +33,25 @@ namespace ProyectoSanchez.Controllers
                         NombreLocal = EquipoA.nombre,
                         NombreVisita = EquipoB.nombre,
                         GolLocal =  Partido.golLocal,
-                        GolVisita = Partido.golVisita
+                        GolVisita = Partido.golVisita,
+                        IdTorneo = Partido.idTorneo
 
                     }
                     ).ToList();
         }
-        
+
+        public List<EquipoVM> getListaEquiposXTorneo(int IdTorneo) {
+            return ( from Equipo in db.Equipoes
+                     join EquipoXTorneo in db.EquipoPorTorneos on Equipo.idEquipo equals EquipoXTorneo.idEquipo
+                     join Torneo in db.Torneos on EquipoXTorneo.idTorneo equals Torneo.idTorneo
+                     where Torneo.idTorneo == IdTorneo
+                     select new EquipoVM
+                     {  
+                         IdEquipo = Equipo.idEquipo,
+                         Nombre = Equipo.nombre
+                     }
+                ).ToList();
+        }
 
     }
     public class PartidoController : Controller
@@ -86,6 +99,34 @@ namespace ProyectoSanchez.Controllers
                 };
             }
         }
+
+        public JsonResult GetEquiposXTorneo(int IdTorneo)
+        {
+            try
+            {
+
+                // Obtenemos la lista de Fechas programadas desde la base de datos
+                //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
+                return new JsonResult()
+                {
+                    Data = _db.getListaEquiposXTorneo(1),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
         public int GetIdFecha()
         {
             string idFecha = Request.QueryString["IdFecha"];

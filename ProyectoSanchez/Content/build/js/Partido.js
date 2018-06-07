@@ -20,7 +20,7 @@
                             <td class=" ">'+ partido["GolVisita"] + '</td>\
                             <td class=" last">\
                                 <a onclick="getInformacionPartido('+ partido["IdPartido"] + "," + partido["IdEquipoLocal"] + "," + partido["IdEquipoVisita"] +
-                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + ')"  class="verpartido">+Info</a>\
+                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ')"  class="verpartido">+Info</a>\
                             </td>\
                         </tr>';
             });
@@ -55,11 +55,42 @@
     });
 }
 
-function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLocal, golVisita) { 
+function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLocal, golVisita, IdTorneo) { 
     $("#golcasa").val(golLocal);
     $("#golvisita").val(golVisita);
+    getEquiposXTorneo(IdTorneo, $("#local")); 
+    getEquiposXTorneo(IdTorneo, $("#visita"));
     $("#modalEditarPartido").modal();
 }
+
+function getEquiposXTorneo(IdTorneo, tag) {
+    var data = {
+        IdTorneo: IdTorneo
+    }
+    tag.html("<option value='none'>Seleccione una Opción</option>");
+
+    $.ajax({
+        type: "post",
+        url: "/Partido/GetEquiposXTorneo",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var htmlSelect = "";
+
+            $.each(data, function (i, equipo) {
+                htmlSelect += '<option value="' + equipo["IdEquipo"] + ' " > ' + equipo["Nombre"] + '</option>'; 
+                
+            });
+            tag.append(htmlSelect);
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
+}
+
 
 $().ready(function () {
 

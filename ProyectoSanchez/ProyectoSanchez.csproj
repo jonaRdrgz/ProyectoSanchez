@@ -155,184 +155,161 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
+    <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Arbitro.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ArbitroPorPartido.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ArbitroPorPartido_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cambio.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Cambio_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Competicion.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompeticionPorFederacion.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContratacionFuncionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Contrato.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CorreoFuncionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DireccionFuncionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dominio.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entrenador.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntrenadorEquipoTorneo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntrenadorEquipoTorneo_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquipoPorTorneo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EquipoPorTorneo_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Especialidad.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EspecialidadPorJugador.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FechasCalendario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FechasCalendario_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Federacion.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Funcionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Gol.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GolesPartidos_Result.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gol_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InformacionArbitrosTorneo_Result.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InformacionEntrenador_Result.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\informacionJugador_Result.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InformacionPartidos_Result.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Jugador.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JugadorPorEquipoPorTorneo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JugadorPorEquipoPorTorneo_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfertaFuncionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pai.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Partido.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Partido_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Posicion.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProyectoBasesSanchezEntities.Context.cs">
+    <Compile Include="Models\ProyectoBasesSanchez.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProyectoBasesSanchezEntities.Context.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProyectoBasesSanchezEntities.cs">
+    <Compile Include="Models\ProyectoBasesSanchez.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProyectoBasesSanchezEntities.Designer.cs">
+    <Compile Include="Models\ProyectoBasesSanchez.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProyectoBasesSanchezEntities.edmx</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Rol.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Socio.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuplentesEquipoPartido.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SuplentesEquipoPartido_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tablaPosiciones_Result.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TelefonoFuncionario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoArbitro.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TitularEquipoPartido.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TitularEquipoPartido_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Titulo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TituloPorEntrenador.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Torneo.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Torneo_H.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
-      <DependentUpon>ProyectoBasesSanchezEntities.tt</DependentUpon>
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ArbitroPorPartidoVM.cs" />
@@ -384,21 +361,22 @@
     <Content Include="Content\build\js\custom.js" />
     <Content Include="Content\build\js\custom.min.js" />
     <Content Include="Content\build\js\FechaCalendario.js" />
+    <Content Include="Content\build\js\Jugador.js" />
     <Content Include="Content\build\js\JugadorEquipoTorneo.js" />
     <Content Include="Content\build\js\Partido.js" />
     <Content Include="Content\build\js\Validator\additional-methods.js" />
     <Content Include="Content\build\js\Validator\additional-methods.min.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.min.js" />
-    <Content Include="Models\ProyectoBasesSanchezEntities.Context.tt">
+    <Content Include="Models\ProyectoBasesSanchez.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProyectoBasesSanchezEntities.edmx</DependentUpon>
-      <LastGenOutput>ProyectoBasesSanchezEntities.Context.cs</LastGenOutput>
+      <DependentUpon>ProyectoBasesSanchez.edmx</DependentUpon>
+      <LastGenOutput>ProyectoBasesSanchez.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ProyectoBasesSanchezEntities.tt">
+    <Content Include="Models\ProyectoBasesSanchez.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProyectoBasesSanchezEntities.edmx</DependentUpon>
-      <LastGenOutput>ProyectoBasesSanchezEntities.cs</LastGenOutput>
+      <DependentUpon>ProyectoBasesSanchez.edmx</DependentUpon>
+      <LastGenOutput>ProyectoBasesSanchez.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\additional-methods.min.js" />
     <Content Include="Content\src\js\custom.js" />
@@ -4668,12 +4646,12 @@
     <Content Include="Content\vendors\validator\.bower.json" />
     <Content Include="Content\vendors\validator\README.md" />
     <Content Include="Content\vendors\validator\validator.jquery.json" />
-    <EntityDeploy Include="Models\ProyectoBasesSanchezEntities.edmx">
+    <EntityDeploy Include="Models\ProyectoBasesSanchez.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProyectoBasesSanchezEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>ProyectoBasesSanchez.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ProyectoBasesSanchezEntities.edmx.diagram">
-      <DependentUpon>ProyectoBasesSanchezEntities.edmx</DependentUpon>
+    <Content Include="Models\ProyectoBasesSanchez.edmx.diagram">
+      <DependentUpon>ProyectoBasesSanchez.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -4725,9 +4703,11 @@
     <Content Include="Views\Torneo\Index.cshtml" />
     <Content Include="Views\Partido\Index.cshtml" />
     <Content Include="Views\Jugador\Index.cshtml" />
+    <Content Include="Views\JugadorPorEquipoPorTorneo\JugadorPorEquipoPorTorneo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SeleccionJugador\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

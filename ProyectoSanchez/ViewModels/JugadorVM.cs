@@ -10,11 +10,11 @@ namespace ProyectoSanchez.ViewModels
     {
         [Required(ErrorMessage = "El id del jugador es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdJugador { get; set; }
+        public decimal IdJugador { get; set; }
 
         [Required(ErrorMessage = "El id del funcionario es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int CodigoFuncionario { get; set; }
+        public decimal CodigoFuncionario { get; set; }
 
         [Required(ErrorMessage = "El peso del jugador es necesario")]
         public decimal PesoKilos { get; set; }
@@ -22,6 +22,7 @@ namespace ProyectoSanchez.ViewModels
         [Required(ErrorMessage = "La altura del jugador es necesaria")]
         public decimal AlturaMetros { get; set; }
 
+        public string Nombre { get; set; }
         public List<EspecialidadPorJugadorVM> EspecialidadPorJugadors { get; set; }
         public List<JugadorPorEquipoPorTorneoVM> JugadorPorEquipoPorTorneos { get; set; }
         public List<ContratoVM> Contratoes { get; set; }

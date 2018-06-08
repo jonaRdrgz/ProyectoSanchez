@@ -10,17 +10,13 @@
 namespace ProyectoSanchez.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EntrenadorEquipoTorneo_H
+    public partial class InformacionPartidos_Result
     {
-        public System.DateTime fecha_cambio { get; set; }
-        public string usuario_cambio { get; set; }
-        public string tipo_cambio { get; set; }
-        public decimal idEntrenador { get; set; }
-        public decimal idEquipo { get; set; }
-        public decimal idTorneo { get; set; }
-        public Nullable<decimal> posicion { get; set; }
-        public string sinopsis { get; set; }
+        public string nombre { get; set; }
+        public string nombre1 { get; set; }
+        public decimal golLocal { get; set; }
+        public decimal golVisita { get; set; }
+        public System.DateTime fechaProgramada { get; set; }
     }
 }

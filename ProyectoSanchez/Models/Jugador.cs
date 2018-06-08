@@ -24,8 +24,8 @@ namespace ProyectoSanchez.Models
     
         public decimal idJugador { get; set; }
         public decimal codigoFuncionario { get; set; }
-        public decimal pesoKilos { get; set; }
-        public decimal alturaMetros { get; set; }
+        public double pesoKilos { get; set; }
+        public double alturaMetros { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EspecialidadPorJugador> EspecialidadPorJugadors { get; set; }

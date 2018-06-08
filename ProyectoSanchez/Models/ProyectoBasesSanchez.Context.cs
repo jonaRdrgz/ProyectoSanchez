@@ -30,7 +30,6 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Arbitro> Arbitroes { get; set; }
         public virtual DbSet<ArbitroPorPartido> ArbitroPorPartidoes { get; set; }
         public virtual DbSet<Cambio> Cambios { get; set; }
-        public virtual DbSet<Cambio_H> Cambio_H { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Competicion> Competicions { get; set; }
         public virtual DbSet<CompeticionPorFederacion> CompeticionPorFederacions { get; set; }
@@ -41,10 +40,8 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Dominio> Dominios { get; set; }
         public virtual DbSet<Entrenador> Entrenadors { get; set; }
         public virtual DbSet<EntrenadorEquipoTorneo> EntrenadorEquipoTorneos { get; set; }
-        public virtual DbSet<EntrenadorEquipoTorneo_H> EntrenadorEquipoTorneo_H { get; set; }
         public virtual DbSet<Equipo> Equipoes { get; set; }
         public virtual DbSet<EquipoPorTorneo> EquipoPorTorneos { get; set; }
-        public virtual DbSet<EquipoPorTorneo_H> EquipoPorTorneo_H { get; set; }
         public virtual DbSet<Especialidad> Especialidads { get; set; }
         public virtual DbSet<EspecialidadPorJugador> EspecialidadPorJugadors { get; set; }
         public virtual DbSet<FechasCalendario> FechasCalendarios { get; set; }
@@ -52,13 +49,11 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Federacion> Federacions { get; set; }
         public virtual DbSet<Funcionario> Funcionarios { get; set; }
         public virtual DbSet<Gol> Gols { get; set; }
-        public virtual DbSet<Gol_H> Gol_H { get; set; }
         public virtual DbSet<Jugador> Jugadors { get; set; }
         public virtual DbSet<JugadorPorEquipoPorTorneo> JugadorPorEquipoPorTorneos { get; set; }
         public virtual DbSet<OfertaFuncionario> OfertaFuncionarios { get; set; }
         public virtual DbSet<Pai> Pais { get; set; }
         public virtual DbSet<Partido> Partidoes { get; set; }
-        public virtual DbSet<Partido_H> Partido_H { get; set; }
         public virtual DbSet<Posicion> Posicions { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Socio> Socios { get; set; }
@@ -71,10 +66,6 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Torneo> Torneos { get; set; }
         public virtual DbSet<Torneo_H> Torneo_H { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<ArbitroPorPartido_H> ArbitroPorPartido_H { get; set; }
-        public virtual DbSet<JugadorPorEquipoPorTorneo_H> JugadorPorEquipoPorTorneo_H { get; set; }
-        public virtual DbSet<SuplentesEquipoPartido_H> SuplentesEquipoPartido_H { get; set; }
-        public virtual DbSet<TitularEquipoPartido_H> TitularEquipoPartido_H { get; set; }
     
         public virtual int generarResultadosTorneo(Nullable<decimal> torneo)
         {
@@ -127,6 +118,19 @@ namespace ProyectoSanchez.Models
                 new ObjectParameter("idJugador", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<informacionJugador_Result>("informacionJugador", idJugadorParameter);
+        }
+    
+        public virtual ObjectResult<InformacionPartidos_Result> InformacionPartidos(Nullable<decimal> idEquipoUno, Nullable<decimal> idEquipoDos)
+        {
+            var idEquipoUnoParameter = idEquipoUno.HasValue ?
+                new ObjectParameter("idEquipoUno", idEquipoUno) :
+                new ObjectParameter("idEquipoUno", typeof(decimal));
+    
+            var idEquipoDosParameter = idEquipoDos.HasValue ?
+                new ObjectParameter("idEquipoDos", idEquipoDos) :
+                new ObjectParameter("idEquipoDos", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionPartidos_Result>("InformacionPartidos", idEquipoUnoParameter, idEquipoDosParameter);
         }
     
         public virtual ObjectResult<tablaPosiciones_Result> tablaPosiciones(Nullable<decimal> torneo)

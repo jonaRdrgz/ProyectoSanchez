@@ -20,30 +20,22 @@ namespace ProyectoSanchez.Controllers
             db = new Models.ProyectoBasesSanchezEntities();
         }
 
-        public List<JugadorPorEquipoPorTorneoVM> GetInformacionJugador(int idJugador)
+        public List<JugadorVM> GetJugadores()
         {
             return (from Jugador in db.Jugadors
-                    join JugadorE in db.JugadorPorEquipoPorTorneos on Jugador.idJugador equals JugadorE.idJugador
-                    join Equipo in db.Equipoes on JugadorE.idEquipo equals Equipo.idEquipo
-                    join Torneo in db.Torneos on JugadorE.idTorneo equals Torneo.idTorneo
-                    join Competicion in db.Competicions on Torneo.idCompeticion equals Competicion.idCompeticion
-                    where Jugador.idJugador == idJugador
-                    select new JugadorPorEquipoPorTorneoVM
+                    join Funcionario in db.Funcionarios on Jugador.codigoFuncionario equals Funcionario.codigoFuncionario
+                    select new JugadorVM
                     {
-                        IdEquipo = Equipo.idEquipo,
-                        Posicion = JugadorE.posicion,
                         IdJugador = Jugador.idJugador,
-                        IdTorneo = Torneo.idTorneo,
-                        Evaluacion = JugadorE.evaluacion,
-                        TipoTorneo = Competicion.tipo,
-                        Anno = Torneo.anno,
-                        Periodo = Torneo.periodo,
-                        NombreEquipo = Equipo.nombre
+                        CodigoFuncionario = Funcionario.codigoFuncionario,
+                        PesoKilos = Jugador.pesoKilos,
+                        AlturaMetros = Jugador.alturaMetros,
+                        Nombre = Funcionario.nombre
                     }
                    ).ToList();
         }
     }
-    
+
     public class JugadorController : Controller
     {
         private JugadorControllerDataBaseWrapper _db;
@@ -58,11 +50,11 @@ namespace ProyectoSanchez.Controllers
         // GET: Jugador
         public ActionResult Index()
         {
-            idJugador = GetIdJugador();
+            ViewBag.jugadores = _db.GetJugadores();
             return View();
         }
 
-        public JsonResult GetInformacionJugador()
+        public JsonResult GetInformacionJugadores()
         {
             try
             {
@@ -71,7 +63,7 @@ namespace ProyectoSanchez.Controllers
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = _db.GetInformacionJugador(idJugador),
+                    Data = _db.GetJugadores(),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -87,16 +79,6 @@ namespace ProyectoSanchez.Controllers
                     JsonRequestBehavior = JsonRequestBehavior.DenyGet
                 };
             }
-        }
-
-        public int GetIdJugador()
-        {
-            string idJugador = Request.QueryString["IdJugador"];
-            if (idJugador == null)
-            {
-                return 1;
-            }
-            return Convert.ToInt32(idJugador);
         }
     }
 }

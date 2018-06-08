@@ -153,6 +153,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArbitroPorPartidoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
@@ -4713,6 +4714,7 @@
     <Content Include="Views\Partido\Index.cshtml" />
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\JugadorPorEquipoPorTorneo\Index.cshtml" />
+    <Content Include="Views\ArbitroPorPartido\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

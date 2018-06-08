@@ -10,17 +10,21 @@ namespace ProyectoSanchez.ViewModels
     {
         [Required(ErrorMessage = "El id del árbitro debe ser obligatorio.")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Solo datos numéricos son permitidos")]
-        public int IdArbitro { get; set; }
+        public decimal IdArbitro { get; set; }
 
         [Required(ErrorMessage = "El id del partido debe ser obligatorio.")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Solo datos numéricos son permitidos")]
-        public int IdPartido { get; set; }
+        public decimal IdPartido { get; set; }
         [Required(ErrorMessage = "El desempeño es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Solo datos numéricos son permitidos")]
-        public int Desempenno { get; set; }
+        public decimal Desempenno { get; set; }
 
         [Required(ErrorMessage ="El tipo de árbitro es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Solo datos numéricos son permitidos")]
-        public int IdTipoArbitro { get; set; }
+        public decimal IdTipoArbitro { get; set; }
+
+        public string DescripcionTA { get; set; }
+
+        public string Nombre { get; set; }
     }
 }

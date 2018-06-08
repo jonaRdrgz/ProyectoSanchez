@@ -200,10 +200,16 @@
     <Compile Include="Models\EntrenadorEquipoTorneo.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntrenadorEquipoTorneo_H.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Equipo.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EquipoPorTorneo.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EquipoPorTorneo_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Especialidad.cs">
@@ -246,6 +252,9 @@
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JugadorPorEquipoPorTorneo.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JugadorPorEquipoPorTorneo_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfertaFuncionario.cs">

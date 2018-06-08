@@ -142,6 +142,21 @@
           <Property Name="posicion" Type="numeric" Precision="2" Scale="0" />
           <Property Name="sinopsis" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="EntrenadorEquipoTorneo_H">
+          <Key>
+            <PropertyRef Name="idEntrenador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="idEntrenador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="sinopsis" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Equipo">
           <Key>
             <PropertyRef Name="idEquipo" />
@@ -155,6 +170,18 @@
             <PropertyRef Name="idEquipo" />
             <PropertyRef Name="idTorneo" />
           </Key>
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="puntos" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipoPorTorneo_H">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="puntos" Type="numeric" Precision="3" Scale="0" Nullable="false" />
@@ -241,6 +268,26 @@
           <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="evaluacion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPorTorneo_H' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="JugadorPorEquipoPorTorneo_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="sinopsis" Type="varchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="OfertaFuncionario">
           <Key>
@@ -374,7 +421,8 @@
           <Property Name="idCompeticion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="numeric" Precision="4" Scale="0" Nullable="false" />
-          <Property Name="periodo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="periodo" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Torneo_H">
           <Key>
@@ -1025,8 +1073,10 @@
           <EntitySet Name="Dominio" EntityType="Self.Dominio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entrenador" EntityType="Self.Entrenador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EntrenadorEquipoTorneo" EntityType="Self.EntrenadorEquipoTorneo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EntrenadorEquipoTorneo_H" EntityType="Self.EntrenadorEquipoTorneo_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipoPorTorneo" EntityType="Self.EquipoPorTorneo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipoPorTorneo_H" EntityType="Self.EquipoPorTorneo_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EspecialidadPorJugador" EntityType="Self.EspecialidadPorJugador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FechasCalendario" EntityType="Self.FechasCalendario" Schema="dbo" store:Type="Tables" />
@@ -1053,6 +1103,18 @@
           <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Torneo_H" EntityType="Self.Torneo_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JugadorPorEquipoPorTorneo_H" EntityType="Self.JugadorPorEquipoPorTorneo_H" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [JugadorPorEquipoPorTorneo_H].[fecha_cambio] AS [fecha_cambio], 
+    [JugadorPorEquipoPorTorneo_H].[usuario_cambio] AS [usuario_cambio], 
+    [JugadorPorEquipoPorTorneo_H].[tipo_cambio] AS [tipo_cambio], 
+    [JugadorPorEquipoPorTorneo_H].[idEquipo] AS [idEquipo], 
+    [JugadorPorEquipoPorTorneo_H].[posicion] AS [posicion], 
+    [JugadorPorEquipoPorTorneo_H].[idJugador] AS [idJugador], 
+    [JugadorPorEquipoPorTorneo_H].[idTorneo] AS [idTorneo], 
+    [JugadorPorEquipoPorTorneo_H].[sinopsis] AS [sinopsis]
+    FROM [dbo].[JugadorPorEquipoPorTorneo_H] AS [JugadorPorEquipoPorTorneo_H]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="ArbitroPorPartido_FK1" Association="Self.ArbitroPorPartido_FK1">
             <End Role="Arbitro" EntitySet="Arbitro" />
             <End Role="ArbitroPorPartido" EntitySet="ArbitroPorPartido" />
@@ -1390,6 +1452,21 @@
           <NavigationProperty Name="Entrenador" Relationship="Self.EntrenadorEquipoTorneo_FK1" FromRole="EntrenadorEquipoTorneo" ToRole="Entrenador" />
           <NavigationProperty Name="EquipoPorTorneo" Relationship="Self.EntrenadorEquipoTorneo_FK2" FromRole="EntrenadorEquipoTorneo" ToRole="EquipoPorTorneo" />
         </EntityType>
+        <EntityType Name="EntrenadorEquipoTorneo_H">
+          <Key>
+            <PropertyRef Name="idEntrenador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEntrenador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="sinopsis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Equipo">
           <Key>
             <PropertyRef Name="idEquipo" />
@@ -1417,6 +1494,18 @@
           <NavigationProperty Name="Partidoes" Relationship="Self.Partido_FK1" FromRole="EquipoPorTorneo" ToRole="Partido" />
           <NavigationProperty Name="Partidoes1" Relationship="Self.Partido_FK2" FromRole="EquipoPorTorneo" ToRole="Partido" />
           <NavigationProperty Name="TituloPorEntrenadors" Relationship="Self.TituloPorEntrenador_FK3" FromRole="EquipoPorTorneo" ToRole="TituloPorEntrenador" />
+        </EntityType>
+        <EntityType Name="EquipoPorTorneo_H">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="puntos" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -1662,7 +1751,8 @@
           <Property Name="idCompeticion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
-          <Property Name="periodo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="periodo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CompeticionPorFederacion" Relationship="Self.Torneo_FK1" FromRole="Torneo" ToRole="CompeticionPorFederacion" />
           <NavigationProperty Name="EquipoPorTorneos" Relationship="Self.EquipoPorTorneo_FK4" FromRole="Torneo" ToRole="EquipoPorTorneo" />
           <NavigationProperty Name="FechasCalendarios" Relationship="Self.FechasCalendario_FK1" FromRole="Torneo" ToRole="FechasCalendario" />
@@ -1687,6 +1777,24 @@
           <Property Name="idUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Rols" Relationship="Self.RolPorUsuario" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="JugadorPorEquipoPorTorneo_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idTorneo" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="posicion" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="sinopsis" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="ArbitroPorPartido_FK1">
           <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1" />
@@ -2190,8 +2298,10 @@
           <EntitySet Name="Dominios" EntityType="Self.Dominio" />
           <EntitySet Name="Entrenadors" EntityType="Self.Entrenador" />
           <EntitySet Name="EntrenadorEquipoTorneos" EntityType="Self.EntrenadorEquipoTorneo" />
+          <EntitySet Name="EntrenadorEquipoTorneo_H" EntityType="Self.EntrenadorEquipoTorneo_H" />
           <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
           <EntitySet Name="EquipoPorTorneos" EntityType="Self.EquipoPorTorneo" />
+          <EntitySet Name="EquipoPorTorneo_H" EntityType="Self.EquipoPorTorneo_H" />
           <EntitySet Name="Especialidads" EntityType="Self.Especialidad" />
           <EntitySet Name="EspecialidadPorJugadors" EntityType="Self.EspecialidadPorJugador" />
           <EntitySet Name="FechasCalendarios" EntityType="Self.FechasCalendario" />
@@ -2216,6 +2326,7 @@
           <EntitySet Name="Torneos" EntityType="Self.Torneo" />
           <EntitySet Name="Torneo_H" EntityType="Self.Torneo_H" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="JugadorPorEquipoPorTorneo_H" EntityType="Self.JugadorPorEquipoPorTorneo_H" />
           <AssociationSet Name="ArbitroPorPartido_FK1" Association="Self.ArbitroPorPartido_FK1">
             <End Role="Arbitro" EntitySet="Arbitroes" />
             <End Role="ArbitroPorPartido" EntitySet="ArbitroPorPartidoes" />
@@ -2425,14 +2536,14 @@
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NombreEquipo" Nullable="false" MaxLength="30" />
           <Property Type="Decimal" Name="anno" Nullable="false" Precision="4" Scale="0" />
-          <Property Type="String" Name="periodo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="periodo" Nullable="false" MaxLength="20" />
           <Property Type="Decimal" Name="posicion" Nullable="true" Precision="2" Scale="0" />
           <Property Type="String" Name="sinopsis" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="informacionJugador_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
           <Property Type="Decimal" Name="anno" Nullable="false" Precision="4" Scale="0" />
-          <Property Type="String" Name="periodo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="periodo" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="tipo" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="evaluacion" Nullable="true" MaxLength="100" />
         </ComplexType>
@@ -2579,6 +2690,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EntrenadorEquipoTorneo_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.EntrenadorEquipoTorneo_H">
+              <MappingFragment StoreEntitySet="EntrenadorEquipoTorneo_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idEntrenador" ColumnName="idEntrenador" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Equipoes">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Equipo">
               <MappingFragment StoreEntitySet="Equipo">
@@ -2591,6 +2716,18 @@
           <EntitySetMapping Name="EquipoPorTorneos">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.EquipoPorTorneo">
               <MappingFragment StoreEntitySet="EquipoPorTorneo">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="puntos" ColumnName="puntos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipoPorTorneo_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.EquipoPorTorneo_H">
+              <MappingFragment StoreEntitySet="EquipoPorTorneo_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
                 <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
                 <ScalarProperty Name="puntos" ColumnName="puntos" />
@@ -2804,6 +2941,7 @@
                 <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
                 <ScalarProperty Name="idFederacion" ColumnName="idFederacion" />
                 <ScalarProperty Name="anno" ColumnName="anno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="periodo" ColumnName="periodo" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2827,6 +2965,20 @@
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="clave" ColumnName="clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JugadorPorEquipoPorTorneo_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo_H">
+              <MappingFragment StoreEntitySet="JugadorPorEquipoPorTorneo_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

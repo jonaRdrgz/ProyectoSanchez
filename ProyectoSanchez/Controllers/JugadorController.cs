@@ -39,7 +39,6 @@ namespace ProyectoSanchez.Controllers
     public class JugadorController : Controller
     {
         private JugadorControllerDataBaseWrapper _db;
-        private static int idJugador;
         public JugadorController()
         {
             _db = new JugadorControllerDataBaseWrapper();

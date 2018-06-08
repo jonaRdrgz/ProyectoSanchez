@@ -40,8 +40,10 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Dominio> Dominios { get; set; }
         public virtual DbSet<Entrenador> Entrenadors { get; set; }
         public virtual DbSet<EntrenadorEquipoTorneo> EntrenadorEquipoTorneos { get; set; }
+        public virtual DbSet<EntrenadorEquipoTorneo_H> EntrenadorEquipoTorneo_H { get; set; }
         public virtual DbSet<Equipo> Equipoes { get; set; }
         public virtual DbSet<EquipoPorTorneo> EquipoPorTorneos { get; set; }
+        public virtual DbSet<EquipoPorTorneo_H> EquipoPorTorneo_H { get; set; }
         public virtual DbSet<Especialidad> Especialidads { get; set; }
         public virtual DbSet<EspecialidadPorJugador> EspecialidadPorJugadors { get; set; }
         public virtual DbSet<FechasCalendario> FechasCalendarios { get; set; }
@@ -66,6 +68,7 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Torneo> Torneos { get; set; }
         public virtual DbSet<Torneo_H> Torneo_H { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<JugadorPorEquipoPorTorneo_H> JugadorPorEquipoPorTorneo_H { get; set; }
     
         public virtual int generarResultadosTorneo(Nullable<decimal> torneo)
         {

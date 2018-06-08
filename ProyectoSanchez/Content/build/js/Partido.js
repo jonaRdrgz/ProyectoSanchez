@@ -97,6 +97,11 @@ function getEquiposXTorneo(IdTorneo, tag, idEquipo) {
     });
 }
 
+function agregarPartido() {
+    $("#modalAgregarPartidorr").modal();
+    
+}
+
 
 $().ready(function () {
 
@@ -203,3 +208,4 @@ $().ready(function () {
         return false;
     }, 'La justificación es obligatoria.');
 });
+

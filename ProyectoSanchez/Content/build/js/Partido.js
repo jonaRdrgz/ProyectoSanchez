@@ -188,20 +188,20 @@ $().ready(function () {
 
 
         $("#equipolocal").rules("add", {
-            //valorDiferente: "none",
+            valorDiferenteA: "none",
             valorDiferente: $("#equipovisita").val(),
             messages: {
-              //  valorDiferente: "Seleccione un equipo local",
+                valorDiferenteA: "Seleccione un equipo local",
                 valorDiferente: "Seleccione un equipo diferente",
             }
         });
 
         $("#equipovisita").rules("add", {
-           // valorDiferente: "none",
+            valorDiferenteA: "none",
             valorDiferente: $("#equipolocal").val(),
             messages: {
-                valorDiferente: "Seleccione un equipo visitante",
-                //valorDiferenteB: "Seleccione un equipo diferente",
+                valorDiferenteA: "Seleccione un equipo visitante",
+                valorDiferente: "Seleccione un equipo diferente",
             }
         });
 
@@ -238,7 +238,7 @@ $().ready(function () {
             var partido = {
                 IdPartido: 0, //ID para que este valido en el dataAnnotation
                 IdEquipoLocal: $("#equipolocal").val(),
-                IdEquipoVisita: $("#equipolvsita").val(),
+                IdEquipoVisita: $("#equipovisita").val(),
                 GolLocal: $("#agregarGolCasa").val(),
                 GolVisita: $("#agregarGolVisita").val(),
                 Jugado: $("#jugado").val()

@@ -45,7 +45,7 @@
                                 <tbody id="previewTablePartidosBody"></tbody>
                             </table>
                         </div>
-                        <button type="button" id="botonAgregar" onclick="agregatPartido()" class="btn btn-primary">Agregar</button>
+                        <button type="button" id="botonAgregar" onclick="agregarPartido()" class="btn btn-primary">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Partido</h4>
+                <h4 class="modal-title" id="myModalLabel">Agregar Partido, con el torneo y la fecha seleccionada</h4>
             </div>
             <div class="modal-body">
                 <form id="formAgregarPartido" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
@@ -157,27 +157,27 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Agregar </h2>
+                                    <h2>Información </h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="local">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="equipolocal">
                                             Equipo Local:
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" id="local" name="local">
+                                            <select class="form-control" id="equipolocal" name="equipolocal">
                                                 <option value="none">Seleccione una Opción</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="visita">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="equipovisita">
                                             Equipo Visita:
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" id="visita" name="visita">
+                                            <select class="form-control" id="equipovisita" name="equipovisita">
                                                 <option value="none">Seleccione una Opción</option>
                                             </select>
                                         </div>
@@ -185,20 +185,15 @@
 
                                     <div class="ln_solid"></div>
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="golcasa">Gol Casa:</label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="agregarGolCasa">Gol Casa:</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" class="form-control col-md-7 col-xs-12" id="golcasa" min="0" step="1" name="golcasa" value="0" />
+                                            <input type="number" class="form-control col-md-7 col-xs-12" id="agregarGolCasa" min="0" step="1" name="agregarGolCasa" value="0" />
                                         </div>
                                     </div>
                                     <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="golvisita">Gol Visita</label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="agregarGolVisita">Gol Visita</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" class="form-control col-md-7 col-xs-12" id="golvisita" min="0" step="1" name="golvisita" value="0" />
-                                        </div>
-                                    </div>
-                                    <div class="item form-group" hidden>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" class="form-control col-md-7 col-xs-12" idPartido="" idTorneo="" id="idElementos" min="0" step="1" name="golvisita" />
+                                            <input type="number" class="form-control col-md-7 col-xs-12" id="agregarGolVisita" min="0" step="1" name="agregarGolVisita" value="0" />
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -225,7 +220,7 @@
                                     <div class="form-group">
                                         <div class="text-center">
                                             <button type="reset" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                            <button type="submit" id="botonGuardar" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" id="botonAgregar" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>
                                 </div>

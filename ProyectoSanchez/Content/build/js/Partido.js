@@ -63,21 +63,16 @@ function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLoca
     $("#golvisita").val(golVisita);
     $("#idElementos").attr("idPartido", idPartido);
     $("#idElementos").attr("idTorneo", IdTorneo);
-    getEquiposXTorneo(IdTorneo, $("#local"), idEquipoLocal);
-    getEquiposXTorneo(IdTorneo, $("#visita"), idEquipovisita);
+    getEquiposXTorneo($("#local"), idEquipoLocal);
+    getEquiposXTorneo($("#visita"), idEquipovisita);
     $("#modalEditarPartido").modal();
 }
 
-function getEquiposXTorneo(IdTorneo, tag, idEquipo) {
-    var data = {
-        IdTorneo: IdTorneo
-    }
+function getEquiposXTorneo(tag, idEquipo) {
     tag.html("<option value='none'>Seleccione una Opción</option>");
-
     $.ajax({
         type: "post",
         url: "/Partido/GetEquiposXTorneo",
-        data: JSON.stringify(data),
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
@@ -98,7 +93,9 @@ function getEquiposXTorneo(IdTorneo, tag, idEquipo) {
 }
 
 function agregarPartido() {
-    $("#modalAgregarPartidorr").modal();
+    getEquiposXTorneo($("#equipolocal"), -1);
+    getEquiposXTorneo($("#equipovisita"), -1);
+    $("#modalAgregarPartido").modal();
     
 }
 
@@ -107,7 +104,7 @@ $().ready(function () {
 
     GetPartidos();
 
-    //----------------------------- Validación para Guardar Formulario --------------
+    //----------------------------- Validación para editar partido --------------
     $("#botonGuardar").click(function () {
 
 
@@ -147,9 +144,6 @@ $().ready(function () {
             }
         });
 
-
-        tipoGuardado = 2;
-
         $("#formPartido").valid();
     });
 
@@ -176,7 +170,92 @@ $().ready(function () {
                     var code = data["CODE"]
                     if (code === "PARTIDO_GUARDADO") {
                         $('#modalEditarPartido').modal('hide');
-                        location.reload();
+                        GetPartidos();
+                    } else {
+                        alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
+                    }
+                },
+                error: function (data) {
+                    alert("Ha ocurrido un error: " + JSON.stringify(data));
+                }
+            });
+            return false;
+        }
+    });
+
+    //----------------------------- Validación para agregar partido --------------
+    $("#botonAgregar").click(function () {
+
+
+        $("#equipolocal").rules("add", {
+            //valorDiferente: "none",
+            valorDiferente: $("#equipovisita").val(),
+            messages: {
+              //  valorDiferente: "Seleccione un equipo local",
+                valorDiferente: "Seleccione un equipo diferente",
+            }
+        });
+
+        $("#equipovisita").rules("add", {
+           // valorDiferente: "none",
+            valorDiferente: $("#equipolocal").val(),
+            messages: {
+                valorDiferente: "Seleccione un equipo visitante",
+                //valorDiferenteB: "Seleccione un equipo diferente",
+            }
+        });
+
+        $('#agregarGolCasa').rules("add", {
+            required: true,
+            number: true,
+            messages: {
+                required: "La cantidad es obligatoria",
+                number: "Ingrese solamente números"
+            }
+        });
+
+        $('#agregarGolVisita').rules("add", {
+            required: true,
+            number: true,
+            messages: {
+                required: "La cantidad es obligatoria",
+                number: "Ingrese solamente números"
+            }
+        });
+        $("#jugado").rules("add", {
+            valorDiferente: "none",
+            messages: {
+                valorDiferente: "Seleccione una opción",
+            }
+        });
+
+        $("#formAgregarPartido").valid();
+    });
+
+    $("#formAgregarPartido").validate({
+        submitHandler: function (form) {
+
+            var partido = {
+                IdPartido: 0, //ID para que este valido en el dataAnnotation
+                IdEquipoLocal: $("#equipolocal").val(),
+                IdEquipoVisita: $("#equipolvsita").val(),
+                GolLocal: $("#agregarGolCasa").val(),
+                GolVisita: $("#agregarGolVisita").val(),
+                Jugado: $("#jugado").val()
+            }
+            console.log(JSON.stringify(partido));
+
+            $.ajax({
+                type: "post",
+                url: "/Partido/AgregarPartido",
+                data: JSON.stringify(partido),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var code = data["CODE"]
+                    if (code === "PARTIDO_GUARDADO") {
+                        $('#modalAgregarPartido').modal('hide');
+                        GetPartidos();
                     } else {
                         alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
                     }
@@ -192,6 +271,11 @@ $().ready(function () {
     $.validator.addMethod("valorDiferenteA", function (value, element, arg) {
         return arg !== value;
     }, "Value must not equal arg.");
+
+    $.validator.addMethod("valorDiferenteB", function (value, element, arg) {
+        return arg !== value;
+    }, "Value must not equal arg.");
+
 
     $.validator.addMethod("valorDiferente", function (value, element, arg) {
         return arg !== value;

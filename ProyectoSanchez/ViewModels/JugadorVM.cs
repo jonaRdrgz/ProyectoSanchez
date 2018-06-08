@@ -17,10 +17,10 @@ namespace ProyectoSanchez.ViewModels
         public decimal CodigoFuncionario { get; set; }
 
         [Required(ErrorMessage = "El peso del jugador es necesario")]
-        public decimal PesoKilos { get; set; }
+        public double PesoKilos { get; set; }
 
         [Required(ErrorMessage = "La altura del jugador es necesaria")]
-        public decimal AlturaMetros { get; set; }
+        public double AlturaMetros { get; set; }
 
         public string Nombre { get; set; }
         public List<EspecialidadPorJugadorVM> EspecialidadPorJugadors { get; set; }

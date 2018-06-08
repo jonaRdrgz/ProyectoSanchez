@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoSanchez.ViewModels;
+using System.Data.Entity.Validation;
+
 namespace ProyectoSanchez.Controllers
 {
     public class PartidoControllerDataBaseWrapper
@@ -51,6 +53,31 @@ namespace ProyectoSanchez.Controllers
                          Nombre = Equipo.nombre
                      }
                 ).ToList();
+        }
+        public void UpdatePartido(Models.Partido nuevoPartido)
+        {
+            Models.Partido oldPartido = db.Partidoes.SingleOrDefault(b => b.idPartido == nuevoPartido.idPartido);
+
+            if (oldPartido != null)
+            {
+               oldPartido.idEquipoLocal = nuevoPartido.idEquipoLocal;
+                oldPartido.idEquipoVisita = nuevoPartido.idEquipoVisita;
+                oldPartido.golLocal = nuevoPartido.golLocal;
+                oldPartido.golVisita = nuevoPartido.golVisita;
+            }
+        }
+        public void AddPartido(Models.Partido partido)
+        {
+            db.Partidoes.Add(partido);
+        }
+        public Models.Partido CreatePartido()
+        {
+            return db.Partidoes.Create();
+        }
+
+        public void GuardarCambios()
+        {
+            db.SaveChanges();
         }
 
     }
@@ -100,7 +127,7 @@ namespace ProyectoSanchez.Controllers
             }
         }
 
-        public JsonResult GetEquiposXTorneo(int IdTorneo)
+        public JsonResult GetEquiposXTorneo()
         {
             try
             {
@@ -109,7 +136,7 @@ namespace ProyectoSanchez.Controllers
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = _db.getListaEquiposXTorneo(1),
+                    Data = _db.getListaEquiposXTorneo(idTorneo),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -148,6 +175,19 @@ namespace ProyectoSanchez.Controllers
 
             try
             {
+                var nuevoPartido = _db.CreatePartido();
+                nuevoPartido.idPartido = partido.IdPartido;
+                nuevoPartido.idEquipoLocal = partido.IdEquipoLocal;
+                nuevoPartido.idEquipoVisita = partido.IdEquipoVisita;
+                nuevoPartido.golLocal = partido.GolLocal;
+                nuevoPartido.golVisita = partido.GolVisita;
+
+
+                _db.UpdatePartido(nuevoPartido);
+
+                //// Se guardan los cambios, indicando que se hace desde el proceso de edición
+                //GuardarCambios();
+                _db.GuardarCambios();
                 // Y se retorna un código de completación del proceso exitoso
                 return new JsonResult()
                 {
@@ -161,6 +201,68 @@ namespace ProyectoSanchez.Controllers
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
 
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
+        public JsonResult AgregarPartido(PartidoVM partido)
+        {
+            // Se verifica si los datos ingresados son válidos a nivel de backend, o se reporta el error
+            if (!ModelState.IsValid)
+            {
+                foreach (ModelState modelstate in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelstate.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "CAMPOS_INVALIDOS" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+
+            try
+            {
+                var nuevoPartido = _db.CreatePartido();
+                nuevoPartido.idEquipoLocal = partido.IdEquipoLocal;
+                nuevoPartido.idEquipoVisita = partido.IdEquipoVisita;
+                nuevoPartido.golLocal = partido.GolLocal;
+                nuevoPartido.golVisita = partido.GolVisita;
+                nuevoPartido.jugado = partido.Jugado;
+                nuevoPartido.idTorneo = idTorneo;
+                nuevoPartido.idFecha = idFecha;
+
+
+                _db.AddPartido(nuevoPartido);
+
+                //// Se guardan los cambios, indicando que se hace desde el proceso de edición
+                //GuardarCambios();
+                _db.GuardarCambios();
+                // Y se retorna un código de completación del proceso exitoso
+                return new JsonResult()
+                {
+                    Data = new { CODE = "PARTIDO_GUARDADO" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (DbEntityValidationException e)
+            {
+                foreach (var entityValidationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
                 return new JsonResult()
                 {
                     Data = new { CODE = "ERROR" },

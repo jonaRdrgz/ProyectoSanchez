@@ -37,7 +37,7 @@ namespace ProyectoSanchez.ViewModels
         public decimal IdTorneo { get; set; }
 
         //[Required(ErrorMessage = "Es necesario saber si el juego se jugó o no")]
-        public bool? Jugado { get; set; }
+        public string Jugado { get; set; }
 
         //[Required(ErrorMessage = "El id del la fecha es obligatorio")]
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]

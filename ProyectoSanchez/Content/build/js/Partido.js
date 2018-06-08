@@ -19,12 +19,15 @@
                             <td class=" ">'+ partido["GolLocal"] + '</td>\
                             <td class=" ">'+ partido["GolVisita"] + '</td>\
                             <td class=" last">\
-                                <a onclick="getInformacionPartido('+ partido["IdPartido"] + "," + partido["IdEquipoLocal"] + "," + partido["IdEquipoVisita"] +
-                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ')"  class="verpartido">+Info</a>\
+                                <button  id="buttonPlus" \
+                                onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
+                                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-12"><i class="fa fa-plus-circle">\
+                                 </i></button>\
                             </td>\
                         </tr>';
             });
-
+            //<a onclick="getInformacionPartido('+ partido[" IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
+            //"," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ')"  class="verpartido">+Info</a>
             $('#previewTablePartidos').DataTable().clear();
             $('#previewTablePartidos').dataTable().fnDestroy();
 
@@ -80,6 +83,7 @@ function getEquiposXTorneo(IdTorneo, tag, idEquipo) {
         success: function (data) {
             var htmlSelect = "";
 
+            // Se verifica si el Id del equipo actual es igual al parámetro idEquipo y se selecciona
             $.each(data, function (i, equipo) {
                 htmlSelect += '<option value="' + equipo["IdEquipo"] + '" ' + ((equipo["IdEquipo"] == idEquipo) ? "selected" : "") + ' > ' + equipo["Nombre"] + ' </option>'; 
                 
@@ -165,8 +169,9 @@ $().ready(function () {
                 contentType: "application/json",
                 success: function (data) {
                     var code = data["CODE"]
-                    if (code === "PARTIDO_GUARDADO" ) {
-                        window.location.replace("../Home/Index");
+                    if (code === "PARTIDO_GUARDADO") {
+                        $('#modalEditarPartido').modal('hide');
+                        location.reload();
                     } else {
                         alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
                     }

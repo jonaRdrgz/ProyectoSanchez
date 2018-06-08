@@ -1,7 +1,7 @@
 ﻿function GetEquipoJugador() {
     $.ajax({
         type: "post",
-        url: "/Jugador/GetInformacionJugador",
+        url: "/JugadorPorEquipoPorTorneo/GetInformacionJugador",
         dataType: "json",
         contentType: "application/json",
         success: function (data) {

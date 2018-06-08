@@ -11,11 +11,11 @@ using ProyectoSanchez.ViewModels;
 namespace ProyectoSanchez.Controllers
 {
 
-    public class JugadorEquipoTorneoControllerDataBaseWrapper
+    public class JugadorPorEquipoPorTorneoControllerDataBaseWrapper
     {
         private Models.ProyectoBasesSanchezEntities db = new Models.ProyectoBasesSanchezEntities();
 
-        public JugadorEquipoTorneoControllerDataBaseWrapper()
+        public JugadorPorEquipoPorTorneoControllerDataBaseWrapper()
         {
             db = new Models.ProyectoBasesSanchezEntities();
         }
@@ -44,13 +44,13 @@ namespace ProyectoSanchez.Controllers
         }
     }
 
-    public class JugadorEquipoTorneoController : Controller
+    public class JugadorPorEquipoPorTorneoController : Controller
     {
-        private JugadorEquipoTorneoControllerDataBaseWrapper _db;
+        private JugadorPorEquipoPorTorneoControllerDataBaseWrapper _db;
         private static int idJugador;
-        public JugadorEquipoTorneoController()
+        public JugadorPorEquipoPorTorneoController()
         {
-            _db = new JugadorEquipoTorneoControllerDataBaseWrapper();
+            _db = new JugadorPorEquipoPorTorneoControllerDataBaseWrapper();
 
         }
 

@@ -309,9 +309,6 @@
     <Compile Include="Models\SuplentesEquipoPartido_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tablaPosiciones1_Result.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tablaPosiciones_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>

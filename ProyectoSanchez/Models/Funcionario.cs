@@ -29,6 +29,7 @@ namespace ProyectoSanchez.Models
         public decimal codigoFuncionario { get; set; }
         public string nombre { get; set; }
         public System.DateTime fechaNacimiento { get; set; }
+        public string urlImagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContratacionFuncionario> ContratacionFuncionarios { get; set; }

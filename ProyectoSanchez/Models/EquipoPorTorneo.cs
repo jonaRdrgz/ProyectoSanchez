@@ -21,7 +21,6 @@ namespace ProyectoSanchez.Models
             this.JugadorPorEquipoPorTorneos = new HashSet<JugadorPorEquipoPorTorneo>();
             this.Partidoes = new HashSet<Partido>();
             this.Partidoes1 = new HashSet<Partido>();
-            this.TituloPorEntrenadors = new HashSet<TituloPorEntrenador>();
         }
     
         public decimal idEquipo { get; set; }
@@ -38,7 +37,5 @@ namespace ProyectoSanchez.Models
         public virtual ICollection<Partido> Partidoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Partido> Partidoes1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TituloPorEntrenador> TituloPorEntrenadors { get; set; }
     }
 }

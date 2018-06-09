@@ -4,55 +4,55 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0dc224c6aec844c9b4d987240c753edc" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Arbitro" Width="1.5" PointX="15" PointY="28.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ArbitroPorPartido" Width="1.5" PointX="17.25" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Cambio" Width="1.5" PointX="14.25" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Cambio_H" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Categoria" Width="1.5" PointX="12.75" PointY="29" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Competicion" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.CompeticionPorFederacion" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ContratacionFuncionario" Width="1.5" PointX="12.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Contrato" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.CorreoFuncionario" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.DireccionFuncionario" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Dominio" Width="1.5" PointX="12.75" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Entrenador" Width="1.5" PointX="9.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EntrenadorEquipoTorneo" Width="1.5" PointX="12" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EntrenadorEquipoTorneo_H" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Equipo" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EquipoPorTorneo" Width="1.5" PointX="9.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EquipoPorTorneo_H" Width="1.5" PointX="4.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Especialidad" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EspecialidadPorJugador" Width="1.5" PointX="15" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.FechasCalendario" Width="1.5" PointX="9.75" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.FechasCalendario_H" Width="1.5" PointX="4.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Federacion" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Funcionario" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Gol" Width="1.5" PointX="14.25" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Gol_H" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Jugador" Width="1.5" PointX="12.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo" Width="1.5" PointX="15" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.OfertaFuncionario" Width="1.5" PointX="15.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Pai" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Partido" Width="1.5" PointX="12" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Partido_H" Width="1.5" PointX="17.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Posicion" Width="1.5" PointX="15" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Rol" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Socio" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.SuplentesEquipoPartido" Width="1.5" PointX="14.25" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TelefonoFuncionario" Width="1.5" PointX="9.75" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TipoArbitro" Width="1.5" PointX="15" PointY="31.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TitularEquipoPartido" Width="1.5" PointX="17.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Titulo" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TituloPorEntrenador" Width="1.5" PointX="12" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Torneo" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Torneo_H" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Usuario" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ArbitroPorPartido_H" Width="1.5" PointX="2.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo_H" Width="1.5" PointX="17.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.SuplentesEquipoPartido_H" Width="1.5" PointX="4.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TitularEquipoPartido_H" Width="1.5" PointX="6.75" PointY="19" IsExpanded="true" />
+      <Diagram DiagramId="4b25f2fd7234441592922a532f4c6e01" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Arbitro" Width="1.5" PointX="15" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ArbitroPorPartido" Width="1.5" PointX="17.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Cambio" Width="1.5" PointX="14.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Cambio_H" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Categoria" Width="1.5" PointX="12.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Competicion" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.CompeticionPorFederacion" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ContratacionFuncionario" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Contrato" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.CorreoFuncionario" Width="1.5" PointX="9.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.DireccionFuncionario" Width="1.5" PointX="9.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Dominio" Width="1.5" PointX="12.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Entrenador" Width="1.5" PointX="9.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EntrenadorEquipoTorneo" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EntrenadorEquipoTorneo_H" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Equipo" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EquipoPorTorneo" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EquipoPorTorneo_H" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Especialidad" Width="1.5" PointX="12.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.EspecialidadPorJugador" Width="1.5" PointX="15" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.FechasCalendario" Width="1.5" PointX="9.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.FechasCalendario_H" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Federacion" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Funcionario" Width="1.5" PointX="7.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Gol" Width="1.5" PointX="14.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Gol_H" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Jugador" Width="1.5" PointX="12.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo" Width="1.5" PointX="15" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.OfertaFuncionario" Width="1.5" PointX="16.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Pai" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Partido" Width="1.5" PointX="12" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Partido_H" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Posicion" Width="1.5" PointX="15" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Rol" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Socio" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.SuplentesEquipoPartido" Width="1.5" PointX="14.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TelefonoFuncionario" Width="1.5" PointX="9.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TipoArbitro" Width="1.5" PointX="15" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TitularEquipoPartido" Width="1.5" PointX="17.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Titulo" Width="1.5" PointX="9.75" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TituloPorEntrenador" Width="1.5" PointX="12" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Torneo" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Torneo_H" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.ArbitroPorPartido_H" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo_H" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.SuplentesEquipoPartido_H" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBasesSanchezModel.TitularEquipoPartido_H" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.ArbitroPorPartido_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.ArbitroPorPartido_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.ArbitroPorPartido_FK3" ManuallyRouted="false" />
@@ -76,7 +76,6 @@
         <AssociationConnector Association="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.Partido_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.Partido_FK2" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBasesSanchezModel.TituloPorEntrenador_FK3" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.EspecialidadPorJugador_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.EspecialidadPorJugador_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="ProyectoBasesSanchezModel.FechasCalendario_FK1" ManuallyRouted="false" />

@@ -21,6 +21,7 @@ namespace ProyectoSanchez.Models
         public decimal idCompeticion { get; set; }
         public decimal idFederacion { get; set; }
         public decimal anno { get; set; }
+        public string nombre { get; set; }
         public string periodo { get; set; }
     }
 }

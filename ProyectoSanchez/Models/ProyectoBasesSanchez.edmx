@@ -271,6 +271,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.ArbitroPorPartido_H
           <Property Name="codigoFuncionario" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="urlImagen" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Gol">
           <Key>
@@ -281,6 +282,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.ArbitroPorPartido_H
           <Property Name="minuto" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="urlVideo" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Gol_H">
           <Key>
@@ -294,6 +296,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.ArbitroPorPartido_H
           <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="urlVideo" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="Jugador">
           <Key>
@@ -536,6 +539,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="idCompeticion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="periodo" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -546,7 +550,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="clave" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="ArbitroPorPartido_FK1">
-          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1" />
+          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArbitroPorPartido" Type="Self.ArbitroPorPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Arbitro">
@@ -558,7 +564,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="ArbitroPorPartido_FK2">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArbitroPorPartido" Type="Self.ArbitroPorPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -582,7 +590,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Cambio_FK1">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cambio" Type="Self.Cambio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -774,7 +784,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="EntrenadorEquipoTorneo_FK2">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
+          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EntrenadorEquipoTorneo" Type="Self.EntrenadorEquipoTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipoPorTorneo">
@@ -800,7 +812,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="EquipoPorTorneo_FK4">
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Torneo">
@@ -848,7 +862,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="FechasCalendario_FK1">
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Torneo">
@@ -872,7 +888,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Gol_FK1">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Gol" Type="Self.Gol" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -896,7 +914,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="JugadorPorEquipoPorTorneo_FK1">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
+          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JugadorPorEquipoPorTorneo" Type="Self.JugadorPorEquipoPorTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipoPorTorneo">
@@ -974,7 +994,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Partido_FK3">
-          <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="1" />
+          <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FechasCalendario">
@@ -1058,7 +1080,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="TitularEquipoPartido_FK3">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TitularEquipoPartido" Type="Self.TitularEquipoPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -1102,20 +1126,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             </Principal>
             <Dependent Role="TituloPorEntrenador">
               <PropertyRef Name="idEntrenador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TituloPorEntrenador_FK3">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
-          <End Role="TituloPorEntrenador" Type="Self.TituloPorEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipoPorTorneo">
-              <PropertyRef Name="idEquipo" />
-              <PropertyRef Name="idTorneo" />
-            </Principal>
-            <Dependent Role="TituloPorEntrenador">
-              <PropertyRef Name="idEquipo" />
-              <PropertyRef Name="idTorneo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1435,10 +1445,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             <End Role="Entrenador" EntitySet="Entrenador" />
             <End Role="TituloPorEntrenador" EntitySet="TituloPorEntrenador" />
           </AssociationSet>
-          <AssociationSet Name="TituloPorEntrenador_FK3" Association="Self.TituloPorEntrenador_FK3">
-            <End Role="EquipoPorTorneo" EntitySet="EquipoPorTorneo" />
-            <End Role="TituloPorEntrenador" EntitySet="TituloPorEntrenador" />
-          </AssociationSet>
           <AssociationSet Name="Torneo_FK1" Association="Self.Torneo_FK1">
             <End Role="CompeticionPorFederacion" EntitySet="CompeticionPorFederacion" />
             <End Role="Torneo" EntitySet="Torneo" />
@@ -1643,7 +1649,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <NavigationProperty Name="JugadorPorEquipoPorTorneos" Relationship="Self.JugadorPorEquipoPorTorneo_FK1" FromRole="EquipoPorTorneo" ToRole="JugadorPorEquipoPorTorneo" />
           <NavigationProperty Name="Partidoes" Relationship="Self.Partido_FK1" FromRole="EquipoPorTorneo" ToRole="Partido" />
           <NavigationProperty Name="Partidoes1" Relationship="Self.Partido_FK2" FromRole="EquipoPorTorneo" ToRole="Partido" />
-          <NavigationProperty Name="TituloPorEntrenadors" Relationship="Self.TituloPorEntrenador_FK3" FromRole="EquipoPorTorneo" ToRole="TituloPorEntrenador" />
         </EntityType>
         <EntityType Name="EquipoPorTorneo_H">
           <Key>
@@ -1716,6 +1721,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="codigoFuncionario" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="urlImagen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ContratacionFuncionarios" Relationship="Self.ContratacionFuncionario_FK2" FromRole="Funcionario" ToRole="ContratacionFuncionario" />
           <NavigationProperty Name="CorreoFuncionarios" Relationship="Self.CorreoFuncionario_FK1" FromRole="Funcionario" ToRole="CorreoFuncionario" />
           <NavigationProperty Name="DireccionFuncionarios" Relationship="Self.DireeccionFuncionario_FK1" FromRole="Funcionario" ToRole="DireccionFuncionario" />
@@ -1733,6 +1739,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="minuto" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="urlVideo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Partido" Relationship="Self.Gol_FK1" FromRole="Gol" ToRole="Partido" />
         </EntityType>
         <EntityType Name="Gol_H">
@@ -1747,6 +1754,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="urlVideo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Jugador">
           <Key>
@@ -1919,7 +1927,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <NavigationProperty Name="Entrenador" Relationship="Self.TituloPorEntrenador_FK2" FromRole="TituloPorEntrenador" ToRole="Entrenador" />
-          <NavigationProperty Name="EquipoPorTorneo" Relationship="Self.TituloPorEntrenador_FK3" FromRole="TituloPorEntrenador" ToRole="EquipoPorTorneo" />
           <NavigationProperty Name="Titulo" Relationship="Self.TituloPorEntrenador_FK1" FromRole="TituloPorEntrenador" ToRole="Titulo" />
         </EntityType>
         <EntityType Name="Torneo">
@@ -1947,6 +1954,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="idCompeticion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="periodo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -2028,7 +2036,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="ArbitroPorPartido_FK1">
-          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1" />
+          <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArbitroPorPartido" Type="Self.ArbitroPorPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Arbitro">
@@ -2040,7 +2050,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="ArbitroPorPartido_FK2">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArbitroPorPartido" Type="Self.ArbitroPorPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -2064,7 +2076,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Cambio_FK1">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cambio" Type="Self.Cambio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -2222,7 +2236,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="EntrenadorEquipoTorneo_FK2">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
+          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EntrenadorEquipoTorneo" Type="Self.EntrenadorEquipoTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipoPorTorneo">
@@ -2260,7 +2276,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="EquipoPorTorneo_FK4">
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Torneo">
@@ -2272,7 +2290,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="JugadorPorEquipoPorTorneo_FK1">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
+          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="JugadorPorEquipoPorTorneo" Type="Self.JugadorPorEquipoPorTorneo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipoPorTorneo">
@@ -2313,20 +2333,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TituloPorEntrenador_FK3">
-          <End Role="EquipoPorTorneo" Type="Self.EquipoPorTorneo" Multiplicity="1" />
-          <End Role="TituloPorEntrenador" Type="Self.TituloPorEntrenador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EquipoPorTorneo">
-              <PropertyRef Name="idEquipo" />
-              <PropertyRef Name="idTorneo" />
-            </Principal>
-            <Dependent Role="TituloPorEntrenador">
-              <PropertyRef Name="idEquipo" />
-              <PropertyRef Name="idTorneo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="EspecialidadPorJugador_FK2">
           <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
           <End Role="EspecialidadPorJugador" Type="Self.EspecialidadPorJugador" Multiplicity="*" />
@@ -2352,7 +2358,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="FechasCalendario_FK1">
-          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+          <End Role="Torneo" Type="Self.Torneo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Torneo">
@@ -2364,7 +2372,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Partido_FK3">
-          <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="1" />
+          <End Role="FechasCalendario" Type="Self.FechasCalendario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FechasCalendario">
@@ -2424,7 +2434,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="Gol_FK1">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Gol" Type="Self.Gol" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -2460,7 +2472,9 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           </ReferentialConstraint>
         </Association>
         <Association Name="TitularEquipoPartido_FK3">
-          <End Role="Partido" Type="Self.Partido" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TitularEquipoPartido" Type="Self.TitularEquipoPartido" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Partido">
@@ -2656,10 +2670,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             <End Role="EquipoPorTorneo" EntitySet="EquipoPorTorneos" />
             <End Role="Partido" EntitySet="Partidoes" />
           </AssociationSet>
-          <AssociationSet Name="TituloPorEntrenador_FK3" Association="Self.TituloPorEntrenador_FK3">
-            <End Role="EquipoPorTorneo" EntitySet="EquipoPorTorneos" />
-            <End Role="TituloPorEntrenador" EntitySet="TituloPorEntrenadors" />
-          </AssociationSet>
           <AssociationSet Name="EspecialidadPorJugador_FK2" Association="Self.EspecialidadPorJugador_FK2">
             <End Role="Especialidad" EntitySet="Especialidads" />
             <End Role="EspecialidadPorJugador" EntitySet="EspecialidadPorJugadors" />
@@ -2792,16 +2802,6 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Type="DateTime" Name="fechaProgramada" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="tablaPosiciones_Result">
-          <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
-          <Property Type="Decimal" Name="jugados" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="ganados" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="Decimal" Name="empatados" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="Decimal" Name="perdidos" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="Decimal" Name="golesFavor" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="golesContra" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="puntos" Nullable="true" Precision="3" Scale="0" />
-        </ComplexType>
-        <ComplexType Name="tablaPosiciones1_Result">
           <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
           <Property Type="Decimal" Name="jugados" Nullable="true" Precision="3" Scale="0" />
           <Property Type="Decimal" Name="ganados" Nullable="true" Precision="2" Scale="0" />
@@ -3050,6 +3050,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
                 <ScalarProperty Name="codigoFuncionario" ColumnName="codigoFuncionario" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3061,6 +3062,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
                 <ScalarProperty Name="minuto" ColumnName="minuto" />
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
                 <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="urlVideo" ColumnName="urlVideo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3075,6 +3077,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
                 <ScalarProperty Name="minuto" ColumnName="minuto" />
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
                 <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="urlVideo" ColumnName="urlVideo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3249,6 +3252,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
                 <ScalarProperty Name="idCompeticion" ColumnName="idCompeticion" />
                 <ScalarProperty Name="idFederacion" ColumnName="idFederacion" />
                 <ScalarProperty Name="anno" ColumnName="anno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="periodo" ColumnName="periodo" />
               </MappingFragment>
             </EntityTypeMapping>

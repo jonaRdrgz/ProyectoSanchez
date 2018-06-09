@@ -20,7 +20,6 @@ namespace ProyectoSanchez.Models
         public decimal idTorneo { get; set; }
     
         public virtual Entrenador Entrenador { get; set; }
-        public virtual EquipoPorTorneo EquipoPorTorneo { get; set; }
         public virtual Titulo Titulo { get; set; }
     }
 }

@@ -22,5 +22,6 @@ namespace ProyectoSanchez.Models
         public decimal minuto { get; set; }
         public decimal idEquipo { get; set; }
         public decimal idPartido { get; set; }
+        public string urlVideo { get; set; }
     }
 }

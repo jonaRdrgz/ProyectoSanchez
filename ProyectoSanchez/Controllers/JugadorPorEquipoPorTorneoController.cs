@@ -58,11 +58,10 @@ namespace ProyectoSanchez.Controllers
         // GET: Jugador
         public ActionResult Index()
         {
-            ViewBag.jugadorDatos = GetInformacionJugador();
             return View();
         }
 
-        public JsonResult GetInformacionJugador()
+        public JsonResult GetInformacionJugador(int idJugador)
         {
             try
             {

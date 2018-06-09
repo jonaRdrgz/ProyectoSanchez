@@ -30,9 +30,27 @@ namespace ProyectoSanchez.Controllers
                         CodigoFuncionario = Funcionario.codigoFuncionario,
                         PesoKilos = Jugador.pesoKilos,
                         AlturaMetros = Jugador.alturaMetros,
-                        Nombre = Funcionario.nombre
+                        Nombre = Funcionario.nombre,
+                        FechaNacimiento = Funcionario.fechaNacimiento
                     }
                    ).ToList();
+        }
+
+        public List<JugadorVM> GetJugador(decimal idJugador)
+        {
+            return (from Jugador in db.Jugadors
+                    join Funcionario in db.Funcionarios on Jugador.codigoFuncionario equals Funcionario.codigoFuncionario
+                    where Jugador.idJugador == idJugador
+                    select new JugadorVM
+                    {
+                        IdJugador = Jugador.idJugador,
+                        CodigoFuncionario = Funcionario.codigoFuncionario,
+                        PesoKilos = Jugador.pesoKilos,
+                        AlturaMetros = Jugador.alturaMetros,
+                        Nombre = Funcionario.nombre,
+                        FechaNacimiento = Funcionario.fechaNacimiento
+                    }
+                ).ToList();
         }
     }
 
@@ -63,6 +81,33 @@ namespace ProyectoSanchez.Controllers
                 return new JsonResult()
                 {
                     Data = _db.GetJugadores(),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
+        public JsonResult GetInformacionJugador(int idJugador)
+        {
+            try
+            {
+
+                // Obtenemos la lista de Fechas programadas desde la base de datos
+                //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
+                return new JsonResult()
+                {
+                    Data = _db.GetJugador(idJugador),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

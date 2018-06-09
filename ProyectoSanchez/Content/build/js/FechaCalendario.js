@@ -2,8 +2,6 @@
     var data = {
         idTorneo : $("#idTorneo").val()
     }
-
-
     $.ajax({
         type: "post",
         url: "/Home/GetFechasProgramadasXTorneo",

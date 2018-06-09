@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="idArbitro" />
           </Key>
-          <Property Name="idArbitro" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idArbitro" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="35" Nullable="false" />
         </EntityType>
         <EntityType Name="ArbitroPorPartido">
@@ -22,10 +22,44 @@
           <Property Name="desempenno" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idTipoArbitro" Type="numeric" Precision="1" Scale="0" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.ArbitroPorPartido_H' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ArbitroPorPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="desempenno" />
+            <PropertyRef Name="idTipoArbitro" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="idArbitro" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="desempenno" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="idTipoArbitro" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cambio">
           <Key>
             <PropertyRef Name="idCambio" />
           </Key>
+          <Property Name="idCambio" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idJugadorEntra" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idJugadorSale" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cambio_H">
+          <Key>
+            <PropertyRef Name="idCambio" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
           <Property Name="idCambio" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idJugadorEntra" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idJugadorSale" Type="numeric" Precision="4" Scale="0" Nullable="false" />
@@ -37,7 +71,7 @@
           <Key>
             <PropertyRef Name="idCategoria" />
           </Key>
-          <Property Name="idCategoria" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idCategoria" Type="numeric" Precision="3" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="CategoriaPorArbitro">
@@ -45,14 +79,14 @@
             <PropertyRef Name="idArbitro" />
             <PropertyRef Name="idCategoria" />
           </Key>
-          <Property Name="idArbitro" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idArbitro" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCategoria" Type="numeric" Precision="3" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Competicion">
           <Key>
             <PropertyRef Name="idCompeticion" />
           </Key>
-          <Property Name="idCompeticion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombreCompeticion" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="tipo" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
@@ -78,7 +112,7 @@
           <Key>
             <PropertyRef Name="idContrato" />
           </Key>
-          <Property Name="idContrato" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idContrato" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="salario" Type="numeric" Precision="6" Scale="2" Nullable="false" />
           <Property Name="moneda" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="40" />
@@ -119,14 +153,14 @@
           <Key>
             <PropertyRef Name="idDominio" />
           </Key>
-          <Property Name="idDominio" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idDominio" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Entrenador">
           <Key>
             <PropertyRef Name="idEntrenador" />
           </Key>
-          <Property Name="idEntrenador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEntrenador" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigoFuncionario" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="fechaInicio" Type="date" Nullable="false" />
         </EntityType>
@@ -161,7 +195,7 @@
           <Key>
             <PropertyRef Name="idEquipo" />
           </Key>
-          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="fechaFundacion" Type="date" Nullable="false" />
         </EntityType>
@@ -190,7 +224,7 @@
           <Key>
             <PropertyRef Name="idEspecialidad" />
           </Key>
-          <Property Name="idEspecialidad" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idEspecialidad" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
         <EntityType Name="EspecialidadPorJugador">
@@ -206,7 +240,7 @@
           <Key>
             <PropertyRef Name="idFecha" />
           </Key>
-          <Property Name="idFecha" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idFecha" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fechaProgramada" Type="datetime" Nullable="false" />
           <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
         </EntityType>
@@ -225,7 +259,7 @@
           <Key>
             <PropertyRef Name="idFederacion" />
           </Key>
-          <Property Name="idFederacion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="numeric" Precision="3" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="idPais" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="FechaCreacionFed" Type="date" Nullable="false" />
@@ -234,7 +268,7 @@
           <Key>
             <PropertyRef Name="codigoFuncionario" />
           </Key>
-          <Property Name="codigoFuncionario" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaNacimiento" Type="date" Nullable="false" />
         </EntityType>
@@ -242,9 +276,22 @@
           <Key>
             <PropertyRef Name="idGol" />
           </Key>
-          <Property Name="idGol" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idGol" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="minuto" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gol_H">
+          <Key>
+            <PropertyRef Name="idGol" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="idGol" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
         </EntityType>
@@ -252,7 +299,7 @@
           <Key>
             <PropertyRef Name="idJugador" />
           </Key>
-          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigoFuncionario" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="pesoKilos" Type="float" Nullable="false" />
           <Property Name="alturaMetros" Type="float" Nullable="false" />
@@ -304,13 +351,29 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idPais" />
           </Key>
-          <Property Name="idPais" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idPais" Type="numeric" Precision="3" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Partido">
           <Key>
             <PropertyRef Name="idPartido" />
           </Key>
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEquipoLocal" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipoVisita" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="golLocal" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golVisita" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="jugado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="idFecha" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partido_H">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
           <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idEquipoLocal" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idEquipoVisita" Type="numeric" Precision="4" Scale="0" Nullable="false" />
@@ -324,14 +387,14 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idPosicion" />
           </Key>
-          <Property Name="idPosicion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idPosicion" Type="numeric" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="idRol" />
           </Key>
-          <Property Name="idRol" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="idRol" Type="numeric" Precision="1" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="40" />
         </EntityType>
@@ -347,7 +410,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idSocio" />
           </Key>
-          <Property Name="idSocio" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idSocio" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SocioPorEquipo">
@@ -368,6 +431,24 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.SuplentesEquipoPartido_H' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SuplentesEquipoPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="TelefonoFuncionario">
           <Key>
             <PropertyRef Name="telefono" />
@@ -379,7 +460,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idTipoArbitro" />
           </Key>
-          <Property Name="idTipoArbitro" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="idTipoArbitro" Type="numeric" Precision="1" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="TitularEquipoPartido">
@@ -389,6 +470,26 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
             <PropertyRef Name="idPosicion" />
             <PropertyRef Name="idPartido" />
           </Key>
+          <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPosicion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartido_H' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TitularEquipoPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idPosicion" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+          <Property Name="usuario_cambio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tipo_cambio" Type="varchar" MaxLength="14" Nullable="false" />
           <Property Name="idJugador" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPosicion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
@@ -417,7 +518,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idTorneo" />
           </Key>
-          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCompeticion" Type="numeric" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="numeric" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="numeric" Precision="4" Scale="0" Nullable="false" />
@@ -1060,6 +1161,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Arbitro" EntityType="Self.Arbitro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ArbitroPorPartido" EntityType="Self.ArbitroPorPartido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cambio" EntityType="Self.Cambio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cambio_H" EntityType="Self.Cambio_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoriaPorArbitro" EntityType="Self.CategoriaPorArbitro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Competicion" EntityType="Self.Competicion" Schema="dbo" store:Type="Tables" />
@@ -1084,11 +1186,13 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Federacion" EntityType="Self.Federacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gol" EntityType="Self.Gol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gol_H" EntityType="Self.Gol_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jugador" EntityType="Self.Jugador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JugadorPorEquipoPorTorneo" EntityType="Self.JugadorPorEquipoPorTorneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfertaFuncionario" EntityType="Self.OfertaFuncionario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partido_H" EntityType="Self.Partido_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posicion" EntityType="Self.Posicion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolPorUsuario" EntityType="Self.RolPorUsuario" Schema="dbo" store:Type="Tables" />
@@ -1103,6 +1207,17 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Torneo_H" EntityType="Self.Torneo_H" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArbitroPorPartido_H" EntityType="Self.ArbitroPorPartido_H" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ArbitroPorPartido_H].[fecha_cambio] AS [fecha_cambio], 
+    [ArbitroPorPartido_H].[usuario_cambio] AS [usuario_cambio], 
+    [ArbitroPorPartido_H].[tipo_cambio] AS [tipo_cambio], 
+    [ArbitroPorPartido_H].[idArbitro] AS [idArbitro], 
+    [ArbitroPorPartido_H].[idPartido] AS [idPartido], 
+    [ArbitroPorPartido_H].[desempenno] AS [desempenno], 
+    [ArbitroPorPartido_H].[idTipoArbitro] AS [idTipoArbitro]
+    FROM [dbo].[ArbitroPorPartido_H] AS [ArbitroPorPartido_H]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="JugadorPorEquipoPorTorneo_H" EntityType="Self.JugadorPorEquipoPorTorneo_H" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [JugadorPorEquipoPorTorneo_H].[fecha_cambio] AS [fecha_cambio], 
@@ -1114,6 +1229,27 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
     [JugadorPorEquipoPorTorneo_H].[idTorneo] AS [idTorneo], 
     [JugadorPorEquipoPorTorneo_H].[sinopsis] AS [sinopsis]
     FROM [dbo].[JugadorPorEquipoPorTorneo_H] AS [JugadorPorEquipoPorTorneo_H]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SuplentesEquipoPartido_H" EntityType="Self.SuplentesEquipoPartido_H" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SuplentesEquipoPartido_H].[fecha_cambio] AS [fecha_cambio], 
+    [SuplentesEquipoPartido_H].[usuario_cambio] AS [usuario_cambio], 
+    [SuplentesEquipoPartido_H].[tipo_cambio] AS [tipo_cambio], 
+    [SuplentesEquipoPartido_H].[idJugador] AS [idJugador], 
+    [SuplentesEquipoPartido_H].[idEquipo] AS [idEquipo], 
+    [SuplentesEquipoPartido_H].[idPartido] AS [idPartido]
+    FROM [dbo].[SuplentesEquipoPartido_H] AS [SuplentesEquipoPartido_H]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TitularEquipoPartido_H" EntityType="Self.TitularEquipoPartido_H" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TitularEquipoPartido_H].[fecha_cambio] AS [fecha_cambio], 
+    [TitularEquipoPartido_H].[usuario_cambio] AS [usuario_cambio], 
+    [TitularEquipoPartido_H].[tipo_cambio] AS [tipo_cambio], 
+    [TitularEquipoPartido_H].[idJugador] AS [idJugador], 
+    [TitularEquipoPartido_H].[idEquipo] AS [idEquipo], 
+    [TitularEquipoPartido_H].[idPosicion] AS [idPosicion], 
+    [TitularEquipoPartido_H].[idPartido] AS [idPartido]
+    FROM [dbo].[TitularEquipoPartido_H] AS [TitularEquipoPartido_H]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="ArbitroPorPartido_FK1" Association="Self.ArbitroPorPartido_FK1">
             <End Role="Arbitro" EntitySet="Arbitro" />
@@ -1317,7 +1453,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idArbitro" />
           </Key>
-          <Property Name="idArbitro" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idArbitro" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ArbitroPorPartidoes" Relationship="Self.ArbitroPorPartido_FK1" FromRole="Arbitro" ToRole="ArbitroPorPartido" />
           <NavigationProperty Name="Categorias" Relationship="Self.CategoriaPorArbitro" FromRole="Arbitro" ToRole="Categoria" />
@@ -1339,7 +1475,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idCambio" />
           </Key>
-          <Property Name="idCambio" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idCambio" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idJugadorEntra" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idJugadorSale" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="minuto" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
@@ -1347,11 +1483,25 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <NavigationProperty Name="Partido" Relationship="Self.Cambio_FK1" FromRole="Cambio" ToRole="Partido" />
         </EntityType>
+        <EntityType Name="Cambio_H">
+          <Key>
+            <PropertyRef Name="idCambio" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCambio" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idJugadorEntra" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idJugadorSale" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="idCategoria" />
           </Key>
-          <Property Name="idCategoria" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idCategoria" Type="Decimal" Precision="3" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Arbitroes" Relationship="Self.CategoriaPorArbitro" FromRole="Categoria" ToRole="Arbitro" />
         </EntityType>
@@ -1359,7 +1509,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idCompeticion" />
           </Key>
-          <Property Name="idCompeticion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idCompeticion" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombreCompeticion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CompeticionPorFederacions" Relationship="Self.CompeticionPorFederacion_FK3" FromRole="Competicion" ToRole="CompeticionPorFederacion" />
@@ -1392,7 +1542,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idContrato" />
           </Key>
-          <Property Name="idContrato" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idContrato" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="salario" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
           <Property Name="moneda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
@@ -1422,7 +1572,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idDominio" />
           </Key>
-          <Property Name="idDominio" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idDominio" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EspecialidadPorJugadors" Relationship="Self.EspecialidadPorJugador_FK3" FromRole="Dominio" ToRole="EspecialidadPorJugador" />
         </EntityType>
@@ -1430,7 +1580,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idEntrenador" />
           </Key>
-          <Property Name="idEntrenador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEntrenador" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigoFuncionario" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Funcionario" Relationship="Self.Entrenador_FK1" FromRole="Entrenador" ToRole="Funcionario" />
@@ -1471,7 +1621,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idEquipo" />
           </Key>
-          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaFundacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="ContratacionFuncionarios" Relationship="Self.ContratacionFuncionario_FK1" FromRole="Equipo" ToRole="ContratacionFuncionario" />
@@ -1511,7 +1661,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idEspecialidad" />
           </Key>
-          <Property Name="idEspecialidad" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idEspecialidad" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EspecialidadPorJugadors" Relationship="Self.EspecialidadPorJugador_FK2" FromRole="Especialidad" ToRole="EspecialidadPorJugador" />
         </EntityType>
@@ -1531,7 +1681,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idFecha" />
           </Key>
-          <Property Name="idFecha" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idFecha" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fechaProgramada" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <NavigationProperty Name="Torneo" Relationship="Self.FechasCalendario_FK1" FromRole="FechasCalendario" ToRole="Torneo" />
@@ -1552,7 +1702,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idFederacion" />
           </Key>
-          <Property Name="idFederacion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idFederacion" Type="Decimal" Precision="3" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idPais" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="FechaCreacionFed" Type="DateTime" Nullable="false" Precision="0" />
@@ -1563,7 +1713,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="codigoFuncionario" />
           </Key>
-          <Property Name="codigoFuncionario" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="codigoFuncionario" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="ContratacionFuncionarios" Relationship="Self.ContratacionFuncionario_FK2" FromRole="Funcionario" ToRole="ContratacionFuncionario" />
@@ -1578,18 +1728,31 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idGol" />
           </Key>
-          <Property Name="idGol" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idGol" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="minuto" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <NavigationProperty Name="Partido" Relationship="Self.Gol_FK1" FromRole="Gol" ToRole="Partido" />
         </EntityType>
+        <EntityType Name="Gol_H">
+          <Key>
+            <PropertyRef Name="idGol" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idGol" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="minuto" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Jugador">
           <Key>
             <PropertyRef Name="idJugador" />
           </Key>
-          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigoFuncionario" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="pesoKilos" Type="Double" Nullable="false" />
           <Property Name="alturaMetros" Type="Double" Nullable="false" />
@@ -1629,7 +1792,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idPais" />
           </Key>
-          <Property Name="idPais" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="idPais" Type="Decimal" Precision="3" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Federacions" Relationship="Self.Federacion_FK1" FromRole="Pais" ToRole="Federacion" />
         </EntityType>
@@ -1637,7 +1800,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idPartido" />
           </Key>
-          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idEquipoLocal" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idEquipoVisita" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="golLocal" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
@@ -1654,11 +1817,27 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <NavigationProperty Name="SuplentesEquipoPartidoes" Relationship="Self.SuplentesEquipoPartido_FK2" FromRole="Partido" ToRole="SuplentesEquipoPartido" />
           <NavigationProperty Name="TitularEquipoPartidoes" Relationship="Self.TitularEquipoPartido_FK3" FromRole="Partido" ToRole="TitularEquipoPartido" />
         </EntityType>
+        <EntityType Name="Partido_H">
+          <Key>
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipoLocal" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipoVisita" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="golLocal" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="golVisita" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="jugado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idFecha" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Posicion">
           <Key>
             <PropertyRef Name="idPosicion" />
           </Key>
-          <Property Name="idPosicion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idPosicion" Type="Decimal" Precision="2" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="TitularEquipoPartidoes" Relationship="Self.TitularEquipoPartido_FK4" FromRole="Posicion" ToRole="TitularEquipoPartido" />
         </EntityType>
@@ -1666,7 +1845,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idRol" />
           </Key>
-          <Property Name="idRol" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="idRol" Type="Decimal" Precision="1" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.RolPorUsuario" FromRole="Rol" ToRole="Usuario" />
@@ -1675,7 +1854,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idSocio" />
           </Key>
-          <Property Name="idSocio" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idSocio" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Equipoes" Relationship="Self.SocioPorEquipo" FromRole="Socio" ToRole="Equipo" />
         </EntityType>
@@ -1702,7 +1881,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idTipoArbitro" />
           </Key>
-          <Property Name="idTipoArbitro" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="idTipoArbitro" Type="Decimal" Precision="1" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ArbitroPorPartidoes" Relationship="Self.ArbitroPorPartido_FK3" FromRole="TipoArbitro" ToRole="ArbitroPorPartido" />
         </EntityType>
@@ -1747,7 +1926,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Key>
             <PropertyRef Name="idTorneo" />
           </Key>
-          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idCompeticion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
           <Property Name="idFederacion" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
           <Property Name="anno" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
@@ -1778,6 +1957,24 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Rols" Relationship="Self.RolPorUsuario" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
+        <EntityType Name="ArbitroPorPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idArbitro" />
+            <PropertyRef Name="idPartido" />
+            <PropertyRef Name="desempenno" />
+            <PropertyRef Name="idTipoArbitro" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idArbitro" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="desempenno" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idTipoArbitro" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="JugadorPorEquipoPorTorneo_H">
           <Key>
             <PropertyRef Name="fecha_cambio" />
@@ -1795,6 +1992,40 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="idTorneo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
           <Property Name="sinopsis" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SuplentesEquipoPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TitularEquipoPartido_H">
+          <Key>
+            <PropertyRef Name="fecha_cambio" />
+            <PropertyRef Name="usuario_cambio" />
+            <PropertyRef Name="tipo_cambio" />
+            <PropertyRef Name="idJugador" />
+            <PropertyRef Name="idEquipo" />
+            <PropertyRef Name="idPosicion" />
+            <PropertyRef Name="idPartido" />
+          </Key>
+          <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_cambio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cambio" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idJugador" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idEquipo" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="idPosicion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="idPartido" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="ArbitroPorPartido_FK1">
           <End Role="Arbitro" Type="Self.Arbitro" Multiplicity="1" />
@@ -2288,6 +2519,7 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Arbitroes" EntityType="Self.Arbitro" />
           <EntitySet Name="ArbitroPorPartidoes" EntityType="Self.ArbitroPorPartido" />
           <EntitySet Name="Cambios" EntityType="Self.Cambio" />
+          <EntitySet Name="Cambio_H" EntityType="Self.Cambio_H" />
           <EntitySet Name="Categorias" EntityType="Self.Categoria" />
           <EntitySet Name="Competicions" EntityType="Self.Competicion" />
           <EntitySet Name="CompeticionPorFederacions" EntityType="Self.CompeticionPorFederacion" />
@@ -2309,11 +2541,13 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Federacions" EntityType="Self.Federacion" />
           <EntitySet Name="Funcionarios" EntityType="Self.Funcionario" />
           <EntitySet Name="Gols" EntityType="Self.Gol" />
+          <EntitySet Name="Gol_H" EntityType="Self.Gol_H" />
           <EntitySet Name="Jugadors" EntityType="Self.Jugador" />
           <EntitySet Name="JugadorPorEquipoPorTorneos" EntityType="Self.JugadorPorEquipoPorTorneo" />
           <EntitySet Name="OfertaFuncionarios" EntityType="Self.OfertaFuncionario" />
           <EntitySet Name="Pais" EntityType="Self.Pai" />
           <EntitySet Name="Partidoes" EntityType="Self.Partido" />
+          <EntitySet Name="Partido_H" EntityType="Self.Partido_H" />
           <EntitySet Name="Posicions" EntityType="Self.Posicion" />
           <EntitySet Name="Rols" EntityType="Self.Rol" />
           <EntitySet Name="Socios" EntityType="Self.Socio" />
@@ -2326,7 +2560,10 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySet Name="Torneos" EntityType="Self.Torneo" />
           <EntitySet Name="Torneo_H" EntityType="Self.Torneo_H" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="ArbitroPorPartido_H" EntityType="Self.ArbitroPorPartido_H" />
           <EntitySet Name="JugadorPorEquipoPorTorneo_H" EntityType="Self.JugadorPorEquipoPorTorneo_H" />
+          <EntitySet Name="SuplentesEquipoPartido_H" EntityType="Self.SuplentesEquipoPartido_H" />
+          <EntitySet Name="TitularEquipoPartido_H" EntityType="Self.TitularEquipoPartido_H" />
           <AssociationSet Name="ArbitroPorPartido_FK1" Association="Self.ArbitroPorPartido_FK1">
             <End Role="Arbitro" EntitySet="Arbitroes" />
             <End Role="ArbitroPorPartido" EntitySet="ArbitroPorPartidoes" />
@@ -2600,6 +2837,21 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Cambio_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Cambio_H">
+              <MappingFragment StoreEntitySet="Cambio_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idCambio" ColumnName="idCambio" />
+                <ScalarProperty Name="idJugadorEntra" ColumnName="idJugadorEntra" />
+                <ScalarProperty Name="idJugadorSale" ColumnName="idJugadorSale" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Categorias">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
@@ -2802,6 +3054,20 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Gol_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Gol_H">
+              <MappingFragment StoreEntitySet="Gol_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idGol" ColumnName="idGol" />
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="minuto" ColumnName="minuto" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Jugadors">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Jugador">
               <MappingFragment StoreEntitySet="Jugador">
@@ -2845,6 +3111,23 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
           <EntitySetMapping Name="Partidoes">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Partido">
               <MappingFragment StoreEntitySet="Partido">
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="idEquipoLocal" ColumnName="idEquipoLocal" />
+                <ScalarProperty Name="idEquipoVisita" ColumnName="idEquipoVisita" />
+                <ScalarProperty Name="golLocal" ColumnName="golLocal" />
+                <ScalarProperty Name="golVisita" ColumnName="golVisita" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="jugado" ColumnName="jugado" />
+                <ScalarProperty Name="idFecha" ColumnName="idFecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partido_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.Partido_H">
+              <MappingFragment StoreEntitySet="Partido_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
                 <ScalarProperty Name="idPartido" ColumnName="idPartido" />
                 <ScalarProperty Name="idEquipoLocal" ColumnName="idEquipoLocal" />
                 <ScalarProperty Name="idEquipoVisita" ColumnName="idEquipoVisita" />
@@ -2968,6 +3251,19 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ArbitroPorPartido_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.ArbitroPorPartido_H">
+              <MappingFragment StoreEntitySet="ArbitroPorPartido_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idArbitro" ColumnName="idArbitro" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+                <ScalarProperty Name="desempenno" ColumnName="desempenno" />
+                <ScalarProperty Name="idTipoArbitro" ColumnName="idTipoArbitro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="JugadorPorEquipoPorTorneo_H">
             <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.JugadorPorEquipoPorTorneo_H">
               <MappingFragment StoreEntitySet="JugadorPorEquipoPorTorneo_H">
@@ -2979,6 +3275,31 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.JugadorPorEquipoPor
                 <ScalarProperty Name="idJugador" ColumnName="idJugador" />
                 <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
                 <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuplentesEquipoPartido_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.SuplentesEquipoPartido_H">
+              <MappingFragment StoreEntitySet="SuplentesEquipoPartido_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TitularEquipoPartido_H">
+            <EntityTypeMapping TypeName="ProyectoBasesSanchezModel.TitularEquipoPartido_H">
+              <MappingFragment StoreEntitySet="TitularEquipoPartido_H">
+                <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+                <ScalarProperty Name="usuario_cambio" ColumnName="usuario_cambio" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="idJugador" ColumnName="idJugador" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idPosicion" ColumnName="idPosicion" />
+                <ScalarProperty Name="idPartido" ColumnName="idPartido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

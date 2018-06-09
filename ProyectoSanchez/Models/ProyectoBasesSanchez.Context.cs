@@ -30,6 +30,7 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Arbitro> Arbitroes { get; set; }
         public virtual DbSet<ArbitroPorPartido> ArbitroPorPartidoes { get; set; }
         public virtual DbSet<Cambio> Cambios { get; set; }
+        public virtual DbSet<Cambio_H> Cambio_H { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Competicion> Competicions { get; set; }
         public virtual DbSet<CompeticionPorFederacion> CompeticionPorFederacions { get; set; }
@@ -51,11 +52,13 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Federacion> Federacions { get; set; }
         public virtual DbSet<Funcionario> Funcionarios { get; set; }
         public virtual DbSet<Gol> Gols { get; set; }
+        public virtual DbSet<Gol_H> Gol_H { get; set; }
         public virtual DbSet<Jugador> Jugadors { get; set; }
         public virtual DbSet<JugadorPorEquipoPorTorneo> JugadorPorEquipoPorTorneos { get; set; }
         public virtual DbSet<OfertaFuncionario> OfertaFuncionarios { get; set; }
         public virtual DbSet<Pai> Pais { get; set; }
         public virtual DbSet<Partido> Partidoes { get; set; }
+        public virtual DbSet<Partido_H> Partido_H { get; set; }
         public virtual DbSet<Posicion> Posicions { get; set; }
         public virtual DbSet<Rol> Rols { get; set; }
         public virtual DbSet<Socio> Socios { get; set; }
@@ -68,7 +71,10 @@ namespace ProyectoSanchez.Models
         public virtual DbSet<Torneo> Torneos { get; set; }
         public virtual DbSet<Torneo_H> Torneo_H { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<ArbitroPorPartido_H> ArbitroPorPartido_H { get; set; }
         public virtual DbSet<JugadorPorEquipoPorTorneo_H> JugadorPorEquipoPorTorneo_H { get; set; }
+        public virtual DbSet<SuplentesEquipoPartido_H> SuplentesEquipoPartido_H { get; set; }
+        public virtual DbSet<TitularEquipoPartido_H> TitularEquipoPartido_H { get; set; }
     
         public virtual int generarResultadosTorneo(Nullable<decimal> torneo)
         {

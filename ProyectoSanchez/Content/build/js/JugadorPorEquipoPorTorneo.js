@@ -1,7 +1,11 @@
 ﻿function GetEquipoJugador() {
+    var data = {
+        idJugador: $("#idJugador").val()
+    } 
     $.ajax({
         type: "post",
         url: "/JugadorPorEquipoPorTorneo/GetInformacionJugador",
+        data: JSON.stringify(data),
         dataType: "json",
         contentType: "application/json",
         success: function (data) {

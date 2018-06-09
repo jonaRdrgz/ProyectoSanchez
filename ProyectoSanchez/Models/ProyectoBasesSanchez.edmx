@@ -2801,6 +2801,16 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
           <Property Type="Decimal" Name="golesContra" Nullable="true" Precision="3" Scale="0" />
           <Property Type="Decimal" Name="puntos" Nullable="true" Precision="3" Scale="0" />
         </ComplexType>
+        <ComplexType Name="tablaPosiciones1_Result">
+          <Property Type="Decimal" Name="idEquipo" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="jugados" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="ganados" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="empatados" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="perdidos" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="golesFavor" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="golesContra" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="puntos" Nullable="true" Precision="3" Scale="0" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

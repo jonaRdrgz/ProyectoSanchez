@@ -168,7 +168,13 @@
     <Compile Include="Models\ArbitroPorPartido.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArbitroPorPartido_H.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cambio.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cambio_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs">
@@ -237,6 +243,9 @@
     <Compile Include="Models\GolesPartidos_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Gol_H.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\InformacionArbitrosTorneo_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -267,6 +276,9 @@
     <Compile Include="Models\Partido.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partido_H.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Posicion.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -294,6 +306,9 @@
     <Compile Include="Models\SuplentesEquipoPartido.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SuplentesEquipoPartido_H.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tablaPosiciones_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -304,6 +319,9 @@
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TitularEquipoPartido.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TitularEquipoPartido_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Titulo.cs">

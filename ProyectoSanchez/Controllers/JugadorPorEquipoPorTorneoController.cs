@@ -47,7 +47,7 @@ namespace ProyectoSanchez.Controllers
     public class JugadorPorEquipoPorTorneoController : Controller
     {
         private JugadorPorEquipoPorTorneoControllerDataBaseWrapper _db;
-        private static int idJugador;
+        private static int IdJugador;
         public JugadorPorEquipoPorTorneoController()
         {
             _db = new JugadorPorEquipoPorTorneoControllerDataBaseWrapper();
@@ -58,10 +58,11 @@ namespace ProyectoSanchez.Controllers
         // GET: Jugador
         public ActionResult Index()
         {
+            IdJugador = GetIdJugador();
             return View();
         }
 
-        public JsonResult GetInformacionJugador(int idJugador)
+        public JsonResult GetInformacionJugador()
         {
             try
             {
@@ -70,7 +71,7 @@ namespace ProyectoSanchez.Controllers
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = _db.GetInformacionJugador(idJugador),
+                    Data = _db.GetInformacionJugador(IdJugador),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -90,7 +91,7 @@ namespace ProyectoSanchez.Controllers
 
         public int GetIdJugador()
         {
-            string idJugador = Request.QueryString["IdJugador"];
+            string idJugador = Request.QueryString["idJugador"];
             if (idJugador == null)
             {
                 return 1;

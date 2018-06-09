@@ -57,9 +57,74 @@
             alert("Ha ocurrido un error: " + JSON.stringify(data));
         }
     });
+    // Se revisa si no ha seleccionado un torneo para desabilitar botón.
+    if ($('#idTorneo').val() === '-1') {
+        $('#botonAgregar').prop('disabled', true);
+    }
+    else {
+        $('#botonAgregar').prop('disabled', false);
+    }
 }
 
 function rediredToPartido(idFecha, idTorneo) {
     //Redirigir a paritdo
     window.location.replace("/Partido/Index?" + "IdFecha=" + idFecha + "&IdTorneo=" + idTorneo);
 }
+
+function agregarFecha() {
+    $("#modalAgregarFechaCalendario").modal();
+}
+
+$().ready(function () {
+
+    $("#fecha").on("focusin", function () {
+        $(this).datetimepicker({
+            format: 'DD/MM/YYYY HH:mm'
+        });
+    });
+
+    $("#botonGuardar").click(function () {
+
+
+        $("#fecha").rules("add", {
+            required: true,
+            messages: {
+                required: "La fecha es obligatoria",
+            }
+        });
+
+        $("#formFechaCalendario").valid();
+    });
+
+    $("#formFechaCalendario").validate({
+        submitHandler: function (form) {
+
+            var fecha = {
+                FechaProgramada: $("#fecha").val(),
+                IdTorneo: $("#idTorneo").val()
+            }
+            console.log(JSON.stringify(fecha));
+
+            $.ajax({
+                type: "post",
+                url: "/Home/AgregarFechaCalendario",
+                data: JSON.stringify(fecha),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var code = data["CODE"]
+                    if (code === "FECHA_GUARDADA") {
+                        $('#modalAgregarFechaCalendario').modal('hide');
+                       // getFechasCalendarioXTorneo();
+                    } else {
+                        alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
+                    }
+                },
+                error: function (data) {
+                    alert("Ha ocurrido un error: " + JSON.stringify(data));
+                }
+            });
+            return false;
+        }
+    });
+});

@@ -23,11 +23,13 @@
                                 onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
                                     "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-12"><i class="fa fa-plus-circle">\
                                  </i></button>\
+                                 <button  id="buttonMinus" \
+                                onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
+                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-12"><i class="fa fa-times-circle">\
+                                 </i></button>\
                             </td>\
                         </tr>';
             });
-            //<a onclick="getInformacionPartido('+ partido[" IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
-            //"," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ')"  class="verpartido">+Info</a>
             $('#previewTablePartidos').DataTable().clear();
             $('#previewTablePartidos').dataTable().fnDestroy();
 

@@ -309,6 +309,9 @@
     <Compile Include="Models\SuplentesEquipoPartido_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tablaPosiciones1_Result.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tablaPosiciones_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -396,6 +399,7 @@
     <Content Include="Content\build\js\Validator\additional-methods.min.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.min.js" />
+    <Content Include="Content\build\js\PosicionesTorneo.js" />
     <Content Include="Models\ProyectoBasesSanchez.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ProyectoBasesSanchez.edmx</DependentUpon>

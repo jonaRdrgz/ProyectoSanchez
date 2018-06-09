@@ -22,10 +22,19 @@
                 var fechaInicial = new Date(parseInt(milli)).toLocaleString();
                 htmlBodyTable += '<td align="center">' + fechaInicial + '</td>\
                             <td class=" last">\
-                                <a onclick="rediredToPartido('+ fecha["IdFecha"] + "," + fecha["IdTorneo"] + ')"  class="">+Info</a>\
+                                <button  id="buttonView" \
+                                onclick="rediredToPartido('+ fecha["IdFecha"] + "," + fecha["IdTorneo"] + ');" class="btn-link col-md-2 col-sm-2 col-xs-2"><i class="fa fa-eye">\
+                                 </i></button>\
+                                <button  id="buttonEdit" \
+                                onclick="editFecha('+ fecha["IdFecha"] + ');" class="btn-link col-md-2 col-sm-2 col-xs-2"><i class="fa fa-edit">\
+                                 </i></button>\
+                                <button  id="buttonDelete" \
+                                onclick="deleteFecha('+ fecha["IdFecha"] + ');" class="btn-link col-md-2 col-sm-2 col-xs-2"><i class="fa fa-minus-circle" style="color:#800000;">\
+                                 </i></button>\
                             </td>\
                         </tr>';
             });
+            // <a onclick="rediredToPartido('+ fecha["IdFecha"] + "," + fecha["IdTorneo"] + ')"  class="">+Info</a>
 
             $('#previewTableFechas').DataTable().clear();
             $('#previewTableFechas').dataTable().fnDestroy();
@@ -67,6 +76,17 @@
 function rediredToPartido(idFecha, idTorneo) {
     //Redirigir a paritdo
     window.location.replace("/Partido/Index?" + "IdFecha=" + idFecha + "&IdTorneo=" + idTorneo);
+}
+
+function deleteFecha(idFecha)
+{
+    alert("Realizar borrado en cascada");
+
+}
+
+function editFecha(idFecha) {
+    alert("No implementado");
+
 }
 
 function agregarFecha() {
@@ -113,7 +133,7 @@ $().ready(function () {
                     var code = data["CODE"]
                     if (code === "FECHA_GUARDADA") {
                         $('#modalAgregarFechaCalendario').modal('hide');
-                       // getFechasCalendarioXTorneo();
+                       getFechasCalendarioXTorneo();
                     } else {
                         alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
                     }

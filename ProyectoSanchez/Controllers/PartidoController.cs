@@ -74,6 +74,16 @@ namespace ProyectoSanchez.Controllers
         {
             return db.Partidoes.Create();
         }
+        public void DeletePartido(decimal idPartido)
+        {
+            Models.Partido partido = db.Partidoes.SingleOrDefault(b => b.idPartido == idPartido);
+            if (partido != null)
+            {
+                System.Diagnostics.Debug.WriteLine(partido.idEquipoLocal + " "+ partido.idEquipoVisita + " " + partido.idPartido);
+                db.Partidoes.Attach(partido);
+                db.Partidoes.Remove(partido);
+            }
+        }
 
         public void GuardarCambios()
         {
@@ -263,6 +273,33 @@ namespace ProyectoSanchez.Controllers
                         System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                     }
                 }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
+        public JsonResult DeletePartido(decimal idPartido)
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine(idPartido);
+                _db.DeletePartido(idPartido);
+
+                _db.GuardarCambios();
+                // Y se retorna un código de completación del proceso exitoso
+                return new JsonResult()
+                {
+                    Data = new { CODE = "PARTIDO_ELIMINADO" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
                 return new JsonResult()
                 {
                     Data = new { CODE = "ERROR" },

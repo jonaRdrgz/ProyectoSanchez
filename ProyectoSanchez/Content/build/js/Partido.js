@@ -21,11 +21,10 @@
                             <td class=" last">\
                                 <button  id="buttonPlus" \
                                 onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
-                                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-12"><i class="fa fa-plus-circle">\
+                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-edit">\
                                  </i></button>\
                                  <button  id="buttonMinus" \
-                                onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
-                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-12"><i class="fa fa-times-circle">\
+                                onclick="deletePartido('+ partido["IdPartido"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-minus-circle" style="color:#800000;">\
                                  </i></button>\
                             </td>\
                         </tr>';
@@ -68,6 +67,35 @@ function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLoca
     getEquiposXTorneo($("#local"), idEquipoLocal);
     getEquiposXTorneo($("#visita"), idEquipovisita);
     $("#modalEditarPartido").modal();
+}
+
+function deletePartido(idPartido) {
+    var respuesta = confirm("¿Seguro que desea eliminar el partido?");
+    if (respuesta == false) {
+        return false;
+    }
+    var data = {
+        idPartido: idPartido
+    }
+    $.ajax({
+        type: "post",
+        url: "/Partido/DeletePartido",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var code = data["CODE"]
+            if (code === "PARTIDO_ELIMINADO") {
+                GetPartidos();
+            } else {
+                alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
+            }
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
 }
 
 function getEquiposXTorneo(tag, idEquipo) {

@@ -32,10 +32,6 @@
             
         },
         error: function (data) {
-            $('label[id*=NombreJugador]').innerText = "Nombre:";
-            $('label[id*=EdadJugador]').innerText = "Fecha de Nacimiento:";
-            $('label[id*=PesoJugador]').innerText = "Peso en kilogramos:";
-            $('label[id*=AlturaJugador]').innerText = "Altura en metros:";
             alert("Ha ocurrido un error: " + JSON.stringify(data));
         }
     });

@@ -40,6 +40,7 @@
                                         }
                                     </select>
                                 </div>
+                                <button type="button" id="botonBorrarTorneo" onclick="borrrarTorneo()" class="btn btn-danger" disabled>Borrar</button>
                             </div>
                         </div>
                     </div>
@@ -108,6 +109,11 @@
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
+                                    <div class="item form-group" hidden>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="number" class="form-control col-md-7 col-xs-12" idFechaCalendario="" id="idElementos" min="0" step="1" name="idElementos" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,6 +140,61 @@
     </div>
 </div>
 
+<div class="modal fade bs-example-modal-lg" id="modalEditarFechaCalendario" tabindex="-2" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Editar Información</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarFechaCalendario" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Editar la Fecha del torneo </h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="editarFecha">
+                                            Fecha:
+                                            <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" id="editarFecha" name="editarFecha" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="form-group">
+                                        <div class="text-center">
+                                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" id="botonEditar" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /page content -->
 <script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>
 <script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>

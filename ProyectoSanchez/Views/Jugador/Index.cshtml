@@ -36,9 +36,9 @@
                                         <option value="-1">Seleccione una Opción</option>
                                         @{List<ProyectoSanchez.ViewModels.JugadorVM> jugador = ViewBag.jugadores; }
                                         @foreach (var item in jugador)
-                                    {
-                                        <option value="@item.IdJugador">@item.Nombre</option>
-                                }
+                                        {
+                                            <option value="@item.IdJugador">@item.Nombre</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
@@ -47,47 +47,33 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2> Información del Jugador</h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" id="NombreJugador" for="Nombre">
-                                Nombre:
-                            </label></br></br>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" id="EdadJugador" for="Edad">
-                                Edad:
-                            </label></br></br>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" id="PesoJugador" for="Peso">
-                                Peso en kilogramos:
-                            </label></br></br>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" id="AlturaJugador" for="Altura">
-                                Altura en metros:
-                            </label></br></br>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            </div>
-                        </div>
-                        <button type="button" id="botonEquiposJugador" class="btn btn-primary">Ver historial de equipos</button>
+        <div class="col-md-6 col-sm-6 col-xs-12 profile_details">
+            <div class="well profile_view">
+                <div class="col-sm-12">
+                    <h4 class="brief"><i>Información del Jugador</i></h4>
+                    <div class="left col-xs-7">
+                        <h2 id="nombreJugador"></h2>
+                        <br>
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-sort-numeric-desc"></i> <strong>Edad:        </strong> <label id="edad"> </label> </li>
+                            <li><i class="fa fa-bar-chart"></i> <strong>Peso en kilogramos:  </strong> <label id="peso"> </label> </li>
+                            <li><i class="fa fa-arrows-v"></i> <strong>Estatura en metros:   </strong> <label id="estatura"></label> </li>
+
+                        </ul>
+                    </div>
+                    <div class="right col-xs-5 text-center">
+                        <img src="~/Content/build/images/img.jpg" alt="" class="img-circle img-responsive">
                     </div>
                 </div>
+                <div class="col-xs-12 bottom text-center">
+                    <div class="col-xs-12 col-sm-6 col-md-offset-3 emphasis">
+                        <button type="button" id="botonEquiposJugador" class="btn btn-primary ">
+                            <i class="fa fa-history"> </i> Ver historial de equipos
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 

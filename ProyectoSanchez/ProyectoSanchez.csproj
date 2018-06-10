@@ -158,6 +158,7 @@
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
+    <Compile Include="Controllers\PartidoEquiposController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4734,6 +4735,7 @@
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\JugadorPorEquipoPorTorneo\Index.cshtml" />
     <Content Include="Views\ArbitroPorPartido\Index.cshtml" />
+    <Content Include="Views\PartidoEquipos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

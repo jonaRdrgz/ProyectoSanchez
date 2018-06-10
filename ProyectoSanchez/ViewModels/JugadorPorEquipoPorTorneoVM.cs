@@ -33,5 +33,7 @@ namespace ProyectoSanchez.ViewModels
         public string Periodo { get; set; }
 
         public string NombreEquipo { get; set; }
+
+        public string NombreTorneo { get; set; }
     }
 }

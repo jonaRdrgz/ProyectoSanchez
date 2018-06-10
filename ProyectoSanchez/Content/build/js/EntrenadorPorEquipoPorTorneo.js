@@ -1,40 +1,39 @@
-﻿function GetEquipoJugador() {
+﻿function getEquipoEntrenador() {
     $.ajax({
         type: "post",
-        url: "/JugadorPorEquipoPorTorneo/GetInformacionJugador",
+        url: "/EntrenadorPorEquipoPorTorneo/GetInformacionEntrenador",
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
             var htmlBodyTable = "";
 
-            $.each(data, function (i, jugador) {
+            $.each(data, function (i, entrenador) {
                 if ((i + 1) % 2 != 0) {
                     htmlBodyTable += '<tr class="even pointer">';
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
 
-                htmlBodyTable += '<td >' + jugador["NombreEquipo"] + '</td><td class=" ">' + jugador["Posicion"] + '</td >\
-                            <td class=" ">'+ jugador["Anno"] + '</td>\
-                            <td class=" ">'+ jugador["NombreTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["TipoTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["Periodo"] + '</td>\
-                            <td class=" ">'+ jugador["Evaluacion"] + '</td>\ </tr>';
+                htmlBodyTable += '<td >' + entrenador["NombreEquipo"] + '</td><td class=" ">' + entrenador["NombreTorneo"] + '</td >\
+                            <td class=" ">'+ entrenador["Tipo"] + '</td>\
+                            <td class=" ">'+ entrenador["Posicion"] + '</td>\
+                            <td class=" ">'+ entrenador["Sinopsis"] + '</td>\
+                            <td class=" ">'+ entrenador["Anno"] + '</td>\ </tr>';
             });
 
-            $('#previewInfoJugador').DataTable().clear();
-            $('#previewInfoJugador').dataTable().fnDestroy();
+            $('#previewInfoEntrenador').DataTable().clear();
+            $('#previewInfoEntrenador').dataTable().fnDestroy();
 
-            $("#previewInfoJugador").append(htmlBodyTable);
+            $("#previewInfoEntrenador").append(htmlBodyTable);
 
-            $('#previewInfoJugador').dataTable({
+            $('#previewInfoEntrenador').dataTable({
                 responsive: true,
                 columnDefs: [
                     { responsivePriority: 1, targets: 0 },
                     { responsivePriority: 2, targets: -2 }
                 ],
                 "language": {
-                    "emptyTable": "No hay jugadores registrados",
+                    "emptyTable": "No hay entrenadores registrados",
                     "paginate": {
                         "previous": "Siguiente",
                         "next": "Anterior"
@@ -53,5 +52,5 @@
 }
 
 $().ready(function () {
-    GetEquipoJugador();
+    getEquipoEntrenador();
 });

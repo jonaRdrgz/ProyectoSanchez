@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Info Entrenador ";
+}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Consulta de la información del Entrenador
+                </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Información del Entrenador</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="ln_solid"></div>
+                        <div class="table-responsive">
+                            <table id="previewInfoEntrenador" class="table  table-responsive table-striped display nowrap jambo_table bulk_action" style="width:100%">
+                                <thead>
+                                    <tr class="headings">
+                                        <th class="column-title">Nombre del Equipo </th>
+                                        <th class="column-title">Torneo</th>
+                                        <th class="column-title">Tipo de torneo </th>
+                                        <th class="column-title">Posicion</th>
+                                        <th class="column-title">Sinopsis</th>
+                                        <th class="column-title">Año </th>
+                                        <th class="bulk-actions" colspan="7">
+                                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="previewInfoEntrenadorBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- /page content -->
+<script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>
+<script src="~/Content/vendors/moment/min/moment-with-locales.min.js"></script>
+<script src="~/Content/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<link href="~/Content/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Content/build/js/EntrenadorPorEquipoPorTorneo.js" type="text/javascript"></script>
+

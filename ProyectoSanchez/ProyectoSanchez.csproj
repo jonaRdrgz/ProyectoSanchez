@@ -155,6 +155,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArbitrosPorTorneoController.cs" />
     <Compile Include="Controllers\ArbitroPorPartidoController.cs" />
+    <Compile Include="Controllers\EntrenadorController.cs" />
+    <Compile Include="Controllers\EntrenadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
@@ -393,6 +395,8 @@
     <Content Include="Content\build\images\user.png" />
     <Content Include="Content\build\js\custom.js" />
     <Content Include="Content\build\js\custom.min.js" />
+    <Content Include="Content\build\js\Entrenador.js" />
+    <Content Include="Content\build\js\EntrenadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\FechaCalendario.js" />
     <Content Include="Content\build\js\InformacionArbitrosPorTorneo.js" />
     <Content Include="Content\build\js\Jugador.js" />
@@ -4742,6 +4746,8 @@
     <Content Include="Views\JugadorPorEquipoPorTorneo\Index.cshtml" />
     <Content Include="Views\ArbitrosPorTorneo\Index.cshtml" />
     <Content Include="Views\PartidoEquipos\Index.cshtml" />
+    <Content Include="Views\EntrenadorPorEquipoPorTorneo\Index.cshtml" />
+    <Content Include="Views\Entrenador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

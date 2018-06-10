@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Jugador";
+    ViewBag.Title = "Entrenador";
 }
 
 <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -10,7 +10,7 @@
         <div class="page-title">
             <div class="title_left">
                 <h3>
-                    Consulta de Jugadores
+                    Consulta de Entrenadores
                 </h3>
             </div>
         </div>
@@ -20,24 +20,24 @@
             <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2> Selección del jugador</h2>
+                        <h2> Selección del entrenador</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
 
                         <div class="row">
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idJugador">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idEntrenador">
                                     Jugador:
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="idJugador" name="idJugador" onchange="getInfoJugador()">
+                                    <select class="form-control" id="idEntrenador" name="idEntrenador" onchange="getInfoEntrenador()">
                                         <option value="-1">Seleccione una Opción</option>
-                                        @{List<ProyectoSanchez.ViewModels.JugadorVM> jugador = ViewBag.jugadores; }
-                                        @foreach (var item in jugador)
+                                        @{List<ProyectoSanchez.ViewModels.EntrenadorVM> entrenador = ViewBag.entrenador; }
+                                        @foreach (var item in entrenador)
                                         {
-                                            <option value="@item.IdJugador">@item.Nombre</option>
+                                            <option value="@item.IdEntrenador">@item.NombreEntrenador</option>
                                         }
                                     </select>
                                 </div>
@@ -50,15 +50,13 @@
         <div class="col-md-6 col-sm-6 col-xs-12 profile_details">
             <div class="well profile_view">
                 <div class="col-sm-12">
-                    <h4 class="brief"><i>Información del Jugador</i></h4>
+                    <h4 class="brief"><i>Información del Entrenador</i></h4>
                     <div class="left col-xs-7">
-                        <h2 id="nombreJugador"></h2>
+                        <h2 id="nombreEntrenador"></h2>
                         <br>
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-sort-numeric-desc"></i> <strong>Fecha nacimiento:        </strong> <label id="edad"> </label> </li>
-                            <li><i class="fa fa-bar-chart"></i> <strong>Peso en kilogramos:  </strong> <label id="peso"> </label> </li>
-                            <li><i class="fa fa-arrows-v"></i> <strong>Estatura en metros:   </strong> <label id="estatura"></label> </li>
-
+                            <li><i class="fa fa-bar-chart"></i> <strong>Fecha Nacimiento:  </strong> <label id="fechaNacimiento"> </label> </li>
+                            <li><i class="fa fa-sort-numeric-desc"></i> <strong>Fecha Inicio:        </strong> <label id="fechaInicial"> </label> </li>
                         </ul>
                     </div>
                     <div class="right col-xs-5 text-center">
@@ -67,7 +65,7 @@
                 </div>
                 <div class="col-xs-12 bottom text-center">
                     <div class="col-xs-12 col-sm-6 col-md-offset-3 emphasis">
-                        <button type="button" id="botonEquiposJugador" class="btn btn-primary ">
+                        <button type="button" id="botonEquiposEntrenador" class="btn btn-primary ">
                             <i class="fa fa-history"> </i> Ver historial de equipos
                         </button>
                     </div>
@@ -92,4 +90,4 @@
 <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
-<script src="~/Content/build/js/Jugador.js" type="text/javascript"></script>
+<script src="~/Content/build/js/Entrenador.js" type="text/javascript"></script>

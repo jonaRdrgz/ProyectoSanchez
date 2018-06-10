@@ -67,26 +67,103 @@
     // Se revisa si no ha seleccionado un torneo para desabilitar botón.
     if ($('#idTorneo').val() === '-1') {
         $('#botonAgregar').prop('disabled', true);
+        $('#botonBorrarTorneo').prop('disabled', true);
     }
     else {
         $('#botonAgregar').prop('disabled', false);
+        $('#botonBorrarTorneo').prop('disabled', false);
     }
 }
+function getListaTorneos() {
+    $("#idTorneo").html("<option value='-1'>Seleccione una Opción</option>")
+    $.ajax({
+        type: "post",
+        url: "/Home/GetListaTorneos",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var htmlSelect = "";
+
+            $.each(data, function (i, torneo) {
+                htmlSelect += '<option value="' + torneo["IdTorneo"] + '" >' + torneo["Nombre"] + '</option>';
+            });
+            $("#idTorneo").append(htmlSelect);
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
+}
+
 
 function rediredToPartido(idFecha, idTorneo) {
     //Redirigir a paritdo
     window.location.replace("/Partido/Index?" + "IdFecha=" + idFecha + "&IdTorneo=" + idTorneo);
 }
+function borrrarTorneo() {
+    var respuesta = confirm("¿Seguro que desea eliminar el torneo?");
+    if (respuesta == false) {
+        return false;
+    }
+    var data = {
+        idTorneo: $("#idTorneo").val()
+    }
+    console.log(JSON.stringify(data));
+    $.ajax({
+        type: "post",
+        url: "/Home/DeleteTorneo",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var code = data["CODE"]
+            if (code === "TORNEO_ELIMINADO") {
+                getListaTorneos();
+            } else {
+                alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
+            }
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
+}
 
 function deleteFecha(idFecha)
 {
-    alert("Realizar borrado en cascada");
+    var respuesta = confirm("¿Seguro que desea eliminar la fecha del torneo?");
+    if (respuesta == false) {
+        return false;
+    }
+    var data = {
+        idFechaCalendario: idFecha
+    }
+    $.ajax({
+        type: "post",
+        url: "/Home/DeleteFechaCalendario",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            var code = data["CODE"]
+            if (code === "FECHA_CALENDARIO_ELIMINADA") {
+                getFechasCalendarioXTorneo();
+            } else {
+                alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
+            }
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
 
 }
 
 function editFecha(idFecha) {
-    alert("No implementado");
-
+    $("#idElementos").attr("idFechaCalendario", idFecha);
+    $("#modalEditarFechaCalendario").modal();
 }
 
 function agregarFecha() {
@@ -101,6 +178,11 @@ $().ready(function () {
         });
     });
 
+    $("#editarFecha").on("focusin", function () {
+        $(this).datetimepicker({
+            format: 'DD/MM/YYYY HH:mm'
+        });
+    });
     $("#botonGuardar").click(function () {
 
 
@@ -112,6 +194,19 @@ $().ready(function () {
         });
 
         $("#formFechaCalendario").valid();
+    });
+
+    $("#botonEditar").click(function () {
+
+
+        $("#editarFecha").rules("add", {
+            required: true,
+            messages: {
+                required: "La fecha es obligatoria",
+            }
+        });
+
+        $("#formEditarFechaCalendario").valid();
     });
 
     $("#formFechaCalendario").validate({
@@ -134,6 +229,38 @@ $().ready(function () {
                     if (code === "FECHA_GUARDADA") {
                         $('#modalAgregarFechaCalendario').modal('hide');
                        getFechasCalendarioXTorneo();
+                    } else {
+                        alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
+                    }
+                },
+                error: function (data) {
+                    alert("Ha ocurrido un error: " + JSON.stringify(data));
+                }
+            });
+            return false;
+        }
+    });
+    $("#formEditarFechaCalendario").validate({
+        submitHandler: function (form) {
+
+            var fecha = {
+                IdFecha: $("#idElementos").attr('idFechaCalendario'),
+                FechaProgramada: $("#editarFecha").val(),
+                IdTorneo: $("#idTorneo").val()
+            }
+            console.log(JSON.stringify(fecha));
+
+            $.ajax({
+                type: "post",
+                url: "/Home/ActualizarFechaCalendario",
+                data: JSON.stringify(fecha),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var code = data["CODE"]
+                    if (code === "FECHA_ACTUALIZADA") {
+                        $('#modalEditarFechaCalendario').modal('hide');
+                        getFechasCalendarioXTorneo();
                     } else {
                         alert("Hubo un error enviando el form. Si el problema persiste, contacte a soporte.");
                     }

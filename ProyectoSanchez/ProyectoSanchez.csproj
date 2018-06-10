@@ -395,6 +395,7 @@
     <Content Include="Content\build\js\Jugador.js" />
     <Content Include="Content\build\js\JugadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\Partido.js" />
+    <Content Include="Content\build\js\PartidoEquipos.js" />
     <Content Include="Content\build\js\Validator\additional-methods.js" />
     <Content Include="Content\build\js\Validator\additional-methods.min.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.js" />

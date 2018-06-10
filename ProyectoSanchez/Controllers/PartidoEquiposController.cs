@@ -33,6 +33,7 @@ namespace ProyectoSanchez.Controllers
                     {
                         IdPartido = Partido.idPartido,
                         IdTorneo = Partido.idTorneo,
+                        NombreTorneo = Torneo.nombre,
                         FechaJuego = FechasC.fechaProgramada,
                         NombreLocal = EquipoA.nombre,
                         NombreVisita = EquipoB.nombre,
@@ -51,6 +52,7 @@ namespace ProyectoSanchez.Controllers
                     {
                         IdPartido = Partido.idPartido,
                         IdTorneo = Partido.idTorneo,
+                        NombreTorneo = Torneo.nombre,
                         FechaJuego = FechasC.fechaProgramada,
                         NombreLocal = EquipoA.nombre,
                         NombreVisita = EquipoB.nombre,

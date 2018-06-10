@@ -36,6 +36,8 @@ namespace ProyectoSanchez.ViewModels
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public decimal IdTorneo { get; set; }
 
+        public string NombreTorneo { get; set; }
+
         //[Required(ErrorMessage = "Es necesario saber si el juego se jugó o no")]
         public string Jugado { get; set; }
 

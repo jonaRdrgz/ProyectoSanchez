@@ -153,6 +153,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArbitrosPorTorneoController.cs" />
     <Compile Include="Controllers\ArbitroPorPartidoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
@@ -341,6 +342,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ArbitroPorPartidoVM.cs" />
+    <Compile Include="ViewModels\ArbitroPorTorneoVM.cs" />
     <Compile Include="ViewModels\ArbitroVM.cs" />
     <Compile Include="ViewModels\CambioVM.cs" />
     <Compile Include="ViewModels\CategoriaVM.cs" />
@@ -389,6 +391,7 @@
     <Content Include="Content\build\js\custom.js" />
     <Content Include="Content\build\js\custom.min.js" />
     <Content Include="Content\build\js\FechaCalendario.js" />
+    <Content Include="Content\build\js\InformacionArbitrosPorTorneo.js" />
     <Content Include="Content\build\js\Jugador.js" />
     <Content Include="Content\build\js\JugadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\Partido.js" />
@@ -4733,7 +4736,7 @@
     <Content Include="Views\Partido\Index.cshtml" />
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\JugadorPorEquipoPorTorneo\Index.cshtml" />
-    <Content Include="Views\ArbitroPorPartido\Index.cshtml" />
+    <Content Include="Views\ArbitrosPorTorneo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -159,6 +159,7 @@
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
+    <Compile Include="Controllers\PartidoEquiposController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -387,7 +388,9 @@
     <Content Include="Content\build\images\forward_disabled.png" />
     <Content Include="Content\build\images\forward_enabled.png" />
     <Content Include="Content\build\images\forward_enabled_hover.png" />
+    <Content Include="Content\build\images\img.jpg" />
     <Content Include="Content\build\images\loading.gif" />
+    <Content Include="Content\build\images\user.png" />
     <Content Include="Content\build\js\custom.js" />
     <Content Include="Content\build\js\custom.min.js" />
     <Content Include="Content\build\js\FechaCalendario.js" />
@@ -395,6 +398,7 @@
     <Content Include="Content\build\js\Jugador.js" />
     <Content Include="Content\build\js\JugadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\Partido.js" />
+    <Content Include="Content\build\js\PartidoEquipos.js" />
     <Content Include="Content\build\js\Validator\additional-methods.js" />
     <Content Include="Content\build\js\Validator\additional-methods.min.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.js" />
@@ -4737,6 +4741,7 @@
     <Content Include="Views\Jugador\Index.cshtml" />
     <Content Include="Views\JugadorPorEquipoPorTorneo\Index.cshtml" />
     <Content Include="Views\ArbitrosPorTorneo\Index.cshtml" />
+    <Content Include="Views\PartidoEquipos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

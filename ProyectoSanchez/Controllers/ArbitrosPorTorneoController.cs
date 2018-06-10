@@ -7,11 +7,11 @@ using System.Web.Mvc;
 
 namespace ProyectoSanchez.Controllers
 {
-    public class TorneoControllerDataBaseWrapper
+    public class ArbitrosPorTorneoControllerDataBaseWrapper
     {
         private Models.ProyectoBasesSanchezEntities db = new Models.ProyectoBasesSanchezEntities();
 
-        public TorneoControllerDataBaseWrapper()
+        public ArbitrosPorTorneoControllerDataBaseWrapper()
         {
             db = new Models.ProyectoBasesSanchezEntities();
         }
@@ -27,36 +27,35 @@ namespace ProyectoSanchez.Controllers
                     }).ToList();
         }
 
-        public List<tablaPosiciones_Result> GetPosicionesTorneo(decimal idTorneo)
+        public List<InformacionArbitrosTorneo_Result> GetInformacionArbitrosPorTorneo(decimal idTorneo)
         {
-            return db.tablaPosiciones(idTorneo).ToList();
+            return db.InformacionArbitrosTorneo(idTorneo).ToList();
         }
     }
-    public class TorneoController : Controller
+    public class ArbitrosPorTorneoController : Controller
     {
-        private TorneoControllerDataBaseWrapper _db;
-        public TorneoController()
+        private ArbitrosPorTorneoControllerDataBaseWrapper _db;
+        public ArbitrosPorTorneoController()
         {
-            _db = new TorneoControllerDataBaseWrapper();
+            _db = new ArbitrosPorTorneoControllerDataBaseWrapper();
 
         }
-        // GET: Torneo
         public ActionResult Index()
         {
             ViewBag.Torneos = _db.getListaTorneos();
             return View();
         }
 
-        public JsonResult GetPosicionesTorneo(decimal idTorneo)
+        public JsonResult GetInformacionArbitrosPorTorneo(decimal idTorneo)
         {
             try
             {
 
                 // Obtenemos la lista de Fechas programadas desde la base de datos
-                List<tablaPosiciones_Result> posiciones = _db.GetPosicionesTorneo(idTorneo);
+                List<InformacionArbitrosTorneo_Result> informacion = _db.GetInformacionArbitrosPorTorneo(idTorneo);
                 return new JsonResult()
                 {
-                    Data = posiciones,
+                    Data = informacion,
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

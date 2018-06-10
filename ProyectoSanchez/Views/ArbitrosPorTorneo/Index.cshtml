@@ -1,43 +1,73 @@
 ﻿
 @{
-    ViewBag.Title = "Información del desempeño de árbitros";
+    ViewBag.Title = "Información Árbitros por Torneo";
 }
 
 <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <!-- page content -->
+
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
                 <h3>
-                    Consulta de la información de los árbitros
+                    Consulta de Información árbitro por torneo
                 </h3>
             </div>
         </div>
         <div class="clearfix"></div>
 
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Información del Jugador</h2>
+                        <h2> Torneo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div class="row">
+                            <div class="item form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="idTorneo">
+                                    Torneo:
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7 col-xs-14">
+                                    <select class="form-control" id="idTorneo" name="idTorneo" onchange="getInformacionArbitrosPorTorneoXTorneo()">
+                                        <option value="-1">Seleccione una Opción</option>
+                                        @{List<ProyectoSanchez.ViewModels.TorneoVM> torneo = ViewBag.torneos; }
+                                        @foreach (var item in torneo)
+                                        {
+                                            <option value="@item.IdTorneo">@item.Nombre</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Información de los árbitros del torneo seleccionado</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <div class="ln_solid"></div>
                         <div class="table-responsive">
-                            <table id="previewInfoArbitro" class="table  table-responsive table-striped display nowrap jambo_table bulk_action" style="width:100%">
+                            <table id="previewTableInformacionArbitros" class="table  table-responsive table-striped display nowrap jambo_table bulk_action" style="width:100%">
+
                                 <thead>
                                     <tr class="headings">
-                                        <th class="column-title">Nombre</th>
-                                        <th class="column-title">Tipo de árbitro </th>
-                                        <th class="column-title">Desempeño</th>
+                                        <th class="column-title">Nombre </th>
+                                        <th class="column-title">Promedio </th>
                                         <th class="bulk-actions" colspan="7">
                                             <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody id="previewInfoArbitro"></tbody>
+                                <tbody id="previewTableInformacionArbitrosBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -63,5 +93,5 @@
 <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
-<script src="~/Content/build/js/Partido.js" type="text/javascript"></script>
+<script src="~/Content/build/js/InformacionArbitrosPorTorneo.js" type="text/javascript"></script>
 

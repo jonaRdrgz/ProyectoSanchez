@@ -16,6 +16,8 @@
 
                 htmlBodyTable += '<td align="center">' + jugador["NombreEquipo"] + '</td><td class=" ">' + jugador["Posicion"] + '</td >\
                             <td class=" ">'+ jugador["Anno"] + '</td>\
+                            <td class=" ">'+ jugador["NombreTorneo"] + '</td>\
+                            <td class=" ">'+ jugador["TipoTorneo"] + '</td>\
                             <td class=" ">'+ jugador["Periodo"] + '</td>\
                             <td class=" ">'+ jugador["Evaluacion"] + '</td>\ </tr>';
             });

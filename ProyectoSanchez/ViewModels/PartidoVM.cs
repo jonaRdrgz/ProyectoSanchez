@@ -42,5 +42,6 @@ namespace ProyectoSanchez.ViewModels
         //[Required(ErrorMessage = "El id del la fecha es obligatorio")]
         //[RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public decimal IdFecha { get; set; }
+        public DateTime fechaJuego { get; set; }
     }
 }

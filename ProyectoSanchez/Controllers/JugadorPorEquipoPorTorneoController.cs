@@ -38,9 +38,30 @@ namespace ProyectoSanchez.Controllers
                         TipoTorneo = Competicion.tipo,
                         Anno = Torneo.anno,
                         Periodo = Torneo.periodo,
-                        NombreEquipo = Equipo.nombre
+                        NombreEquipo = Equipo.nombre,
+                        NombreTorneo = Torneo.nombre
                     }
-                   ).ToList();
+
+                   ).Union(from Jugador in db.Jugadors
+                           join JugadorEH in db.JugadorPorEquipoPorTorneo_H on Jugador.idJugador equals JugadorEH.idJugador
+                           join Equipo in db.Equipoes on JugadorEH.idEquipo equals Equipo.idEquipo
+                           join TorneoH in db.Torneo_H on JugadorEH.idTorneo equals TorneoH.idTorneo
+                           join Competicion in db.Competicions on TorneoH.idCompeticion equals Competicion.idCompeticion
+                           where Jugador.idJugador == idJugador
+                           select new JugadorPorEquipoPorTorneoVM
+                           {
+                               IdEquipo = Equipo.idEquipo,
+                               Posicion = JugadorEH.posicion,
+                               IdJugador = Jugador.idJugador,
+                               IdTorneo = TorneoH.idTorneo,
+                               Evaluacion = JugadorEH.sinopsis,
+                               TipoTorneo = Competicion.tipo,
+                               Anno = TorneoH.anno,
+                               Periodo = TorneoH.periodo,
+                               NombreEquipo = Equipo.nombre,
+                               NombreTorneo = TorneoH.nombre
+                           }
+                  ).ToList();
         }
     }
 

@@ -19,6 +19,8 @@ namespace ProyectoSanchez.ViewModels
         [Required(ErrorMessage = "La fecha es obligatoria")]
         public System.DateTime FechaInicio { get; set; }
 
+        public string Imagen { get; set; }
+
         public string NombreEntrenador { get; set; }
 
         public List<EntrenadorEquipoTorneoVM> EntrenadorEquipoTorneos { get; set; }

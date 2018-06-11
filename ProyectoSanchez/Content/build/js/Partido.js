@@ -16,12 +16,16 @@
                 }
 
                 htmlBodyTable += '<td align="center">' + partido["NombreLocal"] + '</td><td class=" ">' + partido["NombreVisita"] + '</td >\
-                            <td class=" ">'+ partido["GolLocal"] + '</td>\
-                            <td class=" ">'+ partido["GolVisita"] + '</td>\
+                            <td class="last"> <div class="col-md-2 col-sm-2 col-xs-2">' + partido["GolLocal"]  + '</div> <button id="buttonPlus" \
+                                        onclick="asignarGol('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["GolLocal"] +');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-sign-out">\
+                                 </i></button></td>\
+                            <td class="last"> <div class="col-md-2 col-sm-2 col-xs-2">' + partido["GolVisita"] + '</div> <button id="buttonPlus" \
+                                        onclick="asignarGol('+ partido["IdPartido"] + ", " + partido["IdEquipoVisita"] + ", " + partido["GolVisita"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-sign-out">\
+                                 </i></button></td>\
                             <td class=" last">\
                                 <button  id="buttonPlus" \
                                 onclick="getInformacionPartido('+ partido["IdPartido"] + ", " + partido["IdEquipoLocal"] + ", " + partido["IdEquipoVisita"] +
-                    "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-edit">\
+                                           "," + partido["GolLocal"] + "," + partido["GolVisita"] + "," + partido["IdTorneo"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-edit">\
                                  </i></button>\
                                  <button  id="buttonMinus" \
                                 onclick="deletePartido('+ partido["IdPartido"] + ');" class="btn-link col-md-4 col-sm-4 col-xs-4"><i class="fa fa-minus-circle" style="color:#800000;">\
@@ -58,6 +62,81 @@
         }
     });
 }
+
+
+function asignarGol(idPartido, idEquipo, goles) {
+    $("#idElementosGol").attr("idPartido", idPartido);
+    $("#idElementosGol").attr("idEquipo", idEquipo);
+    var data = {
+        idPartido: idPartido,
+        idEquipo: idEquipo,
+        goles: goles
+    }
+    $.ajax({
+        type: "post",
+        url: "/Partido/VerificarGolRegistrado",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            if (data === false) {         // Si no esta guardado, se procede a guardar
+                $("#elementosDinamicos").html("");
+                for (gol = 1; gol <= goles; gol++) {
+                    var jugador = '<h4 class="headerGol"> Gol ' + gol + '</h4><div class="item form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "jugador '+ gol +'">\
+                        Jugador que anotó:\
+                        <span class="required">*</span>\
+                    </label>\
+                    <div class="col-md-6 col-sm-6 col-xs-12">\
+                        <select class="form-control jugadadorSelect" id="jugador'+ gol +'" name="jugador' + gol +'">\
+                            <option value="none">Seleccione una Opción</option>\
+                        </select>\
+                    </div>\
+                 </div >';
+                    var minuto = '<div class="item form-group">\
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="minuto'+gol +'">Minuto:</label>\
+                        <div class="col-md-6 col-sm-6 col-xs-12">\
+                            <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto'+ gol +'" min="1" step="1" name="minuto" value="1"/>\
+                        </div>\
+                    </div>';
+                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
+                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + minuto + '</div>');
+                }
+                $(".guardar").removeClass("editar");
+                $("#.guardar").addClass("guardar");
+                $('#modalGol').modal();
+            } else {
+                $("#elementosDinamicos").html("");
+                for (gol = 1; gol <= goles; gol++)
+                {
+                    var jugador = '<div class="item form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "jugador">\
+                        Jugador que anotó:\
+                        <span class="required">*</span>\
+                    </label>\
+                    <div class="col-md-6 col-sm-6 col-xs-12">\
+                        <select class="form-control jugadadorSelect" id="jugador" name="jugador">\
+                            <option value="none">Seleccione una Opción</option>\
+                        </select>\
+                    </div>\
+                 </div >';
+                    var minuto = '<div class="item form-group">\
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="minuto">Minuto:</label>\
+                        <div class="col-md-6 col-sm-6 col-xs-12">\
+                            <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto" min="1" step="1" name="minuto" value="1"/>\
+                        </div>\
+                    </div>';
+                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
+                }
+            }
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
+    
+}
+
 
 function getInformacionPartido(idPartido, idEquipoLocal, idEquipovisita, golLocal, golVisita, IdTorneo) { 
     $("#golcasa").val(golLocal);
@@ -294,6 +373,68 @@ $().ready(function () {
                     alert("Ha ocurrido un error: " + JSON.stringify(data));
                 }
             });
+            return false;
+        }
+    });
+
+    //---------------------------------- Validacion para agregar un gol ---------------
+    $("#botonGuardarGol").click(function () {
+        $(".jugadadorSelect").each(function () {
+
+            $(this).rules("add", {
+                valorDiferenteA: "none",
+                messages: {
+                    valorDiferenteA: "Seleccione un jugador"
+                }
+            });
+        });
+        $(".minutoInput").each(function () {
+
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                messages: {
+                    required: "La cantidad es obligatoria",
+                    number: "Ingrese solamente números"
+                }
+            });
+        });
+
+        $("#formGol").valid();
+    });
+
+    $("#formGol").validate({
+        submitHandler: function (form) {
+
+            //var partido = {
+            //    IdPartido: 0, //ID para que este valido en el dataAnnotation
+            //    IdEquipoLocal: $("#equipolocal").val(),
+            //    IdEquipoVisita: $("#equipovisita").val(),
+            //    GolLocal: $("#agregarGolCasa").val(),
+            //    GolVisita: $("#agregarGolVisita").val(),
+            //    Jugado: $("#jugado").val()
+            //}
+            //console.log(JSON.stringify(partido));
+
+            //$.ajax({
+            //    type: "post",
+            //    url: "/Partido/AgregarPartido",
+            //    data: JSON.stringify(partido),
+            //    dataType: "json",
+            //    contentType: "application/json",
+            //    success: function (data) {
+            //        var code = data["CODE"]
+            //        if (code === "PARTIDO_GUARDADO") {
+            //            $('#modalAgregarPartido').modal('hide');
+            //            GetPartidos();
+            //        } else {
+            //            alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
+            //        }
+            //    },
+            //    error: function (data) {
+            //        alert("Ha ocurrido un error: " + JSON.stringify(data));
+            //    }
+            //});
             return false;
         }
     });

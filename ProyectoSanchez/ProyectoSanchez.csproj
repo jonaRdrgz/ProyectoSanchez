@@ -155,6 +155,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArbitrosPorTorneoController.cs" />
     <Compile Include="Controllers\ArbitroPorPartidoController.cs" />
+    <Compile Include="Controllers\ConsultaEncuentrosController.cs" />
     <Compile Include="Controllers\EntrenadorController.cs" />
     <Compile Include="Controllers\EntrenadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\GolesPorPartidoPorFechaController.cs" />
@@ -4750,6 +4751,7 @@
     <Content Include="Views\EntrenadorPorEquipoPorTorneo\Index.cshtml" />
     <Content Include="Views\Entrenador\Index.cshtml" />
     <Content Include="Views\GolesPorPartidoPorFecha\Index.cshtml" />
+    <Content Include="Views\ConsultaEncuentros\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

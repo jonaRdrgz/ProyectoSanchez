@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Encuentros entre equipos";
+}
+
+<link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Consulta de Encuentros entre Equipos
+                </h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Selección del primer Equipo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idEntrenador">
+                                    Primer Equipo:
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control" id="idEquipoA" name="idEquipoA" onchange="">
+                                        <option value="-1">Seleccione una Opción</option>
+                                        @{List<ProyectoSanchez.ViewModels.EquipoVM> equipos = ViewBag.equipos; }
+                                        @foreach (var item in equipos)
+                                        {
+                                            <option value="@item.IdEquipo">@item.Nombre</option>
+                                         }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="x_title">
+                        <h2> Selección del segundo equipo</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idEntrenador">
+                                    Segundo Equipo:
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control" id="idEquipoB" name="idEquipoB" onchange="">
+                                        <option value="-1">Seleccione una Opción</option>
+                                        @{List<ProyectoSanchez.ViewModels.EquipoVM> otros = ViewBag.equipos; }
+                                        @foreach (var item in otros)
+                                        {
+                                            <option value="@item.IdEquipo">@item.Nombre</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

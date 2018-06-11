@@ -22,6 +22,7 @@ namespace ProyectoSanchez.ViewModels
         [Required(ErrorMessage = "La altura del jugador es necesaria")]
         public double AlturaMetros { get; set; }
 
+        public string Imagen { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
         public string Nombre { get; set; }

@@ -1,4 +1,7 @@
-﻿function GetPartidos() {
+﻿var funcion = 1;
+
+
+function GetPartidos() {
 
     $.ajax({
         type: "post",
@@ -63,14 +66,41 @@
     });
 }
 
+function getJugadores(tag, idJugador, idEquipo) {
+    tag.html("<option value='none'>Seleccione una Opción</option>");
+    var data = {
+        idEquipo: idEquipo
+    }
+    $.ajax({
+        type: "post",
+        url: "/Partido/GetJugadores",
+        dataType: "json",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (data) {
+            var htmlSelect = "";
+
+            // Se verifica si el Id del equipo actual es igual al parámetro idEquipo y se selecciona
+            $.each(data, function (i, jugador) {
+                htmlSelect += '<option value="' + jugador["IdJugador"] + '" ' + ((jugador["IdJugador"] == idJugador) ? "selected" : "") + ' > ' + jugador["Nombre"] + ' </option>';
+
+            });
+            tag.append(htmlSelect);
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
+}
 
 function asignarGol(idPartido, idEquipo, goles) {
     $("#idElementosGol").attr("idPartido", idPartido);
     $("#idElementosGol").attr("idEquipo", idEquipo);
+    $("#elementosDinamicos").html("");
     var data = {
         idPartido: idPartido,
-        idEquipo: idEquipo,
-        goles: goles
+        idEquipo: idEquipo
     }
     $.ajax({
         type: "post",
@@ -80,7 +110,6 @@ function asignarGol(idPartido, idEquipo, goles) {
         contentType: "application/json",
         success: function (data) {
             if (data === false) {         // Si no esta guardado, se procede a guardar
-                $("#elementosDinamicos").html("");
                 for (gol = 1; gol <= goles; gol++) {
                     var jugador = '<h4 class="headerGol"> Gol ' + gol + '</h4><div class="item form-group">\
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "jugador '+ gol +'">\
@@ -89,7 +118,6 @@ function asignarGol(idPartido, idEquipo, goles) {
                     </label>\
                     <div class="col-md-6 col-sm-6 col-xs-12">\
                         <select class="form-control jugadadorSelect" id="jugador'+ gol +'" name="jugador' + gol +'">\
-                            <option value="none">Seleccione una Opción</option>\
                         </select>\
                     </div>\
                  </div >';
@@ -101,33 +129,45 @@ function asignarGol(idPartido, idEquipo, goles) {
                     </div>';
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + minuto + '</div>');
+                    getJugadores($('#jugador' + gol + ''), -1, $("#idElementosGol").attr("idEquipo"));
                 }
-                $(".guardar").removeClass("editar");
-                $("#.guardar").addClass("guardar");
+                $("#botonGuardarGol").removeClass("editar");
+                $("#botonGuardarGol").addClass("guardar");
+                $(".guardar").click(function () {
+                    funcion = 1;
+                    eventoGuardar();
+                });
                 $('#modalGol').modal();
+                
             } else {
-                $("#elementosDinamicos").html("");
-                for (gol = 1; gol <= goles; gol++)
-                {
-                    var jugador = '<div class="item form-group">\
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "jugador">\
+                $.each(data, function (i, gol) {
+                    var jugador = '<h4 class="headerGol"> Gol ' + (i+1) + '</h4><div class="item form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for= "jugador '+ (i + 1) + '">\
                         Jugador que anotó:\
                         <span class="required">*</span>\
                     </label>\
                     <div class="col-md-6 col-sm-6 col-xs-12">\
-                        <select class="form-control jugadadorSelect" id="jugador" name="jugador">\
-                            <option value="none">Seleccione una Opción</option>\
+                        <select class="form-control jugadadorSelect" idGol="'+ gol["IdGol"] + '" id="jugador' + (i + 1) + '" name="jugador' + (i + 1) + '">\
                         </select>\
                     </div>\
                  </div >';
                     var minuto = '<div class="item form-group">\
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="minuto">Minuto:</label>\
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="minuto'+ (i + 1) + '">Minuto:</label>\
                         <div class="col-md-6 col-sm-6 col-xs-12">\
-                            <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto" min="1" step="1" name="minuto" value="1"/>\
+                            <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto'+ (i + 1) + '" min="1" step="1" name="minuto" value="' + gol["Minuto"] + '"/>\
                         </div>\
                     </div>';
-                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
-                }
+                    $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + jugador + '</div>');
+                    $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + minuto + '</div>');
+                    getJugadores($('#jugador' + (i + 1) + ''), gol["IdJugador"], $("#idElementosGol").attr("idEquipo"));
+                });
+                $("#botonGuardarGol").removeClass("guardar");
+                $("#botonGuardarGol").addClass("editar");
+                $(".editar").click(function () {
+                    funcion = 2;
+                    eventoGuardar();
+                });
+                $('#modalGol').modal();
             }
         },
         error: function (data) {
@@ -135,6 +175,30 @@ function asignarGol(idPartido, idEquipo, goles) {
         }
     });
     
+}
+
+function getGolesRegistrados(idPartido, idEquipo) {
+    var data = {
+        idPartido: idPartido,
+        idEquipo: idEquipo
+    }
+    $.ajax({
+        type: "post",
+        url: "/Partido/GetGolesRegistrados",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (data) {
+            $.each(data, function (i, gol) {
+                console.log(gol["Minuto"]);
+
+            });
+
+        },
+        error: function (data) {
+            alert("Ha ocurrido un error: " + JSON.stringify(data));
+        }
+    });
 }
 
 
@@ -185,6 +249,7 @@ function getEquiposXTorneo(tag, idEquipo) {
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
+            console.log(data);
             var htmlSelect = "";
 
             // Se verifica si el Id del equipo actual es igual al parámetro idEquipo y se selecciona
@@ -201,6 +266,8 @@ function getEquiposXTorneo(tag, idEquipo) {
     });
 }
 
+
+
 function agregarPartido() {
     getEquiposXTorneo($("#equipolocal"), -1);
     getEquiposXTorneo($("#equipovisita"), -1);
@@ -208,11 +275,34 @@ function agregarPartido() {
     
 }
 
+function eventoGuardar() {
+    $(".jugadadorSelect").each(function () {
+
+        $(this).rules("add", {
+            valorDiferenteA: "none",
+            messages: {
+                valorDiferenteA: "Seleccione un jugador"
+            }
+        });
+    });
+    $(".minutoInput").each(function () {
+
+        $(this).rules("add", {
+            required: true,
+            number: true,
+            messages: {
+                required: "La cantidad es obligatoria",
+                number: "Ingrese solamente números"
+            }
+        });
+    });
+
+    $("#formGol").valid();
+}
 
 $().ready(function () {
 
     GetPartidos();
-
     //----------------------------- Validación para editar partido --------------
     $("#botonGuardar").click(function () {
 
@@ -378,63 +468,78 @@ $().ready(function () {
     });
 
     //---------------------------------- Validacion para agregar un gol ---------------
-    $("#botonGuardarGol").click(function () {
-        $(".jugadadorSelect").each(function () {
-
-            $(this).rules("add", {
-                valorDiferenteA: "none",
-                messages: {
-                    valorDiferenteA: "Seleccione un jugador"
-                }
-            });
-        });
-        $(".minutoInput").each(function () {
-
-            $(this).rules("add", {
-                required: true,
-                number: true,
-                messages: {
-                    required: "La cantidad es obligatoria",
-                    number: "Ingrese solamente números"
-                }
-            });
-        });
-
-        $("#formGol").valid();
-    });
 
     $("#formGol").validate({
         submitHandler: function (form) {
+            var golesList = [];
+            var strFuncion = "";
+            if (funcion === 1) {
+                $('.jugadadorSelect').each(function () {
+                    var idJugador = $(this).attr('id').replace("jugador", "");
+                    var gol = new Object();
+                    gol.IdJugador = $(this).val();
+                    gol.Minuto = $("#minuto" + idJugador + "").val();
+                    gol.IdEquipo = $("#idElementosGol").attr("idEquipo");
+                    gol.IdPartido = $("#idElementosGol").attr("idPartido");
+                    golesList.push(gol);
+                });
+                strFuncion = "AgregarGoles";
+                
+            }
+            else {
+                $('.jugadadorSelect').each(function () {
+                    var idJugador = $(this).attr('id').replace("jugador", "");
+                    var gol = new Object();
+                    gol.IdGol = $(this).attr("IdGol");
+                    gol.IdJugador = $(this).val();
+                    gol.Minuto = $("#minuto" + idJugador + "").val();
+                    gol.IdEquipo = $("#idElementosGol").attr("idEquipo");
+                    gol.IdPartido = $("#idElementosGol").attr("idPartido");
+                    golesList.push(gol);
+                });
+                strFuncion = "ActualizarGoles";
+            }
+            console.log(golesList);
+            console.log(strFuncion);
+            
+            var golesXPartido = {
+                Goles: golesList
+            }
 
-            //var partido = {
-            //    IdPartido: 0, //ID para que este valido en el dataAnnotation
-            //    IdEquipoLocal: $("#equipolocal").val(),
-            //    IdEquipoVisita: $("#equipovisita").val(),
-            //    GolLocal: $("#agregarGolCasa").val(),
-            //    GolVisita: $("#agregarGolVisita").val(),
-            //    Jugado: $("#jugado").val()
-            //}
-            //console.log(JSON.stringify(partido));
-
-            //$.ajax({
-            //    type: "post",
-            //    url: "/Partido/AgregarPartido",
-            //    data: JSON.stringify(partido),
-            //    dataType: "json",
-            //    contentType: "application/json",
-            //    success: function (data) {
-            //        var code = data["CODE"]
-            //        if (code === "PARTIDO_GUARDADO") {
-            //            $('#modalAgregarPartido').modal('hide');
-            //            GetPartidos();
-            //        } else {
-            //            alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
-            //        }
-            //    },
-            //    error: function (data) {
-            //        alert("Ha ocurrido un error: " + JSON.stringify(data));
-            //    }
-            //});
+            $.ajax({
+                type: "post",
+                url: "/Partido/" + strFuncion ,
+                data: JSON.stringify(golesXPartido),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var code = data["CODE"]
+                    if (code === "GOLES_GUARDADO") {
+                        $('#modalGol').modal('hide');
+                        new PNotify({
+                            title: 'Éxito',
+                            text: 'Goles Asignados .',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                    else if (code === "GOLES_ACTUALIZADOS") {
+                        $('#modalGol').modal('hide');
+                        new PNotify({
+                            title: 'Éxito',
+                            text: 'Goles Actualizados .',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+                    }
+                    else {
+                        alert("Hubo un error enviando el formulario. Si el problema persiste, contacte a soporte.");
+                    }
+                },
+                error: function (data) {
+                    alert("Ha ocurrido un error: " + JSON.stringify(data));
+                }
+            });
             return false;
         }
     });

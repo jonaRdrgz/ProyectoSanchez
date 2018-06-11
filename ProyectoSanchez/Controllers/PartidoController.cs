@@ -42,6 +42,25 @@ namespace ProyectoSanchez.Controllers
                     ).ToList();
         }
 
+        public List<JugadorVM> GetJugadores(decimal idEquipo)
+        {
+            return (from Jugador in db.Jugadors
+                    join Funcionario in db.Funcionarios on Jugador.codigoFuncionario equals Funcionario.codigoFuncionario
+                    join JugadorXEquipo in db.JugadorPorEquipoPorTorneos on Jugador.idJugador equals JugadorXEquipo.idJugador
+                    where idEquipo == JugadorXEquipo.idEquipo
+                    select new JugadorVM
+                    {
+                        IdJugador = Jugador.idJugador,
+                        CodigoFuncionario = Funcionario.codigoFuncionario,
+                        PesoKilos = Jugador.pesoKilos,
+                        AlturaMetros = Jugador.alturaMetros,
+                        Nombre = Funcionario.nombre,
+                        FechaNacimiento = Funcionario.fechaNacimiento,
+                        Imagen = Funcionario.urlImagen
+                    }
+                   ).ToList();
+        }
+
         public List<EquipoVM> getListaEquiposXTorneo(int IdTorneo) {
             return ( from Equipo in db.Equipoes
                      join EquipoXTorneo in db.EquipoPorTorneos on Equipo.idEquipo equals EquipoXTorneo.idEquipo
@@ -67,6 +86,17 @@ namespace ProyectoSanchez.Controllers
             }
         }
 
+        public void UpdateGol(Models.Gol nuevoGol)
+        {
+            Models.Gol oldGol = db.Gols.SingleOrDefault(b => b.idGol == nuevoGol.idGol);
+
+            if (oldGol != null)
+            {
+                oldGol.idJugador = nuevoGol.idJugador;
+                oldGol.minuto = nuevoGol.minuto;
+            }
+        }
+
         public void AddPartido(Models.Partido partido)
         {
             db.Partidoes.Add(partido);
@@ -75,6 +105,16 @@ namespace ProyectoSanchez.Controllers
         {
             return db.Partidoes.Create();
         }
+
+        public void AddGol(Models.Gol gol)
+        {
+            db.Gols.Add(gol);
+        }
+        public Models.Gol CreateGol()
+        {
+            return db.Gols.Create();
+        }
+
         public void DeletePartido(decimal idPartido)
         {
             Models.Partido partido = db.Partidoes.SingleOrDefault(b => b.idPartido == idPartido);
@@ -87,12 +127,25 @@ namespace ProyectoSanchez.Controllers
         }
 
         //Retorna True si esta registrado
-        public Boolean VerificarGolRegistrado(decimal idPartido) {
-            Models.Gol gol = db.Gols.SingleOrDefault(b => b.idPartido == idPartido);
+        public Boolean VerificarGolRegistrado(decimal idPartido, decimal idEquipo) {
+            Models.Gol gol = db.Gols.FirstOrDefault(b => b.idPartido == idPartido && b.idEquipo == idEquipo);
             if (gol != null) {
                 return true;
             }
             return false;
+        }
+        public List<GolVM> GolesRegistrados(decimal idPartido, decimal idEquipo) {
+            return (from Goles in db.Gols where idPartido == Goles.idPartido
+                    && idEquipo == Goles.idEquipo
+                    select new GolVM
+                    {
+                        IdGol = Goles.idGol,
+                        IdEquipo = Goles.idEquipo,
+                        IdJugador = Goles.idJugador,
+                        Minuto = Goles.minuto,
+                        IdPartido = Goles.idPartido
+                    }
+                    ).ToList();
         }
 
         public void GuardarCambios()
@@ -173,14 +226,71 @@ namespace ProyectoSanchez.Controllers
                 };
             }
         }
-        public JsonResult VerificarGolRegistrado(decimal idPartido)
+
+        public JsonResult GetJugadores(decimal idEquipo)
         {
             try
             {
-                if (_db.VerificarGolRegistrado(idPartido)) {
+
+                // Obtenemos la lista de Fechas programadas desde la base de datos
+                //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
+                return new JsonResult()
+                {
+                    Data = _db.GetJugadores(idEquipo),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+        public JsonResult GetGolesRegistrados(decimal idPartido, decimal idEquipo)
+        {
+            try
+            {
+
+                // Obtenemos la lista de Fechas programadas desde la base de datos
+                //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
+                return new JsonResult()
+                {
+                    Data = _db.GolesRegistrados(idPartido, idEquipo),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
+
+
+        public JsonResult VerificarGolRegistrado(decimal idPartido, decimal idEquipo)
+        {
+            try
+            {
+               
+                if (_db.VerificarGolRegistrado(idPartido, idEquipo)) {
                     return new JsonResult()
                     {
-                        Data = true,
+                        Data = _db.GolesRegistrados(idPartido,idEquipo),
                         JsonRequestBehavior = JsonRequestBehavior.AllowGet
                     };
                 }
@@ -258,6 +368,67 @@ namespace ProyectoSanchez.Controllers
                 };
             }
         }
+        public JsonResult ActualizarGoles(GolesXPartidoVM golesXPartido)
+        {
+            // Se verifica si los datos ingresados son válidos a nivel de backend, o se reporta el error
+            if (!ModelState.IsValid)
+            {
+                foreach (ModelState modelstate in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelstate.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "CAMPOS_INVALIDOS" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+
+            try
+            {
+                foreach (GolVM gol in golesXPartido.Goles)
+                {
+                    var nuevoGol = _db.CreateGol();
+                    nuevoGol.idGol = gol.IdGol;
+                    nuevoGol.idJugador = gol.IdJugador;
+                    nuevoGol.minuto = gol.Minuto;
+                    nuevoGol.idEquipo = gol.IdEquipo;
+                    nuevoGol.idPartido = gol.IdPartido;
+                    _db.UpdateGol(nuevoGol);
+                }
+
+
+                //// Se guardan los cambios, indicando que se hace desde el proceso de edición
+
+                _db.GuardarCambios();
+                // Y se retorna un código de completación del proceso exitoso
+                return new JsonResult()
+                {
+                    Data = new { CODE = "GOLES_ACTUALIZADOS" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (DbEntityValidationException e)
+            {
+                foreach (var entityValidationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
 
         public JsonResult AgregarPartido(PartidoVM partido)
         {
@@ -299,6 +470,66 @@ namespace ProyectoSanchez.Controllers
                 return new JsonResult()
                 {
                     Data = new { CODE = "PARTIDO_GUARDADO" },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (DbEntityValidationException e)
+            {
+                foreach (var entityValidationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+
+        public JsonResult AgregarGoles(GolesXPartidoVM golesXPartido)
+        {
+            // Se verifica si los datos ingresados son válidos a nivel de backend, o se reporta el error
+            if (!ModelState.IsValid)
+            {
+                foreach (ModelState modelstate in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelstate.Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                    }
+                }
+                return new JsonResult()
+                {
+                    Data = new { CODE = "CAMPOS_INVALIDOS" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+
+            try
+            {
+                foreach (GolVM gol in golesXPartido.Goles) {
+                    var nuevoGol = _db.CreateGol();
+                    nuevoGol.idJugador = gol.IdJugador;
+                    nuevoGol.minuto = gol.Minuto;
+                    nuevoGol.idEquipo = gol.IdEquipo;
+                    nuevoGol.idPartido = gol.IdPartido;
+                    _db.AddGol(nuevoGol);
+                }
+               
+
+                //// Se guardan los cambios, indicando que se hace desde el proceso de edición
+
+                _db.GuardarCambios();
+                // Y se retorna un código de completación del proceso exitoso
+                return new JsonResult()
+                {
+                    Data = new { CODE = "GOLES_GUARDADO" },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

@@ -366,6 +366,7 @@
     <Compile Include="ViewModels\FechasCalendarioVM.cs" />
     <Compile Include="ViewModels\FederacionVM.cs" />
     <Compile Include="ViewModels\FuncionarioVM.cs" />
+    <Compile Include="ViewModels\GolesXPartidoVM.cs" />
     <Compile Include="ViewModels\GolVM.cs" />
     <Compile Include="ViewModels\JugadorPorEquipoPorTorneoVM.cs" />
     <Compile Include="ViewModels\JugadorVM.cs" />

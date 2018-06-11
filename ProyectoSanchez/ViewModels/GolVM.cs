@@ -8,24 +8,24 @@ namespace ProyectoSanchez.ViewModels
 {
     public class GolVM
     {
-        [Required(ErrorMessage = "El identificador del gol es obligatorio")]
+        //[Required(ErrorMessage = "El identificador del gol es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdGol { get; set; }
+        public decimal IdGol { get; set; }
 
         [Required(ErrorMessage = "El id del jugador es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdJugador { get; set; }
+        public decimal IdJugador { get; set; }
 
         [Required(ErrorMessage = "El minuto es necesario")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public short Minuto { get; set; }
+        public decimal Minuto { get; set; }
 
         [Required(ErrorMessage = "El id del equipo es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdEquipo { get; set; }
+        public decimal IdEquipo { get; set; }
 
         [Required(ErrorMessage = "El id del partido es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
-        public int IdPartido { get; set; }
+        public decimal IdPartido { get; set; }
     }
 }

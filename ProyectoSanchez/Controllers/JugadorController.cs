@@ -31,7 +31,8 @@ namespace ProyectoSanchez.Controllers
                         PesoKilos = Jugador.pesoKilos,
                         AlturaMetros = Jugador.alturaMetros,
                         Nombre = Funcionario.nombre,
-                        FechaNacimiento = Funcionario.fechaNacimiento
+                        FechaNacimiento = Funcionario.fechaNacimiento,
+                        Imagen = Funcionario.urlImagen
                     }
                    ).ToList();
         }

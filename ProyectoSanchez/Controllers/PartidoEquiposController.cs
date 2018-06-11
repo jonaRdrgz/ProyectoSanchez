@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ProyectoSanchez.ViewModels;
-using System.Data.Entity.Validation;
 
 namespace ProyectoSanchez.Controllers
 {

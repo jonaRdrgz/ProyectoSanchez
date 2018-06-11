@@ -29,6 +29,7 @@
                 $("#nombreEntrenador").html(name);
                 $("#fechaInicial").html(dateE);
                 $("#fechaNacimiento").html(dateF);
+                document.getElementById("foto").src = player["Imagen"];
                 document.getElementById("botonEquiposEntrenador").setAttribute("onClick", 'rediredToEquiposEntrenador(' + $('#idEntrenador').val() + ')');
             });
 

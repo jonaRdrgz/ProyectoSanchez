@@ -29,8 +29,8 @@ namespace ProyectoSanchez.Controllers
                         IdEntrenador = Entrenador.idEntrenador,
                         CodigoFuncionario = Entrenador.codigoFuncionario,
                         FechaInicio = Entrenador.fechaInicio,
-                        NombreEntrenador = Funcionario.nombre
-
+                        NombreEntrenador = Funcionario.nombre,
+                        Imagen = Funcionario.urlImagen
                     }
                    ).ToList();
         }

@@ -158,6 +158,7 @@
     <Compile Include="Controllers\ConsultaEncuentrosController.cs" />
     <Compile Include="Controllers\EntrenadorController.cs" />
     <Compile Include="Controllers\EntrenadorPorEquipoPorTorneoController.cs" />
+    <Compile Include="Controllers\GolesPorPartidoPorFechaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JugadorController.cs" />
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
@@ -4750,6 +4751,7 @@
     <Content Include="Views\PartidoEquipos\Index.cshtml" />
     <Content Include="Views\EntrenadorPorEquipoPorTorneo\Index.cshtml" />
     <Content Include="Views\Entrenador\Index.cshtml" />
+    <Content Include="Views\GolesPorPartidoPorFecha\Index.cshtml" />
     <Content Include="Views\ConsultaEncuentros\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

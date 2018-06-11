@@ -66,6 +66,7 @@ namespace ProyectoSanchez.Controllers
                 oldPartido.golVisita = nuevoPartido.golVisita;
             }
         }
+
         public void AddPartido(Models.Partido partido)
         {
             db.Partidoes.Add(partido);
@@ -83,6 +84,15 @@ namespace ProyectoSanchez.Controllers
                 db.Partidoes.Attach(partido);
                 db.Partidoes.Remove(partido);
             }
+        }
+
+        //Retorna True si esta registrado
+        public Boolean VerificarGolRegistrado(decimal idPartido) {
+            Models.Gol gol = db.Gols.SingleOrDefault(b => b.idPartido == idPartido);
+            if (gol != null) {
+                return true;
+            }
+            return false;
         }
 
         public void GuardarCambios()
@@ -147,6 +157,36 @@ namespace ProyectoSanchez.Controllers
                 return new JsonResult()
                 {
                     Data = _db.getListaEquiposXTorneo(idTorneo),
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
+            // En caso de ocurrir una excepción, se atrapa la excepción y se retorna un código ERROR
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+
+                return new JsonResult()
+                {
+                    Data = new { CODE = "ERROR" },
+                    JsonRequestBehavior = JsonRequestBehavior.DenyGet
+                };
+            }
+        }
+        public JsonResult VerificarGolRegistrado(decimal idPartido)
+        {
+            try
+            {
+                if (_db.VerificarGolRegistrado(idPartido)) {
+                    return new JsonResult()
+                    {
+                        Data = true,
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                }
+                return new JsonResult()
+                {
+                    Data = false,
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

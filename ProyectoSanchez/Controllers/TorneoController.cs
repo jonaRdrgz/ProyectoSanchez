@@ -27,9 +27,9 @@ namespace ProyectoSanchez.Controllers
                     }).ToList();
         }
 
-        public List<tablaPosiciones_Result> GetPosicionesTorneo(decimal idTorneo)
+        public List<proc_tablaPosiciones_Result> GetPosicionesTorneo(decimal idTorneo)
         {
-            return db.tablaPosiciones(idTorneo).ToList();
+            return db.proc_tablaPosiciones(idTorneo).ToList();
         }
     }
     public class TorneoController : Controller
@@ -53,7 +53,7 @@ namespace ProyectoSanchez.Controllers
             {
 
                 // Obtenemos la lista de Fechas programadas desde la base de datos
-                List<tablaPosiciones_Result> posiciones = _db.GetPosicionesTorneo(idTorneo);
+                List<proc_tablaPosiciones_Result> posiciones = _db.GetPosicionesTorneo(idTorneo);
                 return new JsonResult()
                 {
                     Data = posiciones,

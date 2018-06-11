@@ -17,13 +17,13 @@
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
-                htmlBodyTable += '<td align="center">' + posicion["idEquipo"] + '</td><td class=" ">' + posicion["jugados"] + '</td >\
-                            <td class=" ">'+ posicion["ganados"] + '</td>\
-                            <td class=" ">'+ posicion["empatados"] + '</td>\
-                            <td class=" ">'+ posicion["perdidos"] + '</td>\
-                            <td class=" ">'+ posicion["golesFavor"] + '</td>\
-                            <td class=" ">'+ posicion["golesContra"] + '</td>\
-                            <td class=" ">'+ posicion["puntos"] + '</td>';
+                htmlBodyTable += '<td align="center">' + posicion["nombre"] + '</td><td class=" ">' + posicion["Jugados"] + '</td >\
+                            <td class=" ">'+ posicion["Ganados"] + '</td>\
+                            <td class=" ">'+ posicion["Empatados"] + '</td>\
+                            <td class=" ">'+ posicion["Perdidos"] + '</td>\
+                            <td class=" ">'+ posicion["GolesAFavor"] + '</td>\
+                            <td class=" ">'+ posicion["GolesEnContra"] + '</td>\
+                            <td class=" ">'+ posicion["Puntos"] + '</td>';
             });
 
             $('#previewTablePosiciones').DataTable().clear();

@@ -401,6 +401,7 @@
     <Content Include="Content\build\js\Entrenador.js" />
     <Content Include="Content\build\js\EntrenadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\FechaCalendario.js" />
+    <Content Include="Content\build\js\GolesPorPartidoPorFecha.js" />
     <Content Include="Content\build\js\InformacionArbitrosPorTorneo.js" />
     <Content Include="Content\build\js\Jugador.js" />
     <Content Include="Content\build\js\JugadorPorEquipoPorTorneo.js" />

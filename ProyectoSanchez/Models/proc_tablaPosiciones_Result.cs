@@ -11,13 +11,15 @@ namespace ProyectoSanchez.Models
 {
     using System;
     
-    public partial class InformacionEntrenador_Result
+    public partial class proc_tablaPosiciones_Result
     {
         public string nombre { get; set; }
-        public string NombreEquipo { get; set; }
-        public decimal anno { get; set; }
-        public string periodo { get; set; }
-        public Nullable<decimal> posicion { get; set; }
-        public string sinopsis { get; set; }
+        public Nullable<int> Jugados { get; set; }
+        public Nullable<int> Ganados { get; set; }
+        public Nullable<int> Empatados { get; set; }
+        public Nullable<int> Perdidos { get; set; }
+        public Nullable<decimal> GolesAFavor { get; set; }
+        public Nullable<decimal> GolesEnContra { get; set; }
+        public Nullable<int> Puntos { get; set; }
     }
 }

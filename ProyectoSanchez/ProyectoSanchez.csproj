@@ -255,15 +255,6 @@
     <Compile Include="Models\InformacionArbitrosTorneo_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\InformacionEntrenador_Result.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\informacionJugador_Result.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InformacionPartidos_Result.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Jugador.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -286,6 +277,9 @@
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Posicion.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_tablaPosiciones_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProyectoBasesSanchez.Context.cs">
@@ -313,9 +307,6 @@
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuplentesEquipoPartido_H.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tablaPosiciones_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TelefonoFuncionario.cs">

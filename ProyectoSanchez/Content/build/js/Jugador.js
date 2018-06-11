@@ -2,7 +2,7 @@
     $("#nombreJugador").html("");
     $("#edad").html("");
     $("#peso").html("");
-    $("estatura").html("");
+    $("#estatura").html("");
     var data = {
         idJugador: $("#idJugador").val()
     }
@@ -27,7 +27,7 @@
                 $("#edad").html(dateF);
                 $("#peso").html(peso);
                 $("#estatura").html(altura);
-                $("#foto").attr("src", 'player["Imagen"]');
+                document.getElementById("foto").src = player["Imagen"];
                 document.getElementById("botonEquiposJugador").setAttribute("onClick",'rediredToEquiposJugador('+$('#idJugador').val() +')');
             });
             

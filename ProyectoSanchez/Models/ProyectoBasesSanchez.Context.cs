@@ -85,7 +85,7 @@ namespace ProyectoSanchez.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("generarResultadosTorneo", torneoParameter);
         }
     
-        public virtual ObjectResult<GolesPartidos_Result> GolesPartidos(Nullable<decimal> idEquipoUno, Nullable<decimal> idEquipoDos, Nullable<System.DateTime> fecha)
+        public virtual ObjectResult<GolesPartidos_Result> GolesPartidos(Nullable<decimal> idEquipoUno, Nullable<decimal> idEquipoDos)
         {
             var idEquipoUnoParameter = idEquipoUno.HasValue ?
                 new ObjectParameter("idEquipoUno", idEquipoUno) :
@@ -95,11 +95,7 @@ namespace ProyectoSanchez.Models
                 new ObjectParameter("idEquipoDos", idEquipoDos) :
                 new ObjectParameter("idEquipoDos", typeof(decimal));
     
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GolesPartidos_Result>("GolesPartidos", idEquipoUnoParameter, idEquipoDosParameter, fechaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GolesPartidos_Result>("GolesPartidos", idEquipoUnoParameter, idEquipoDosParameter);
         }
     
         public virtual ObjectResult<InformacionArbitrosTorneo_Result> InformacionArbitrosTorneo(Nullable<decimal> idTorneo)
@@ -111,44 +107,13 @@ namespace ProyectoSanchez.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionArbitrosTorneo_Result>("InformacionArbitrosTorneo", idTorneoParameter);
         }
     
-        public virtual ObjectResult<InformacionEntrenador_Result> InformacionEntrenador(Nullable<decimal> idEntrenador)
-        {
-            var idEntrenadorParameter = idEntrenador.HasValue ?
-                new ObjectParameter("idEntrenador", idEntrenador) :
-                new ObjectParameter("idEntrenador", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionEntrenador_Result>("InformacionEntrenador", idEntrenadorParameter);
-        }
-    
-        public virtual ObjectResult<informacionJugador_Result> informacionJugador(Nullable<decimal> idJugador)
-        {
-            var idJugadorParameter = idJugador.HasValue ?
-                new ObjectParameter("idJugador", idJugador) :
-                new ObjectParameter("idJugador", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<informacionJugador_Result>("informacionJugador", idJugadorParameter);
-        }
-    
-        public virtual ObjectResult<InformacionPartidos_Result> InformacionPartidos(Nullable<decimal> idEquipoUno, Nullable<decimal> idEquipoDos)
-        {
-            var idEquipoUnoParameter = idEquipoUno.HasValue ?
-                new ObjectParameter("idEquipoUno", idEquipoUno) :
-                new ObjectParameter("idEquipoUno", typeof(decimal));
-    
-            var idEquipoDosParameter = idEquipoDos.HasValue ?
-                new ObjectParameter("idEquipoDos", idEquipoDos) :
-                new ObjectParameter("idEquipoDos", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformacionPartidos_Result>("InformacionPartidos", idEquipoUnoParameter, idEquipoDosParameter);
-        }
-    
-        public virtual ObjectResult<tablaPosiciones_Result> tablaPosiciones(Nullable<decimal> torneo)
+        public virtual ObjectResult<proc_tablaPosiciones_Result> proc_tablaPosiciones(Nullable<decimal> torneo)
         {
             var torneoParameter = torneo.HasValue ?
                 new ObjectParameter("torneo", torneo) :
                 new ObjectParameter("torneo", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<tablaPosiciones_Result>("tablaPosiciones", torneoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_tablaPosiciones_Result>("proc_tablaPosiciones", torneoParameter);
         }
     }
 }

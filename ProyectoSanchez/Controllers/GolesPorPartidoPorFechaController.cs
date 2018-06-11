@@ -45,7 +45,7 @@ namespace ProyectoSanchez.Controllers
             {
                 return new JsonResult()
                 {
-                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB,fecha),
+                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

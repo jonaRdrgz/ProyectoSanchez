@@ -1,40 +1,38 @@
-﻿function GetEquipoJugador() {
+﻿function getInformacionArbitrosPorTorneoXTorneo() {
+    var data = {
+        idTorneo: $("#idTorneo").val()
+    }
     $.ajax({
         type: "post",
-        url: "/JugadorPorEquipoPorTorneo/GetInformacionJugador",
+        url: "/ArbitrosPorTorneo/GetInformacionArbitrosPorTorneo",
+        data: JSON.stringify(data),
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
             var htmlBodyTable = "";
 
-            $.each(data, function (i, jugador) {
+            $.each(data, function (i, informacion) {
                 if ((i + 1) % 2 != 0) {
                     htmlBodyTable += '<tr class="even pointer">';
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
-
-                htmlBodyTable += '<td >' + jugador["NombreEquipo"] + '</td><td class=" ">' + jugador["Posicion"] + '</td >\
-                            <td class=" ">'+ jugador["Anno"] + '</td>\
-                            <td class=" ">'+ jugador["NombreTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["TipoTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["Periodo"] + '</td>\
-                            <td class=" ">'+ jugador["Evaluacion"] + '</td>\ </tr>';
+                htmlBodyTable += '<td align="center">' + informacion["nombre"] + '</td><td class=" ">' + informacion["Promedio"] + '</td >';
             });
 
-            $('#previewInfoJugador').DataTable().clear();
-            $('#previewInfoJugador').dataTable().fnDestroy();
+            $('#previewTableInformacionArbitros').DataTable().clear();
+            $('#previewTableInformacionArbitros').dataTable().fnDestroy();
 
-            $("#previewInfoJugador").append(htmlBodyTable);
+            $("#previewTableInformacionArbitros").append(htmlBodyTable);
 
-            $('#previewInfoJugador').dataTable({
+            $('#previewTableInformacionArbitros').dataTable({
                 responsive: true,
                 columnDefs: [
                     { responsivePriority: 1, targets: 0 },
                     { responsivePriority: 2, targets: -2 }
                 ],
                 "language": {
-                    "emptyTable": "No hay jugadores registrados",
+                    "emptyTable": "No hay arbitros en el Torneo",
                     "paginate": {
                         "previous": "Siguiente",
                         "next": "Anterior"
@@ -51,7 +49,3 @@
         }
     });
 }
-
-$().ready(function () {
-    GetEquipoJugador();
-});

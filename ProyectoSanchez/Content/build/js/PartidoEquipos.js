@@ -1,40 +1,41 @@
-﻿function GetEquipoJugador() {
+﻿function GetEncuentros() {
     $.ajax({
         type: "post",
-        url: "/JugadorPorEquipoPorTorneo/GetInformacionJugador",
+        url: "/PartidoEquipos/GetInformacionEncuentros",
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
             var htmlBodyTable = "";
 
-            $.each(data, function (i, jugador) {
+            $.each(data, function (i, partido) {
                 if ((i + 1) % 2 != 0) {
                     htmlBodyTable += '<tr class="even pointer">';
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
-
-                htmlBodyTable += '<td >' + jugador["NombreEquipo"] + '</td><td class=" ">' + jugador["Posicion"] + '</td >\
-                            <td class=" ">'+ jugador["Anno"] + '</td>\
-                            <td class=" ">'+ jugador["NombreTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["TipoTorneo"] + '</td>\
-                            <td class=" ">'+ jugador["Periodo"] + '</td>\
-                            <td class=" ">'+ jugador["Evaluacion"] + '</td>\ </tr>';
+                var fecha = partido["FechaJuego"].replace(/\/Date\((-?\d+)\)\//, '$1');
+                var fechaInicial = new Date(parseInt(fecha));
+                htmlBodyTable += '<td align="center">' + partido["NombreLocal"] +
+                            '</td><td class=" ">' + partido["NombreVisita"] + '</td >\
+                            <td class=" ">'+ partido["GolLocal"] + '</td>\
+                            <td class=" ">'+ partido["GolVisita"] + '</td>\
+                            <td class=" ">'+ fechaInicial + '</td>\
+                            <td class=" ">'+ partido["NombreTorneo"] + '</td>\ </tr>';
             });
 
-            $('#previewInfoJugador').DataTable().clear();
-            $('#previewInfoJugador').dataTable().fnDestroy();
+            $('#previewEncuentros').DataTable().clear();
+            $('#previewEncuentros').dataTable().fnDestroy();
 
-            $("#previewInfoJugador").append(htmlBodyTable);
+            $("#previewEncuentros").append(htmlBodyTable);
 
-            $('#previewInfoJugador').dataTable({
+            $('#previewEncuentros').dataTable({
                 responsive: true,
                 columnDefs: [
                     { responsivePriority: 1, targets: 0 },
                     { responsivePriority: 2, targets: -2 }
                 ],
                 "language": {
-                    "emptyTable": "No hay jugadores registrados",
+                    "emptyTable": "No hay encuentros registrados",
                     "paginate": {
                         "previous": "Siguiente",
                         "next": "Anterior"
@@ -53,5 +54,5 @@
 }
 
 $().ready(function () {
-    GetEquipoJugador();
+    GetEncuentros();
 });

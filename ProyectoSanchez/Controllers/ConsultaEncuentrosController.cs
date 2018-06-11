@@ -1,62 +1,60 @@
-﻿using ProyectoSanchez.Models;
-using ProyectoSanchez.ViewModels;
-using System;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using ProyectoSanchez.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace ProyectoSanchez.Controllers
 {
-    public class TorneoControllerDataBaseWrapper
-    {
+    public class ConsultaEncuentrosDataBaseWrapper {
         private Models.ProyectoBasesSanchezEntities db = new Models.ProyectoBasesSanchezEntities();
 
-        public TorneoControllerDataBaseWrapper()
+        public ConsultaEncuentrosDataBaseWrapper()
         {
             db = new Models.ProyectoBasesSanchezEntities();
         }
 
-        public List<TorneoVM> getListaTorneos()
+        public List<EquipoVM> GetEquipos()
         {
-            return (from Torneo in db.Torneos
-                    select new TorneoVM
-                    {
-                        IdTorneo = Torneo.idTorneo,
-                        Nombre = Torneo.nombre
-
-                    }).ToList();
-        }
-
-        public List<tablaPosiciones_Result> GetPosicionesTorneo(decimal idTorneo)
-        {
-            return db.tablaPosiciones(idTorneo).ToList();
+            return (from Equipo in db.Equipoes
+                    select new EquipoVM {
+                        Nombre = Equipo.nombre,
+                        IdEquipo = Equipo.idEquipo
+                    }
+                ).ToList();
         }
     }
-    public class TorneoController : Controller
+    public class ConsultaEncuentrosController : Controller
     {
-        private TorneoControllerDataBaseWrapper _db;
-        public TorneoController()
+        private ConsultaEncuentrosDataBaseWrapper _db;
+
+        public ConsultaEncuentrosController()
         {
-            _db = new TorneoControllerDataBaseWrapper();
+            _db = new ConsultaEncuentrosDataBaseWrapper();
 
         }
-        // GET: Torneo
+        // GET: ConsultaEncuentros
         public ActionResult Index()
         {
-            ViewBag.Torneos = _db.getListaTorneos();
+            ViewBag.equipos = _db.GetEquipos();
             return View();
         }
 
-        public JsonResult GetPosicionesTorneo(decimal idTorneo)
+        public JsonResult GetInformacionEquipos()
         {
             try
             {
 
                 // Obtenemos la lista de Fechas programadas desde la base de datos
-                List<tablaPosiciones_Result> posiciones = _db.GetPosicionesTorneo(idTorneo);
+                //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = posiciones,
+                    Data = _db.GetEquipos(),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }

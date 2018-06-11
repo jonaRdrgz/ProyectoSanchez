@@ -27,6 +27,7 @@
                 $("#edad").html(dateF);
                 $("#peso").html(peso);
                 $("#estatura").html(altura);
+                $("#foto").attr("src", 'player["Imagen"]');
                 document.getElementById("botonEquiposJugador").setAttribute("onClick",'rediredToEquiposJugador('+$('#idJugador').val() +')');
             });
             

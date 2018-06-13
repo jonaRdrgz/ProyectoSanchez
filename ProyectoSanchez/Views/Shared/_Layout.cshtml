@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Mantenimiento de torneo | @ViewBag.Title</title>
+    <title>Proyecto Programado | @ViewBag.Title</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -30,7 +30,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><span>Mantenimiento de torneo</span></a>
+                        <a href="index.html" class="site_title"><span>Fútbol Life</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -41,8 +41,8 @@
                             <img src="images/img.jpg" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <span>Bienvenido,</span>
+                            <h2>José Stradi</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -67,6 +67,7 @@
                                         <li><a href="@Url.Action("Index", "Jugador")"><i class="fa fa-user"></i>  Jugadores </a></li>
                                         <li><a href="@Url.Action("Index", "Entrenador")"><i class="fa fa-users"></i> Entrenadores </a></li>
                                         <li><a href="@Url.Action("Index", "ConsultaEncuentros")"><i class="fa fa-calendar"></i> Encuentros </a></li>
+                                        <li><a href="@Url.Action("Index", "ArbitrosPorTorneo")"><i class="fa fa-calendar"></i> Árbitros </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -104,20 +105,9 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+                                    <img src="images/img.jpg" alt="">José Stradi
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="javascript:;"> Profile</a></li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li><a href="javascript:;">Help</a></li>
-                                    <li><a href="@Url.Action("CerrarSesion", "Login")"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                                </ul>
                             </li>
 
 

@@ -132,6 +132,9 @@ function asignarGol(idPartido, idEquipo, goles) {
                         <div class="col-md-6 col-sm-6 col-xs-12">\
                             <input type="text" class="form-control col-md-7 col-xs-12 urlInput" id="url'+ gol + '"  value=""/>\
                         </div>\
+                        <button type="button" id="verVideo" onclick="verVideoUrl(url'+ gol +')" class="btn btn-primary">\
+                        <i class="fa fa-eye"> </i > Ver\
+                        </button >\
                     </div>';
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + minuto + '</div>');
@@ -167,9 +170,13 @@ function asignarGol(idPartido, idEquipo, goles) {
                     var url = '<div class="item form-group">\
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="url'+ (i + 1) + '">Url del video:</label>\
                         <div class="col-md-6 col-sm-6 col-xs-12">\
-                            <input type="text" class="form-control col-md-7 col-xs-12 urlInput" id="url'+ (i + 1) + '"  value="' + gol["Url"] +'"/>\
+                            <input type="text" class="form-control col-md-7 col-xs-12 urlInput" id="url'+ (i + 1) + '"  value="' + ((gol["Url"] === 'null' || gol["Url"] === null) ? "" : gol["Url"]  ) +'"/>\
                         </div>\
+                        <button type="button" id="verVideo" onclick="verVideoUrl(url'+  (i + 1)  +')" class="btn btn-primary">\
+                            <i class="fa fa-eye"> </i > Ver\
+                        </button >\
                     </div>';
+                    
                     $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + jugador + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + minuto + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + url + '</div>');
@@ -189,6 +196,33 @@ function asignarGol(idPartido, idEquipo, goles) {
         }
     });
     
+}
+
+function verVideoUrl(tag) {
+    if (isValidUrl($(tag).val())) {
+        window.open($(tag).val(), '_blank');
+    }
+    else {
+        new PNotify({
+            title: 'Error',
+            text: 'Url no válida .',
+            type: 'error',
+            styling: 'bootstrap3'
+        });
+    }
+    
+    
+}
+function isValidUrl(string) {
+    if (string && string.length > 1 && string.slice(0, 2) == '//') {
+        string = 'http:' + string; //dummy protocol so that URL works
+    }
+    try {
+        var url = new URL(string);
+        return url.hostname && url.hostname.match(/^([a-z0-9])(([a-z0-9-]{1,61})?[a-z0-9]{1})?(\.[a-z0-9](([a-z0-9-]{1,61})?[a-z0-9]{1})?)?(\.[a-zA-Z]{2,4})+$/) ? true : false;
+    } catch (_) {
+        return false;
+    }
 }
 
 function getGolesRegistrados(idPartido, idEquipo) {
@@ -323,6 +357,16 @@ function eventoGuardar() {
     $("#formGol").valid();
 }
 
+function comparar(x) {
+    var uniqs = x.filter(function (item, index, array) {
+        return array.indexOf(item) != index;
+    })
+    if (uniqs.length === 0) {
+        return false;
+    }
+    return true ;
+}
+
 $().ready(function () {
 
     GetPartidos();
@@ -420,10 +464,10 @@ $().ready(function () {
 
         $("#equipovisita").rules("add", {
             valorDiferenteA: "none",
-            valorDiferente: $("#equipolocal").val(),
+            valorDiferenteB: $("#equipolocal").val(),
             messages: {
                 valorDiferenteA: "Seleccione un equipo visitante",
-                valorDiferente: "Seleccione un equipo diferente",
+                valorDiferenteB: "Seleccione un equipo diferente",
             }
         });
 
@@ -456,7 +500,16 @@ $().ready(function () {
 
     $("#formAgregarPartido").validate({
         submitHandler: function (form) {
-
+            if ($("#equipovisita").val() === $("#equipolocal").val()) {
+                new PNotify({
+                    title: 'Error',
+                    text: 'Los equipos deben ser diferentes .',
+                    type: 'error',
+                    styling: 'bootstrap3',
+                    delay: 800,
+                });
+                return false;
+            }
             var partido = {
                 IdPartido: 0, //ID para que este valido en el dataAnnotation
                 IdEquipoLocal: $("#equipolocal").val(),
@@ -494,6 +547,23 @@ $().ready(function () {
 
     $("#formGol").validate({
         submitHandler: function (form) {
+            var listMinuto = [];
+            $(".minutoInput").each(function () {
+                listMinuto.push($(this).val());
+              
+            });
+
+            if (comparar(listMinuto)) {
+                new PNotify({
+                    title: 'Error',
+                    text: 'El minuto de los goles debe ser diferente .',
+                    type: 'error',
+                    styling: 'bootstrap3',
+                    delay: 800,
+                });
+                return false;
+            }
+
             var golesList = [];
             var strFuncion = "";
             if (funcion === 1) {

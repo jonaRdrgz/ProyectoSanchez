@@ -246,9 +246,6 @@
     <Compile Include="Models\Gol.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GolesPartidos_Result.cs">
-      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Gol_H.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
@@ -277,6 +274,9 @@
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Posicion.cs">
+      <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_anotadoresEquiposDeFecha_Result.cs">
       <DependentUpon>ProyectoBasesSanchez.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proc_tablaPosiciones_Result.cs">

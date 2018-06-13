@@ -16,9 +16,9 @@ namespace ProyectoSanchez.Controllers
             db = new Models.ProyectoBasesSanchezEntities();
         }
 
-        public List<GolesPartidos_Result> GetGolesPartidoPorPartidoPorFecha(decimal idEquipoA, decimal idEquipoB)
+        public List<proc_anotadoresEquiposDeFecha_Result> GetGolesPartidoPorPartidoPorFecha(decimal idEquipoA, decimal idEquipoB,DateTime fecha)
         {
-            return db.GolesPartidos(idEquipoA, idEquipoB).ToList();
+            return db.proc_anotadoresEquiposDeFecha(idEquipoA, idEquipoB,fecha).ToList();
         }
     }
     public class GolesPorPartidoPorFechaController : Controller
@@ -26,6 +26,7 @@ namespace ProyectoSanchez.Controllers
         private GolesPorPartidoPorFechaControllerDataBaseWrapper _db;
         private static Decimal idEquipoA;
         private static Decimal idEquipoB;
+        private static DateTime fecha;
         public GolesPorPartidoPorFechaController()
         {
             _db = new GolesPorPartidoPorFechaControllerDataBaseWrapper();
@@ -36,6 +37,7 @@ namespace ProyectoSanchez.Controllers
         {
             idEquipoA = GetIdEquipoA();
             idEquipoB = GetIdEquipoB();
+            fecha = GetFecha();
             return View();
         }
 
@@ -45,7 +47,7 @@ namespace ProyectoSanchez.Controllers
             {
                 return new JsonResult()
                 {
-                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB),
+                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB,fecha),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -79,6 +81,15 @@ namespace ProyectoSanchez.Controllers
                 return 2;
             }
             return Convert.ToDecimal(idEquipoB);
+        }
+        public DateTime GetFecha()
+        {
+            string fecha = Request.QueryString["fecha"];
+            if (fecha == null)
+            {
+                return Convert.ToDateTime("2017/06/01");
+            }
+            return Convert.ToDateTime(fecha);
         }
     }
 }

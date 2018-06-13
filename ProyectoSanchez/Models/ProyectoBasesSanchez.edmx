@@ -1143,15 +1143,19 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="generarCalendarioTorneo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="torneo" Type="numeric" Mode="In" />
+        </Function>
         <Function Name="generarResultadosTorneo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="torneo" Type="numeric" Mode="In" />
         </Function>
-        <Function Name="GolesPartidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idEquipoUno" Type="numeric" Mode="In" />
-          <Parameter Name="idEquipoDos" Type="numeric" Mode="In" />
-        </Function>
         <Function Name="InformacionArbitrosTorneo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTorneo" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="proc_anotadoresEquiposDeFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEquipoUno" Type="numeric" Mode="In" />
+          <Parameter Name="idEquipoDos" Type="numeric" Mode="In" />
+          <Parameter Name="fechaDada" Type="datetime" Mode="In" />
         </Function>
         <Function Name="proc_tablaPosiciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="torneo" Type="numeric" Mode="In" />
@@ -2735,27 +2739,32 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
             <End Role="Socio" EntitySet="Socios" />
             <End Role="Equipo" EntitySet="Equipoes" />
           </AssociationSet>
+          <FunctionImport Name="generarCalendarioTorneo">
+            <Parameter Name="torneo" Mode="In" Type="Decimal" />
+          </FunctionImport>
           <FunctionImport Name="generarResultadosTorneo">
             <Parameter Name="torneo" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="GolesPartidos" ReturnType="Collection(ProyectoBasesSanchezModel.GolesPartidos_Result)">
-            <Parameter Name="idEquipoUno" Mode="In" Type="Decimal" />
-            <Parameter Name="idEquipoDos" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="InformacionArbitrosTorneo" ReturnType="Collection(ProyectoBasesSanchezModel.InformacionArbitrosTorneo_Result)">
             <Parameter Name="idTorneo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="proc_anotadoresEquiposDeFecha" ReturnType="Collection(ProyectoBasesSanchezModel.proc_anotadoresEquiposDeFecha_Result)">
+            <Parameter Name="idEquipoUno" Mode="In" Type="Decimal" />
+            <Parameter Name="idEquipoDos" Mode="In" Type="Decimal" />
+            <Parameter Name="fechaDada" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="proc_tablaPosiciones" ReturnType="Collection(ProyectoBasesSanchezModel.proc_tablaPosiciones_Result)">
             <Parameter Name="torneo" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GolesPartidos_Result">
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="CantidadGoles" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="InformacionArbitrosTorneo_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="35" />
           <Property Type="Decimal" Name="Promedio" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="proc_anotadoresEquiposDeFecha_Result">
+          <Property Type="String" Name="Equipo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Goles" Nullable="true" />
         </ComplexType>
         <ComplexType Name="proc_tablaPosiciones_Result">
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="30" />
@@ -3313,20 +3322,22 @@ advertencia 6002: La tabla o vista 'ProyectoBasesSanchez.dbo.TitularEquipoPartid
               <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="generarCalendarioTorneo" FunctionName="ProyectoBasesSanchezModel.Store.generarCalendarioTorneo" />
           <FunctionImportMapping FunctionImportName="generarResultadosTorneo" FunctionName="ProyectoBasesSanchezModel.Store.generarResultadosTorneo" />
-          <FunctionImportMapping FunctionImportName="GolesPartidos" FunctionName="ProyectoBasesSanchezModel.Store.GolesPartidos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ProyectoBasesSanchezModel.GolesPartidos_Result">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="CantidadGoles" ColumnName="CantidadGoles" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InformacionArbitrosTorneo" FunctionName="ProyectoBasesSanchezModel.Store.InformacionArbitrosTorneo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ProyectoBasesSanchezModel.InformacionArbitrosTorneo_Result">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="Promedio" ColumnName="Promedio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_anotadoresEquiposDeFecha" FunctionName="ProyectoBasesSanchezModel.Store.proc_anotadoresEquiposDeFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoBasesSanchezModel.proc_anotadoresEquiposDeFecha_Result">
+                <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Goles" ColumnName="Goles" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

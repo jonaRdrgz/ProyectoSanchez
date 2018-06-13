@@ -17,7 +17,7 @@
                 } else {
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
-                htmlBodyTable += '<td align="center">' + posicion["nombre"] + '</td><td class=" ">' + posicion["Jugados"] + '</td >\
+                htmlBodyTable += '<td>' + posicion["nombre"] + '</td><td class=" ">' + posicion["Jugados"] + '</td >\
                             <td class=" ">'+ posicion["Ganados"] + '</td>\
                             <td class=" ">'+ posicion["Empatados"] + '</td>\
                             <td class=" ">'+ posicion["Perdidos"] + '</td>\

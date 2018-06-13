@@ -133,7 +133,14 @@ namespace ProyectoSanchez.Controllers
             }
             else
             {
-                return Convert.ToDateTime(fecha);
+                try
+                {
+                    return Convert.ToDateTime(fecha);
+                }
+                catch
+                {
+                    return Convert.ToDateTime("2017/06/13");
+                }
             }
         }
     }

@@ -3,7 +3,7 @@
     var funcion = 1;
     $("#fecha").on("focusin", function () {
         $(this).datetimepicker({
-            format: 'DD/MM/YYYY HH:mm'
+            format: 'MM/DD/YYYY HH:mm'
         });
     });
 

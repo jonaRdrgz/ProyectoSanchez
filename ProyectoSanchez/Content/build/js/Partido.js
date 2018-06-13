@@ -127,8 +127,15 @@ function asignarGol(idPartido, idEquipo, goles) {
                             <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto'+ gol +'" min="1" step="1" name="minuto" value="1"/>\
                         </div>\
                     </div>';
+                    var url = '<div class="item form-group">\
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="url'+ gol + '">Url del video:</label>\
+                        <div class="col-md-6 col-sm-6 col-xs-12">\
+                            <input type="text" class="form-control col-md-7 col-xs-12 urlInput" id="url'+ gol + '"  value=""/>\
+                        </div>\
+                    </div>';
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + jugador + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + minuto + '</div>');
+                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + url + '</div>');
                     getJugadores($('#jugador' + gol + ''), -1, $("#idElementosGol").attr("idEquipo"));
                 }
                 $("#botonGuardarGol").removeClass("editar");
@@ -157,8 +164,15 @@ function asignarGol(idPartido, idEquipo, goles) {
                             <input type="number" class="form-control col-md-7 col-xs-12 minutoInput" id="minuto'+ (i + 1) + '" min="1" step="1" name="minuto" value="' + gol["Minuto"] + '"/>\
                         </div>\
                     </div>';
+                    var url = '<div class="item form-group">\
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="url'+ (i + 1) + '">Url del video:</label>\
+                        <div class="col-md-6 col-sm-6 col-xs-12">\
+                            <input type="text" class="form-control col-md-7 col-xs-12 urlInput" id="url'+ (i + 1) + '"  value="' + gol["Url"] +'"/>\
+                        </div>\
+                    </div>';
                     $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + jugador + '</div>');
                     $("#elementosDinamicos").append('<div id=golAdicional' + (i + 1) + '>' + minuto + '</div>');
+                    $("#elementosDinamicos").append('<div id=golAdicional' + gol + '>' + url + '</div>');
                     getJugadores($('#jugador' + (i + 1) + ''), gol["IdJugador"], $("#idElementosGol").attr("idEquipo"));
                 });
                 $("#botonGuardarGol").removeClass("guardar");
@@ -293,6 +307,15 @@ function eventoGuardar() {
             messages: {
                 required: "La cantidad es obligatoria",
                 number: "Ingrese solamente números"
+            }
+        });
+    });
+    $(".urlInput").each(function () {
+
+        $(this).rules("add", {
+            maxlength: 200,
+            messages: {
+                maxlength: "El URL es muy extenso",
             }
         });
     });
@@ -481,6 +504,7 @@ $().ready(function () {
                     gol.Minuto = $("#minuto" + idJugador + "").val();
                     gol.IdEquipo = $("#idElementosGol").attr("idEquipo");
                     gol.IdPartido = $("#idElementosGol").attr("idPartido");
+                    gol.Url = $("#url" + idJugador + "").val();
                     golesList.push(gol);
                 });
                 strFuncion = "AgregarGoles";
@@ -495,6 +519,7 @@ $().ready(function () {
                     gol.Minuto = $("#minuto" + idJugador + "").val();
                     gol.IdEquipo = $("#idElementosGol").attr("idEquipo");
                     gol.IdPartido = $("#idElementosGol").attr("idPartido");
+                    gol.Url = $("#url" + idJugador + "").val();
                     golesList.push(gol);
                 });
                 strFuncion = "ActualizarGoles";

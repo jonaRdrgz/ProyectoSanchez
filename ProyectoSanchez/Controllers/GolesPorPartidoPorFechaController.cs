@@ -16,9 +16,9 @@ namespace ProyectoSanchez.Controllers
             db = new Models.ProyectoBasesSanchezEntities();
         }
 
-        public List<proc_anotadoresEquiposDeFecha_Result> GetGolesPartidoPorPartidoPorFecha(decimal idEquipoA, decimal idEquipoB,DateTime fecha)
+        public List<GolesPartidos_Result> GetGolesPartidoPorPartidoPorFecha(decimal idEquipoA, decimal idEquipoB)
         {
-            return db.proc_anotadoresEquiposDeFecha(idEquipoA, idEquipoB,fecha).ToList();
+            return db.GolesPartidos(idEquipoA, idEquipoB).ToList();
         }
     }
     public class GolesPorPartidoPorFechaController : Controller
@@ -26,7 +26,6 @@ namespace ProyectoSanchez.Controllers
         private GolesPorPartidoPorFechaControllerDataBaseWrapper _db;
         private static Decimal idEquipoA;
         private static Decimal idEquipoB;
-        private static DateTime fecha;
         public GolesPorPartidoPorFechaController()
         {
             _db = new GolesPorPartidoPorFechaControllerDataBaseWrapper();
@@ -37,7 +36,6 @@ namespace ProyectoSanchez.Controllers
         {
             idEquipoA = GetIdEquipoA();
             idEquipoB = GetIdEquipoB();
-            fecha = GetFecha();
             return View();
         }
 
@@ -47,7 +45,7 @@ namespace ProyectoSanchez.Controllers
             {
                 return new JsonResult()
                 {
-                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB,fecha),
+                    Data = _db.GetGolesPartidoPorPartidoPorFecha(idEquipoA,idEquipoB),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -82,16 +80,5 @@ namespace ProyectoSanchez.Controllers
             }
             return Convert.ToDecimal(idEquipoB);
         }
-        public DateTime GetFecha()
-        {
-            string fecha = Request.QueryString["fecha"];
-            if (fecha == null)
-            {
-                return Convert.ToDateTime("2017/06/01");
-            }
-            Console.WriteLine("ESTA ES LA FECHA"+fecha);
-            return Convert.ToDateTime(fecha);
-        }
-
     }
 }

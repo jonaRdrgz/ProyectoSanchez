@@ -11,10 +11,9 @@ namespace ProyectoSanchez.Models
 {
     using System;
     
-    public partial class proc_anotadoresEquiposDeFecha_Result
+    public partial class GolesPartidos_Result
     {
-        public string Equipo { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> Goles { get; set; }
+        public string nombre { get; set; }
+        public Nullable<int> CantidadGoles { get; set; }
     }
 }

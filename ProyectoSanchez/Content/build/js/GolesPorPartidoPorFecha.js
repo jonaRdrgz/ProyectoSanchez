@@ -14,7 +14,7 @@
                     htmlBodyTable += '<tr class="odd pointer">';
                 }
 
-                htmlBodyTable += '<td >' + goles["Equipo"] + '</td><td class=" ">' + goles["Nombre"] + '</td><td class=" ">' + goles["Goles"] + '</td >';
+                htmlBodyTable += '<td >' + goles["nombre"] + '</td><td class=" ">' + goles["CantidadGoles"] + '</td >';
             });
 
             $('#previewInfoGolesPorPartido').DataTable().clear();

@@ -65,6 +65,19 @@
                 valorDiferenteA: "Seleccione un equipo diferente",
             }
         });
+        var date = moment($("#fecha").val(), "DD/MM/YYYY HH:mm");
+        var now = moment();
+        if (date > now) {
+            new PNotify({
+                title: 'Error',
+                text: 'No puede consultar una fecha mayor que la actual .',
+                type: 'error',
+                styling: 'bootstrap3',
+                delay: 800,
+            });
+            return false;
+        }
+
         funcion = 1;
         $("#formPartidos").valid();
     });
@@ -72,6 +85,8 @@
     $("#formPartidos").validate({
         submitHandler: function (form) {
             if (funcion === 1) {
+               
+
                 window.location.replace("/PartidoEquipos/Index?" + "IdEquipoA=" + $("#idEquipoA").val() + "&IdEquipoB=" + $("#idEquipoB").val() + "&Fecha=" + $("#fecha").val());
             }
             else {

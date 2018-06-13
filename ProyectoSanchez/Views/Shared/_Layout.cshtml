@@ -38,7 +38,7 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                            <img src="~/Content/build/images/user.png" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Bienvenido,</span>
@@ -55,10 +55,8 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a><i class="fa fa-wrench"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-calendar-check-o"></i> Fechas Calendario </a></li>
-                                    </ul>
+                                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-wrench"></i> Mantenimiento </a>
+                                    
                                 </li>
                                 <li>
                                     <a><i class="fa fa-search"></i> Consultas <span class="fa fa-chevron-down"></span></a>
@@ -67,7 +65,7 @@
                                         <li><a href="@Url.Action("Index", "Jugador")"><i class="fa fa-user"></i>  Jugadores </a></li>
                                         <li><a href="@Url.Action("Index", "Entrenador")"><i class="fa fa-users"></i> Entrenadores </a></li>
                                         <li><a href="@Url.Action("Index", "ConsultaEncuentros")"><i class="fa fa-calendar"></i> Encuentros </a></li>
-                                        <li><a href="@Url.Action("Index", "ArbitrosPorTorneo")"><i class="fa fa-calendar"></i> Árbitros </a></li>
+                                        <li><a href="@Url.Action("Index", "ArbitrosPorTorneo")"><i class="fa fa-users"></i> Árbitros </a></li>
                                     </ul>
                                 </li>
                             </ul>

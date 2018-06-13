@@ -24,6 +24,9 @@ namespace ProyectoSanchez.ViewModels
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public decimal IdEquipo { get; set; }
 
+        [StringLength(200, ErrorMessage = "El URL es muy extenso")]
+        public string Url { get; set; }
+
         [Required(ErrorMessage = "El id del partido es obligatorio")]
         [RegularExpression("([0-9]+)", ErrorMessage = "Sólo datos numéricos son permitidos")]
         public decimal IdPartido { get; set; }

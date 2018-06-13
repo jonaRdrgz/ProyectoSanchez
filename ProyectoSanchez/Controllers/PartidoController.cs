@@ -94,6 +94,7 @@ namespace ProyectoSanchez.Controllers
             {
                 oldGol.idJugador = nuevoGol.idJugador;
                 oldGol.minuto = nuevoGol.minuto;
+                oldGol.urlVideo = nuevoGol.urlVideo;
             }
         }
 
@@ -143,7 +144,8 @@ namespace ProyectoSanchez.Controllers
                         IdEquipo = Goles.idEquipo,
                         IdJugador = Goles.idJugador,
                         Minuto = Goles.minuto,
-                        IdPartido = Goles.idPartido
+                        IdPartido = Goles.idPartido,
+                        Url = Goles.urlVideo
                     }
                     ).ToList();
         }
@@ -397,6 +399,7 @@ namespace ProyectoSanchez.Controllers
                     nuevoGol.minuto = gol.Minuto;
                     nuevoGol.idEquipo = gol.IdEquipo;
                     nuevoGol.idPartido = gol.IdPartido;
+                    nuevoGol.urlVideo = gol.Url;
                     _db.UpdateGol(nuevoGol);
                 }
 
@@ -519,6 +522,7 @@ namespace ProyectoSanchez.Controllers
                     nuevoGol.minuto = gol.Minuto;
                     nuevoGol.idEquipo = gol.IdEquipo;
                     nuevoGol.idPartido = gol.IdPartido;
+                    nuevoGol.urlVideo = gol.Url;
                     _db.AddGol(nuevoGol);
                 }
                

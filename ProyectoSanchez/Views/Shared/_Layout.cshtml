@@ -55,22 +55,19 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i>Fechas Calendario </a>
+                                    <a><i class="fa fa-wrench"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-calendar-check-o"></i> Fechas Calendario </a></li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index", "Torneo")"><i class="fa fa-home"></i> Torneo </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Jugador")"><i class="fa fa-home"></i>Jugadores </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Entrenador")"><i class="fa fa-home"></i>Entrenadores </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "Torneo")"><i class="fa fa-home"></i>Tabla Posiciones </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index", "ConsultaEncuentros")"><i class="fa fa-home"></i>Historial Encuentros </a>
+                                    <a><i class="fa fa-search"></i> Consultas <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Index", "Torneo")"><i class="fa fa-futbol-o"></i> Torneo </a></li>
+                                        <li><a href="@Url.Action("Index", "Jugador")"><i class="fa fa-user"></i>  Jugadores </a></li>
+                                        <li><a href="@Url.Action("Index", "Entrenador")"><i class="fa fa-users"></i> Entrenadores </a></li>
+                                        <li><a href="@Url.Action("Index", "ConsultaEncuentros")"><i class="fa fa-calendar"></i> Encuentros </a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>

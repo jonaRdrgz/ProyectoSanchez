@@ -164,6 +164,7 @@
     <Compile Include="Controllers\JugadorPorEquipoPorTorneoController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
     <Compile Include="Controllers\PartidoEquiposController.cs" />
+    <Compile Include="Controllers\PartidoHistoricoController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -399,6 +400,7 @@
     <Content Include="Content\build\js\JugadorPorEquipoPorTorneo.js" />
     <Content Include="Content\build\js\Partido.js" />
     <Content Include="Content\build\js\PartidoEquipos.js" />
+    <Content Include="Content\build\js\PartidoHistorico.js" />
     <Content Include="Content\build\js\Validator\additional-methods.js" />
     <Content Include="Content\build\js\Validator\additional-methods.min.js" />
     <Content Include="Content\build\js\Validator\jquery.validate.js" />
@@ -4746,6 +4748,7 @@
     <Content Include="Views\Entrenador\Index.cshtml" />
     <Content Include="Views\GolesPorPartidoPorFecha\Index.cshtml" />
     <Content Include="Views\ConsultaEncuentros\Index.cshtml" />
+    <Content Include="Views\PartidoHistorico\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

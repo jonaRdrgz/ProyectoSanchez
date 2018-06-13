@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using ProyectoSanchez.ViewModels;
 
 namespace ProyectoSanchez.Controllers
 {
-    public class PartidoEquiposDataBaseWrapper
+    public class PartidoHistoricoDataBaseWrapper
     {
         private Models.ProyectoBasesSanchezEntities db = new Models.ProyectoBasesSanchezEntities();
 
-        public PartidoEquiposDataBaseWrapper()
+        public PartidoHistoricoDataBaseWrapper()
         {
             db = new Models.ProyectoBasesSanchezEntities();
         }
 
         public List<PartidoVM> ConsultaEncuentros(int EqA, int EqB, DateTime fecha)
         {
-            return (from Partido in db.Partidoes
+            return (from Partido in db.Partido_H
                     join Torneo in db.Torneos on Partido.idTorneo equals Torneo.idTorneo
                     join FechasC in db.FechasCalendarios on Torneo.idTorneo equals FechasC.idTorneo
                     join EquipoA in db.Equipoes on Partido.idEquipoLocal equals EquipoA.idEquipo
                     join EquipoB in db.Equipoes on Partido.idEquipoVisita equals EquipoB.idEquipo
-                    where Partido.idEquipoLocal == EqA && Partido.idEquipoVisita == EqB && Partido.idFecha ==
-                    FechasC.idFecha && FechasC.fechaProgramada > fecha
+                    where Partido.idEquipoLocal == EqA && Partido.idEquipoVisita == EqB 
                     select new PartidoVM
                     {
                         IdPartido = Partido.idPartido,
@@ -36,13 +36,12 @@ namespace ProyectoSanchez.Controllers
                         GolVisita = Partido.golVisita
                     }
                 ).Union(
-                    from Partido in db.Partidoes
+                    from Partido in db.Partido_H
                     join Torneo in db.Torneos on Partido.idTorneo equals Torneo.idTorneo
                     join FechasC in db.FechasCalendarios on Torneo.idTorneo equals FechasC.idTorneo
                     join EquipoA in db.Equipoes on Partido.idEquipoLocal equals EquipoA.idEquipo
                     join EquipoB in db.Equipoes on Partido.idEquipoVisita equals EquipoB.idEquipo
-                    where Partido.idEquipoVisita == EqA && Partido.idEquipoLocal == EqB && Partido.idFecha ==
-                    FechasC.idFecha && FechasC.fechaProgramada > fecha
+                    where Partido.idEquipoVisita == EqA && Partido.idEquipoLocal == EqB 
                     select new PartidoVM
                     {
                         IdPartido = Partido.idPartido,
@@ -57,23 +56,26 @@ namespace ProyectoSanchez.Controllers
                 ).ToList();
         }
     }
-    public class PartidoEquiposController : Controller
+
+    public class PartidoHistoricoController : Controller
     {
-        private PartidoEquiposDataBaseWrapper _db;
-        public static int idEquipoA;
-        public static int idEquipoB;
-        public static DateTime Fecha;
-        
-        public PartidoEquiposController()
+        private PartidoHistoricoDataBaseWrapper _db;
+        private static int idEquipoA;
+        private static int idEquipoB;
+        private static DateTime Fecha;
+
+        public PartidoHistoricoController()
         {
-            _db = new PartidoEquiposDataBaseWrapper();
+            _db = new PartidoHistoricoDataBaseWrapper();
         }
+
+        // GET: PartidoHistorico
 
         public ActionResult Index()
         {
-            idEquipoA = GetIdEquipoA();
-            idEquipoB = GetIdEquipoB();
-            Fecha = GetFecha();
+            idEquipoA = PartidoEquiposController.idEquipoA;
+            idEquipoB = PartidoEquiposController.idEquipoB;
+            Fecha = PartidoEquiposController.Fecha;
             return View();
         }
 
@@ -86,7 +88,7 @@ namespace ProyectoSanchez.Controllers
                 //List<FechasCalendarioVM> fechas = _db.GetFechasCalendario(idTorneo);
                 return new JsonResult()
                 {
-                    Data = _db.ConsultaEncuentros(idEquipoA, idEquipoB,Fecha),
+                    Data = _db.ConsultaEncuentros(idEquipoA, idEquipoB, Fecha),
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
@@ -123,11 +125,11 @@ namespace ProyectoSanchez.Controllers
             }
             return Convert.ToInt32(idEquipoB);
         }
-        
+
         public DateTime GetFecha()
         {
             string fecha = Request.QueryString["Fecha"];
-            if(fecha == null)
+            if (fecha == null)
             {
                 return Convert.ToDateTime(null);
             }
